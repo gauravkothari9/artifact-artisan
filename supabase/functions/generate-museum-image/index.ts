@@ -31,7 +31,7 @@ EXACT LAYOUT SPECIFICATION (follow precisely):
 - FLOOR: Warm gray-beige stone floor (#B7ADA2) filling the bottom 35% of the image. Clean, flat, no visible seams.
 - PRODUCT PLACEMENT: The product from the provided photo must be placed dead center horizontally, sitting naturally on the floor surface. The product should occupy roughly 40-50% of the image width and be vertically centered between floor and top of image.
 - LIGHTING: Single soft spotlight from directly above the product. Gentle vignette darkening at all four edges. Subtle soft shadow directly beneath the product on the floor.
-- MUSEUM PLACARD: A small rectangular white/ivory card (approximately 10% of image width, 15% of image height) positioned in the BOTTOM-LEFT corner of the image, resting upright on the floor at a very slight angle. The card has a thin dark border.
+- MUSEUM PLACARD: A very small rectangular white/ivory card (approximately 8% of image width, 12% of image height) positioned in the BOTTOM-LEFT corner of the image, resting upright on the floor at a very slight angle. The card has a thin dark border.
 
 PLACARD TEXT (must be perfectly legible, use bold black serif font on white/cream background):
   Line 1 (largest, bold): "Artifact #${artifactNumber}"
