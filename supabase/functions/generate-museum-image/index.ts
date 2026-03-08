@@ -34,7 +34,7 @@ serve(async (req) => {
     - The placard sits on the floor, leaning against the wall. NEVER floating, NEVER centered, NEVER on the right side.
     - Z-ORDER / LAYERING: The placard is ALWAYS rendered IN FRONT of the product and all other elements. It must NEVER be occluded, hidden, or partially covered by the product. The placard is the TOP-MOST layer in the scene.
   * SIZE: The placard width = exactly 10% of image WIDTH. Height proportional to fit all text comfortably. In landscape, keep the SAME pixel size as in square — do NOT shrink it.
-  * SHAPE: Flat rectangle. Sharp 90-degree corners. NO rounded corners. NO 3D perspective. NO curling. NO shadow on card. Slight 2-degree clockwise tilt.
+  * SHAPE & REALISM: The placard must look like a REAL PHYSICAL museum placard photographed in the scene. It should have realistic 3D perspective — slightly angled as if it's a small card sitting on the floor and leaning against the wall at a slight angle. It should look like a real object in the space, NOT a flat 2D overlay pasted on top. Add a subtle natural shadow beneath/behind the placard. The card should have slight depth and realistic lighting matching the scene. Sharp 90-degree corners, NO rounded corners, NO curling.
   * TEXT LEGIBILITY (CRITICAL — MOST IMPORTANT PLACARD RULE):
     - ALL text on the placard MUST be EXTREMELY SHARP, CRISP, BOLD, and FULLY READABLE at normal viewing size.
     - Use EXTRA LARGE, BOLD font sizes. Every word must be crystal clear and easy to read without zooming.
