@@ -30,26 +30,26 @@ serve(async (req) => {
     - The placard is ALWAYS in the BOTTOM-LEFT corner.
     - Left edge of placard = exactly 3% from the LEFT edge of the image (in both square and landscape).
     - Bottom edge of placard = exactly 2% from the BOTTOM edge of the image (in both square and landscape).
-    - In landscape (3:2), the left edge is still 3% from the left — do NOT move it to the center or further right. 3% of a wider image means a slightly larger pixel offset, but it must remain flush to the bottom-left corner.
+    - In landscape (3:2), the left edge is still 3% from the left — do NOT move it to the center or further right.
     - The placard sits on the floor, leaning against the wall. NEVER floating, NEVER centered, NEVER on the right side.
-    - Z-ORDER / LAYERING: The placard is ALWAYS rendered IN FRONT of the product and all other elements. It must NEVER be occluded, hidden, or partially covered by the product. The placard is the TOP-MOST layer in the scene. If the product and placard overlap, the placard is ALWAYS on top, fully visible.
-  * SIZE: Make the placard LARGE ENOUGH for text to be clearly readable. Minimum width = 12% of image HEIGHT, minimum height = 18% of image HEIGHT. In landscape, keep the SAME pixel size as in square — do NOT shrink it.
+    - Z-ORDER / LAYERING: The placard is ALWAYS rendered IN FRONT of the product and all other elements. It must NEVER be occluded, hidden, or partially covered by the product. The placard is the TOP-MOST layer in the scene.
+  * SIZE: The placard width = exactly 10% of image WIDTH. Height proportional to fit all text comfortably. In landscape, keep the SAME pixel size as in square — do NOT shrink it.
   * SHAPE: Flat rectangle. Sharp 90-degree corners. NO rounded corners. NO 3D perspective. NO curling. NO shadow on card. Slight 2-degree clockwise tilt.
   * TEXT LEGIBILITY (CRITICAL — MOST IMPORTANT PLACARD RULE):
-    - ALL text on the placard MUST be SHARP, CRISP, and FULLY READABLE at normal viewing size.
-    - Font size must be LARGE ENOUGH to read every single word clearly — if in doubt, make it BIGGER.
-    - Use high contrast: Pure black #000000 text on solid pure white #FFFFFF background.
-    - NO blurring, NO anti-aliasing artifacts, NO fuzzy text. Every letter must be pixel-sharp.
+    - ALL text on the placard MUST be EXTREMELY SHARP, CRISP, BOLD, and FULLY READABLE at normal viewing size.
+    - Use EXTRA LARGE, BOLD font sizes. Every word must be crystal clear and easy to read without zooming.
+    - Use MAXIMUM contrast: Pure black #000000 text on solid pure white #FFFFFF background.
+    - NO blurring, NO anti-aliasing artifacts, NO fuzzy text, NO thin or light font weights. Every letter must be pixel-sharp and BOLD.
     - The text must be equally legible in BOTH 1:1 square AND 3:2 landscape formats — same font size, same sharpness.
     - Border: Thin 1px solid #333333 on all 4 sides
-    - Classic serif font (like Times New Roman), left-aligned with generous internal padding
+    - Classic serif font (like Times New Roman), BOLD weight, left-aligned with generous internal padding
   * TEXT CONTENT (6 lines, top to bottom):
-    - Line 1 (bold, title size): "Artifact No. ${artifactNumber}" — Use "No." (capital N, lowercase o, period). Must be CRISP and LEGIBLE.
-    - Line 2 (regular): "${title}"
-    - Line 3 (smaller): "Origin: ${origin}"
-    - Line 4 (smaller): "Material: ${material}"
-    - Line 5 (smaller): "Size: ${size}"
-    - Line 6 (smaller): "Est. Age: ${estimatedAge}"
+    - Line 1 (EXTRA BOLD, large title size): "Artifact No. ${artifactNumber}" — Use "No." (capital N, lowercase o, period). Must be CRISP, BOLD, and HIGHLY LEGIBLE.
+    - Line 2 (bold): "${title}"
+    - Line 3 (medium, bold): "Origin: ${origin}"
+    - Line 4 (medium, bold): "Material: ${material}"
+    - Line 5 (medium, bold): "Size: ${size}"
+    - Line 6 (medium, bold): "Est. Age: ${estimatedAge}"
   * ABSOLUTE CONSISTENCY: The placard in a 3:2 landscape image must be VISUALLY IDENTICAL to the placard in a 1:1 square image — same card size on screen, same font size, same style, same colors. The ONLY difference is that in landscape there is more background space to the right. The placard itself NEVER changes.
 ` : `
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
