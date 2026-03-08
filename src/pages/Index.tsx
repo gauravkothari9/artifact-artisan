@@ -56,7 +56,7 @@ const Index: React.FC = () => {
     } finally {
       setIsGenerating(false);
     }
-  }, [productFile, details, showPlacard]);
+  }, [productFile, details, showPlacard, aspectRatio]);
 
   const handleDownload = useCallback(() => {
     if (previewUrl) {
