@@ -28,6 +28,7 @@ const Index: React.FC = () => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [showPlacard, setShowPlacard] = useState(true);
+  const [aspectRatio, setAspectRatio] = useState<'1:1' | '3:2'>('1:1');
 
   const handleImageLoad = useCallback((_img: HTMLImageElement, file: File) => {
     setProductFile(file);
