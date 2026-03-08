@@ -56,44 +56,38 @@ serve(async (req) => {
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
 `;
 
-    const prompt = `You are a world-class photographer capturing a real artifact on display in a prestigious museum gallery. The output must look like a high-resolution photograph taken with a professional DSLR camera inside a real museum — NOT a 3D render, NOT a digital composite, NOT a graphic design.
+    const prompt = `Place the product from the provided photo into a museum gallery scene. Follow these rules EXACTLY:
 
-RULE #1 — PRODUCT PRESERVATION (HIGHEST PRIORITY):
-The product in the provided photo is SACRED and UNTOUCHABLE.
-- Extract the product from the input image and place it into the museum scene AS-IS. This is a compositing task.
-- Do NOT re-draw, re-render, re-imagine, or regenerate the product. Use the EXACT pixels from the input.
-- Do NOT change the product's ANGLE, ORIENTATION, PERSPECTIVE, SIZE, SCALE, COLORS, BRIGHTNESS, CONTRAST, SATURATION, or LIGHTING.
-- Do NOT add spotlights, glow, rim light, highlights, or new shadows ON the product itself.
-- Do NOT add or remove any details, textures, or features from the product.
-- The product must look like it was carefully cut from the original photo and placed into the museum scene.
+PRODUCT RULES:
+- Use the EXACT product from the input photo — same angle, colors, proportions, lighting. Do NOT redraw or modify it.
+- Center the product horizontally, sitting on the floor.
 
-RULE #2 — IDENTICAL MUSEUM ENVIRONMENT (CRITICAL — MUST BE THE SAME IN EVERY IMAGE):
-The museum background and floor must be EXACTLY THE SAME in every single generated image, regardless of the product. This is a FIXED, STANDARDIZED environment — like a real museum gallery that never changes. The ONLY thing that changes between images is the product itself.
+BACKGROUND RULES (THIS EXACT SAME BACKGROUND EVERY TIME — NO VARIATION):
+The background is a simple two-tone scene. It must look IDENTICAL regardless of what product is shown:
 
-ENVIRONMENT SPECIFICATION (FIXED — NEVER VARIES):
-- WALL: Top exactly 65% of image. UNIFORM dark charcoal smooth plaster wall, flat color #3D3D3D. Smooth matte finish with very subtle fine plaster grain texture. NO dramatic lighting variations, NO color shifts, NO visible gradients across the wall. The wall must look IDENTICAL in every image — same color, same texture, same tone.
-- FLOOR: Bottom exactly 35% of image. UNIFORM warm gray-beige polished stone, flat color #B7ADA2. Smooth polished surface with very subtle stone grain. NO dramatic reflections, NO color variations across the floor. The floor must look IDENTICAL in every image — same color, same texture, same tone.
-- WALL-FLOOR JUNCTION: Clean, sharp, perfectly straight horizontal line at exactly 65% from top. NO baseboards, NO moldings, NO rounded transitions. Just a clean edge where wall meets floor.
-- LIGHTING: Soft, even, diffused ambient museum lighting from above. NO spotlights, NO directional beams, NO dramatic shadows on the wall or floor. The lighting on the environment itself must be PERFECTLY UNIFORM and IDENTICAL in every image. Only the product's contact shadow changes.
-- SHADOW: The product casts a soft, subtle contact shadow on the floor directly beneath it. This is the ONLY shadow variation between images.
-- ATMOSPHERE: Very subtle atmospheric depth. Minimal — do NOT add heavy haze or fog. Keep it clean and consistent.
-- CONSISTENCY RULE: If you generated 100 images with different products, the wall and floor should be PIXEL-PERFECT IDENTICAL in all 100. The background is a TEMPLATE — it never changes. Think of it as a fixed studio backdrop.
+WALL (upper 65% of image):
+- Color: FLAT dark gray, exactly RGB(61, 61, 61) / hex #3D3D3D
+- Texture: Smooth matte plaster. Very subtle fine grain only. NO marble, NO concrete blocks, NO dramatic texture.
+- Lighting on wall: PERFECTLY EVEN. No bright spots, no dark corners, no gradients, no color tint. Just flat #3D3D3D everywhere.
 
-RULE #3 — LAYOUT:
-- IMAGE FORMAT: ${aspectRatio === '3:2' ? 'Landscape 3:2 aspect ratio (e.g. 1536x1024 pixels). Wider than tall.' : 'PERFECT SQUARE — exactly 1:1 aspect ratio, 1024x1024 pixels.'}
-- Wall-to-floor transition: Clean straight horizontal line at approximately 65% from top. No baseboards or moldings.
-- PRODUCT PLACEMENT: Product is centered horizontally on the floor, sitting naturally as if displayed on the museum floor or a low invisible pedestal. The product should look GROUNDED — like it physically exists in this space.
+FLOOR (lower 35% of image):
+- Color: FLAT warm gray-beige, exactly RGB(183, 173, 162) / hex #B7ADA2  
+- Texture: Smooth matte stone. Very subtle grain only. NOT marble, NOT tiles, NOT glossy, NOT reflective. No visible tile lines or joints.
+- Lighting on floor: PERFECTLY EVEN. Same color everywhere. No bright spots, no reflections.
+
+WALL-FLOOR BOUNDARY:
+- A single clean straight horizontal line at exactly 65% from top.
+- NO baseboard, NO molding, NO shadow line, NO curved transition.
+
+LIGHTING:
+- Soft even ambient light from above. NO spotlights. NO directional light. NO dramatic shadows on wall or floor.
+- The product casts a small soft contact shadow directly beneath it on the floor. That is the ONLY shadow.
+
+IMAGE FORMAT: ${aspectRatio === '3:2' ? 'Landscape 3:2 ratio (1536x1024)' : 'Square 1:1 ratio (1024x1024)'}
 
 ${placardSection}
 
-FINAL CHECKLIST:
-1. The image looks like a REAL PHOTOGRAPH taken inside a museum — not a render or digital mockup.
-2. Product is faithful to input — same orientation, colors, and proportions.
-3. Museum environment has realistic textures, depth, atmosphere, and natural lighting.
-4. Product casts a natural, soft shadow and looks physically present in the space.
-5. ${showPlacard ? 'Placard is a realistic 3:2 physical card (width = 10% of image width), bottom-left corner (3% from left, 2% from bottom), white background, thin dark border, serif text with only line 1 bold.' : 'NO text, labels, or placards anywhere.'}
-6. No additional objects beyond product, wall, floor${showPlacard ? ', and placard' : ''}.
-7. Overall quality: museum-grade, editorial, gallery-worthy photograph.`;
+CRITICAL: The wall color must be #3D3D3D and the floor color must be #B7ADA2. These two flat colors define the entire background. Do not use any other colors for the environment. Do not add any objects, decorations, or elements other than the product${showPlacard ? ' and placard' : ''}.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
