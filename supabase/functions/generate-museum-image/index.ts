@@ -56,41 +56,28 @@ serve(async (req) => {
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
 `;
 
-    const prompt = `You are a world-class photographer capturing a real artifact on display in a prestigious museum gallery. The output must look like a high-resolution photograph taken with a professional DSLR camera inside a real museum — NOT a 3D render, NOT a digital composite, NOT a graphic design.
+    const prompt = `Place the product from the input photo into a museum gallery scene. The result must look like a real DSLR photograph.
 
-RULE #1 — PRODUCT PRESERVATION (HIGHEST PRIORITY):
-The product in the provided photo is SACRED and UNTOUCHABLE.
-- Extract the product from the input image and place it into the museum scene AS-IS. This is a compositing task.
-- Do NOT re-draw, re-render, re-imagine, or regenerate the product. Use the EXACT pixels from the input.
-- Do NOT change the product's ANGLE, ORIENTATION, PERSPECTIVE, SIZE, SCALE, COLORS, BRIGHTNESS, CONTRAST, SATURATION, or LIGHTING.
-- Do NOT add spotlights, glow, rim light, highlights, or new shadows ON the product itself.
-- Do NOT add or remove any details, textures, or features from the product.
-- The product must look like it was carefully cut from the original photo and placed into the museum scene.
+PRODUCT: Keep the product EXACTLY as it appears in the input — same angle, colors, size, lighting. Do not redraw or modify the product in any way. Composite it into the scene.
 
-RULE #2 — REALISTIC MUSEUM ENVIRONMENT (CRITICAL):
-Create a PHOTOREALISTIC museum gallery environment that looks like a real physical space photographed with a camera:
-- WALL: Top ~65% of image. Smooth matte dark charcoal wall — a rich dark gray (#4A4A4E to #55555A gradient from top to bottom). The wall should have a smooth, MATTE plaster finish — NOT concrete, NOT textured. It should look like a professionally painted museum gallery wall with an even, velvety matte surface. Very subtle tonal gradation from slightly darker at the top to slightly lighter near the floor, as natural ambient light would create. Add very subtle ambient occlusion where the wall meets the floor.
-- FLOOR: Bottom ~35% of image. POLISHED MARBLE FLOOR — this is critical. The floor must be warm-toned polished marble with visible natural VEINING patterns. Base color is warm beige-tan (#C4B5A4 to #B8A994). The marble must have clearly visible darker veining/streaks running through it in organic patterns — browns, taupes, and warm grays. The surface must be HIGHLY POLISHED with a glossy sheen that subtly reflects the product above it. The marble tiles should have very faint tile seams/joints visible. This floor should look like expensive Italian marble — Emperador or Travertine style. NOT matte, NOT plain stone, NOT concrete.
-- DEPTH & ATMOSPHERE: Add subtle atmospheric depth — very slight haze or tonal gradation that makes the scene feel like a real 3D space with air between the camera and the wall. The image should have natural photographic depth of field.
-- LIGHTING: Soft, diffused museum gallery lighting from above — even and ambient with natural falloff. A very soft, warm overhead light that creates gentle, natural shadows on the wall and a soft glow on the polished marble floor. The marble floor should have subtle reflections/highlights from the overhead lighting. The lighting should feel REAL — slightly warm color temperature as you'd see in a high-end museum or gallery.
-- SHADOW: The product casts a realistic soft contact shadow on the marble floor — the shadow should match the product's shape and feel physically grounded. The polished marble should also show a very subtle, soft reflection of the product's base.
-- REALISM DETAILS: Add photographic qualities — natural color temperature (slightly warm museum lighting), micro-details in the marble veining and surface reflections. The final image should be indistinguishable from a real photograph taken inside the Louvre, MoMA, or British Museum.
+BACKGROUND — THIS IS CRITICAL, READ CAREFULLY:
+- WALL (top 65% of image): DARK CHARCOAL GRAY wall. The wall must be DARK — color hex #4A4A4E to #55555A. Think very dark gray, almost approaching black but not quite. It is NOT light gray, NOT white, NOT medium gray. It must be DARK. Smooth matte plaster finish with subtle gradient (darker at top, very slightly lighter near floor).
+- FLOOR (bottom 35% of image): WARM BROWN EMPERADOR MARBLE. The floor must be WARM-TONED — base color hex #C4B5A4 (warm beige-tan-brown). It must have PROMINENT dark brown veining streaks throughout in organic patterns. The marble must be HIGHLY POLISHED with a glossy reflective sheen. It must NOT be white marble, NOT gray marble, NOT Carrara marble. Think rich warm brown Italian Emperador marble with visible dark veining.
+- The wall-to-floor transition is a clean horizontal line at ~65% from top. No baseboards.
 
-RULE #3 — LAYOUT:
-- IMAGE FORMAT: ${aspectRatio === '3:2' ? 'Landscape 3:2 aspect ratio (e.g. 1536x1024 pixels). Wider than tall.' : 'PERFECT SQUARE — exactly 1:1 aspect ratio, 1024x1024 pixels.'}
-- Wall-to-floor transition: Clean straight horizontal line at approximately 65% from top. No baseboards or moldings.
-- PRODUCT PLACEMENT: Product is centered horizontally on the floor, sitting naturally as if displayed on the museum floor or a low invisible pedestal. The product should look GROUNDED — like it physically exists in this space.
+ABSOLUTE COLOR REQUIREMENTS (DO NOT DEVIATE):
+- Wall = DARK (like charcoal/dark slate) — if the wall looks light or white, you have FAILED
+- Floor = WARM BROWN with dark veining — if the floor looks white or cool gray, you have FAILED
+
+LIGHTING: Soft warm overhead museum lighting. Product casts a natural soft shadow on the floor. The polished marble shows subtle reflection of the product base.
+
+LAYOUT:
+- ${aspectRatio === '3:2' ? 'Landscape 3:2 ratio (1536x1024)' : 'Square 1:1 ratio (1024x1024)'}
+- Product centered on the floor, grounded naturally
 
 ${placardSection}
 
-FINAL CHECKLIST:
-1. The image looks like a REAL PHOTOGRAPH taken inside a museum — not a render or digital mockup.
-2. Product is faithful to input — same orientation, colors, and proportions.
-3. Museum environment has realistic textures, depth, atmosphere, and natural lighting.
-4. Product casts a natural, soft shadow and looks physically present in the space.
-5. ${showPlacard ? 'Placard is a realistic 3:2 physical card (width = 10% of image width), bottom-left corner (3% from left, 2% from bottom), white background, thin dark border, serif text with only line 1 bold.' : 'NO text, labels, or placards anywhere.'}
-6. No additional objects beyond product, wall, floor${showPlacard ? ', and placard' : ''}.
-7. Overall quality: museum-grade, editorial, gallery-worthy photograph.`;
+CHECKLIST: Dark charcoal wall ✓ Warm brown marble floor with veining ✓ Product unchanged ✓ Realistic photograph ✓`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
