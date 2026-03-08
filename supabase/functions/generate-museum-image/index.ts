@@ -56,40 +56,53 @@ serve(async (req) => {
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
 `;
 
-    const prompt = `Place the product from the provided photo into a museum gallery scene. Follow these rules EXACTLY:
+    const prompt = `You are compositing a product into a museum gallery photograph. The museum environment is a FIXED TEMPLATE that NEVER changes between images. Every single image you generate must have the EXACT SAME wall and floor — as if photographed in the same room.
 
-PRODUCT RULES:
-- Use the EXACT product from the input photo — same angle, colors, proportions, lighting. Do NOT redraw or modify it.
-- Center the product horizontally, sitting on the floor.
+PRODUCT:
+- Extract the product from the input photo and composite it into the scene. Preserve the product EXACTLY as-is: same angle, colors, proportions, scale, lighting. Do NOT redraw, re-render, or alter the product in any way.
+- Place the product centered horizontally on the floor, grounded naturally.
 
-BACKGROUND RULES (THIS EXACT SAME BACKGROUND EVERY TIME — NO VARIATION):
-The background is a simple two-tone scene. It must look IDENTICAL regardless of what product is shown:
+MUSEUM ENVIRONMENT (FIXED TEMPLATE — IDENTICAL IN EVERY IMAGE):
 
-WALL (upper 65% of image):
-- Color: FLAT dark gray, exactly RGB(61, 61, 61) / hex #3D3D3D
-- Texture: Smooth matte plaster. Very subtle fine grain only. NO marble, NO concrete blocks, NO dramatic texture.
-- Lighting on wall: PERFECTLY EVEN. No bright spots, no dark corners, no gradients, no color tint. Just flat #3D3D3D everywhere.
+WALL:
+- Occupies the upper 65% of the image.
+- Color: Solid uniform dark charcoal gray. Hex #3D3D3D. RGB(61,61,61).
+- Surface: Smooth matte plaster finish. Uniform color across the entire wall — no gradients, no lighter patches, no darker corners, no color shifts. The wall is ONE flat color with a barely perceptible fine plaster texture.
+- DO NOT make the wall blue-gray, brown-gray, green-gray, or any tinted gray. It is NEUTRAL charcoal gray #3D3D3D.
 
-FLOOR (lower 35% of image):
-- Material: Polished white/cream marble with subtle natural gray veining. Classic museum-grade marble flooring.
-- Base color: Light cream-white marble, approximately #E8E0D8 with subtle warm gray veins running through it.
-- Finish: Polished and slightly reflective — like real marble floors in prestigious museums (Louvre, British Museum).
-- The marble pattern and veining must look IDENTICAL in every image — use the SAME consistent marble pattern every time. Think of it as one fixed marble floor photographed from the same angle.
-- Lighting on floor: Even ambient light with a subtle natural sheen from the polished marble surface.
+FLOOR:
+- Occupies the lower 35% of the image.
+- Material: Classic polished Carrara-style white marble.
+- Color: Creamy white base (#E8E0D8) with thin subtle gray veins (a classic Carrara marble look).
+- The marble must be a SINGLE CONTINUOUS slab — NO tile grid lines, NO grout lines, NO individual tiles visible. It is one seamless polished marble surface.
+- The marble veining pattern should be subtle and elegant — thin gray lines on a warm white base.
+- Finish: Gently polished with a soft natural sheen. Not mirror-reflective, but has the characteristic gentle glow of real polished marble.
+- THIS EXACT SAME MARBLE must appear in every image. Imagine it is one real marble floor — every photo is taken in the same spot.
 
-WALL-FLOOR BOUNDARY:
-- A single clean straight horizontal line at exactly 65% from top.
-- NO baseboard, NO molding, NO shadow line, NO curved transition.
+WALL-FLOOR JUNCTION:
+- A single perfectly straight horizontal line where the wall meets the floor, at exactly 65% from the top of the image.
+- NO baseboard, NO molding, NO shadow line at the junction. Just a clean edge.
 
 LIGHTING:
-- Soft even ambient light from above. NO spotlights. NO directional light. NO dramatic shadows on wall or floor.
-- The product casts a small soft contact shadow directly beneath it on the floor. That is the ONLY shadow.
+- Soft, even, ambient overhead light — like diffused museum ceiling lighting.
+- NO spotlights, NO directional beams, NO dramatic lighting effects on the wall or floor.
+- The wall should be evenly lit with no visible light falloff.
+- The floor should be evenly lit with a gentle natural marble sheen.
+- The product casts a subtle soft contact shadow on the marble floor directly beneath it. This is the ONLY variable shadow.
 
-IMAGE FORMAT: ${aspectRatio === '3:2' ? 'Landscape 3:2 ratio (1536x1024)' : 'Square 1:1 ratio (1024x1024)'}
+SCENE COMPOSITION:
+- ${aspectRatio === '3:2' ? 'Landscape 3:2 ratio (1536x1024 pixels). Wider than tall.' : 'Perfect square 1:1 ratio (1024x1024 pixels).'}
+- Camera angle: Straight-on, slightly above eye level, like a museum catalog photograph.
+- NOTHING else in the scene except the wall, marble floor, product${showPlacard ? ', and placard' : ''}. No pedestals, no other objects, no decorations.
 
 ${placardSection}
 
-CRITICAL: The wall color must be #3D3D3D and the floor color must be #B7ADA2. These two flat colors define the entire background. Do not use any other colors for the environment. Do not add any objects, decorations, or elements other than the product${showPlacard ? ' and placard' : ''}.`;
+ABSOLUTE RULES:
+1. Wall = #3D3D3D uniform charcoal gray. No tint. No variation.
+2. Floor = Carrara white marble, seamless slab, no tile lines.
+3. These two elements are a FIXED BACKDROP. They look IDENTICAL in every image regardless of the product.
+4. Product is preserved exactly from input — not redrawn.
+5. Only the product and its contact shadow change between images. Everything else is the same.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
