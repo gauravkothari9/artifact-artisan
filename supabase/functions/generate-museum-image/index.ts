@@ -58,9 +58,14 @@ serve(async (req) => {
 
     const prompt = `You are compositing a product into a museum gallery photograph. The output must be photorealistic — indistinguishable from a real DSLR photo (Canon 5D, 50mm lens, f/4, ISO 400) taken inside a prestigious gallery at the Louvre or MoMA.
 
-PRODUCT:
-- Preserve the product EXACTLY from the input: same angle, orientation, colors, textures, proportions, lighting.
-- Do not redraw, re-render, stylize, or alter the product in any way. Treat it as a pixel-accurate cutout composited into the scene.
+PRODUCT — ABSOLUTE HIGHEST PRIORITY RULE:
+- The product in the input image is SACRED. You MUST NOT change it in ANY way.
+- Do NOT redraw, re-render, re-imagine, regenerate, stylize, or artistically interpret the product.
+- Do NOT change the product's shape, proportions, colors, textures, details, angle, orientation, or perspective.
+- Do NOT add new lighting, shadows, highlights, reflections, or color shifts to the product itself.
+- Do NOT simplify, smooth, sharpen, blur, or modify any surface detail of the product.
+- The product must appear as an EXACT pixel-perfect copy from the input photo, simply placed into the museum scene.
+- Think of this as a photo editing task: cut out the product from the original photo and paste it onto the museum background. The product pixels must be IDENTICAL to the input.
 
 ENVIRONMENT — DARK GALLERY WITH WARM MARBLE FLOOR:
 
