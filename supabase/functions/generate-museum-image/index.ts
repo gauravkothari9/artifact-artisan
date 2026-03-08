@@ -96,18 +96,12 @@ WALL-FLOOR JUNCTION:
 - Very subtle ambient occlusion darkening right at the junction where wall meets floor.
 
 PHOTOGRAPHIC REALISM (crucial for believability):
-- LIGHTING (MUST BE CONSTANT AND CONSISTENT — CRITICAL):
-  * EXACT brightness level: Medium-soft ambient light at precisely 60% intensity — not bright, not dim, exactly moderate.
-  * Color temperature: EXACTLY 3200K warm tungsten gallery lighting — no cooler, no warmer.
-  * Light source: Single diffused overhead ambient light (invisible). NO dramatic lighting, NO spotlight effects, NO harsh highlights.
-  * Wall illumination: Even, uniform light across the entire wall surface. The wall should appear as a consistent #4A4A4E to #55555A tone throughout.
-  * Floor illumination: Even, uniform light across the marble. No bright hotspots, no dark patches.
-  * FORBIDDEN: High contrast lighting, dramatic shadows, bright highlights, dim moody lighting, variable exposure.
-- SHADOWS: The product casts a realistic soft contact shadow on the marble directly beneath and slightly behind it. Shadow opacity EXACTLY 35%, soft-edged, matching the product's silhouette. The shadow grounds the product in the space.
-- REFLECTIONS: The polished marble shows a soft, slightly blurred reflection of the product's base — visible but not mirror-sharp. Reflection opacity EXACTLY 20%. The reflection fades naturally with distance from the product.
+- LIGHTING: Soft, warm, diffused ambient light from hidden overhead sources (no visible fixtures). Color temperature ~3200K (warm tungsten/gallery lighting). Creates gentle, even illumination across the wall and floor. Soft light falloff from center toward edges — subtle natural vignette.
+- SHADOWS: The product casts a realistic soft contact shadow on the marble directly beneath and slightly behind it. Shadow opacity ~30-40%, soft-edged, matching the product's silhouette. The shadow grounds the product in the space.
+- REFLECTIONS: The polished marble shows a soft, slightly blurred reflection of the product's base — visible but not mirror-sharp. The reflection fades naturally with distance from the product.
 - DEPTH: Subtle atmospheric perspective — very slight warm haze/tonal softening between the camera and the back wall, giving a sense of real 3D space with air in it.
 - GRAIN: Very subtle photographic film grain consistent with ISO 400 — gives the image a real-camera feel rather than a CGI-clean look.
-- COLOR GRADING: Slightly warm overall tone. Rich, deep shadows. Smooth highlight rolloff on the marble surface. EXACT same grading for every image.
+- COLOR GRADING: Slightly warm overall tone. Rich, deep shadows. Smooth highlight rolloff on the marble surface.
 
 FORBIDDEN (never include any of these):
 - Track lights, spotlights, ceiling lights, any visible light fixtures
