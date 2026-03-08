@@ -6,6 +6,7 @@ export interface ArtifactDetails {
   origin: string;
   material: string;
   estimatedAge: string;
+  size: string;
 }
 
 function fileToBase64(file: File): Promise<string> {

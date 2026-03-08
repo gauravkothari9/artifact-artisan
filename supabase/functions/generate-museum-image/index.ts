@@ -17,7 +17,7 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const { imageBase64, artifactNumber, title, origin, material, estimatedAge } = await req.json();
+    const { imageBase64, artifactNumber, title, origin, material, estimatedAge, size } = await req.json();
 
     if (!imageBase64) {
       throw new Error("imageBase64 is required");
@@ -31,14 +31,15 @@ EXACT LAYOUT SPECIFICATION (follow precisely):
 - FLOOR: Warm gray-beige stone floor (#B7ADA2) filling the bottom 35% of the image. Clean, flat, no visible seams.
 - PRODUCT PLACEMENT: The product from the provided photo must be placed dead center horizontally, sitting naturally on the floor surface. The product should occupy roughly 40-50% of the image width and be vertically centered between floor and top of image.
 - LIGHTING: Single soft spotlight from directly above the product. Gentle vignette darkening at all four edges. Subtle soft shadow directly beneath the product on the floor.
-- MUSEUM PLACARD: A rectangular white/ivory card (approximately 20% of image width, 25% of image height) positioned in the BOTTOM-LEFT corner of the image, resting upright on the floor at a very slight angle. The card has a thin dark border.
+- MUSEUM PLACARD: A small rectangular white/ivory card (approximately 15% of image width, 20% of image height) positioned in the BOTTOM-LEFT corner of the image, resting upright on the floor at a very slight angle. The card has a thin dark border.
 
 PLACARD TEXT (must be perfectly legible, use bold black serif font on white/cream background):
   Line 1 (largest, bold): "Artifact #${artifactNumber}"
   Line 2: "${title}"
   Line 3: "Origin: ${origin}"
   Line 4: "Material: ${material}"
-  Line 5: "Estimated Age: ${estimatedAge}"
+  Line 5: "Size: ${size}"
+  Line 6: "Estimated Age: ${estimatedAge}"
 
 CRITICAL RULES:
 - Do NOT modify the product itself. Keep it exactly as provided.

@@ -15,6 +15,7 @@ const defaultDetails: ArtifactDetails = {
   origin: '',
   material: '',
   estimatedAge: '',
+  size: '',
 };
 
 const Index: React.FC = () => {
