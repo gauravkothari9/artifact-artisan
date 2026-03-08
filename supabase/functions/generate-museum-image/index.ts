@@ -89,7 +89,7 @@ FINAL CHECKLIST (ALL MUST BE TRUE OR IMAGE IS REJECTED):
 2. Product size is UNCHANGED — not shrunk, not enlarged, not rescaled.
 3. Lighting is FLAT and EVEN everywhere — ZERO spotlights, ZERO directional lights, ZERO light cones or beams.
 4. Wall is #3A3A3A-#4A4A4A, floor is #B7ADA2 — uniform colors, NO lighting variation.
-5. ${showPlacard ? 'Placard is a SMALL card (8% width, 12% height), bottom-left corner (3% from left, 2% from bottom), white #FFFFFF background, thin #333333 border, black serif text. It must look IDENTICAL in every single generated image — same tiny size, same position, same style. NEVER make it bigger or move it.' : 'NO text, labels, or placards anywhere.'}
+5. ${showPlacard ? 'Placard width = exactly 10% of image WIDTH, bottom-left corner (3% from left, 2% from bottom), white #FFFFFF background, thin #333333 border, BOLD black serif text. It must look IDENTICAL in every single generated image — same size, same position, same style.' : 'NO text, labels, or placards anywhere.'}
 6. No additional objects, decorations, or elements beyond product, wall, floor${showPlacard ? ', and placard' : ''}.
 7. Photorealistic museum exhibit photograph style.`;
 
