@@ -72,11 +72,11 @@ RULE #2 — LIGHTING (MANDATORY):
 - The ONLY shadow allowed: a very subtle, soft shadow directly beneath the product on the floor.
 
 RULE #3 — LAYOUT:
-- IMAGE FORMAT: ${aspectRatio === '3:2' ? 'Landscape 3:2 aspect ratio (e.g. 1200x800 pixels). Wider than tall. CRITICAL: The extra width is filled ONLY by extending the wall and floor background. The product stays the EXACT same size and appearance as it would in a 1:1 image. Do NOT stretch, resize, reinterpret, re-render, or alter the product in ANY way to "fill" the wider canvas. The product simply has more empty wall/floor space on its left and right sides.' : 'Perfect 1:1 square (e.g. 1024x1024 pixels).'}
+- IMAGE FORMAT: ${aspectRatio === '3:2' ? 'Landscape 3:2 aspect ratio (e.g. 1200x800 pixels). Wider than tall. VERY IMPORTANT FOR LANDSCAPE: Imagine you have ALREADY created the perfect 1:1 square museum image with the product. Now you are simply EXTENDING THE CANVAS to the left and right by adding more wall and floor. The product in the center is COMPLETELY UNCHANGED — same pixels, same angle, same size, same lighting, same everything. You are NOT creating a new image. You are widening an existing one. The product must be IDENTICAL to what it would look like in a 1:1 version.' : 'Perfect 1:1 square (e.g. 1024x1024 pixels).'}
 - WALL: Top 65% of image. FLAT dark charcoal gradient #3A3A3A (top) to #4A4A4A (bottom). Very subtle fine concrete/plaster texture. NOT brick, NOT wood, NOT stucco.
 - FLOOR: Bottom 35% of image. FLAT warm gray-beige stone #B7ADA2. Smooth, matte. NOT marble, NOT wood, NOT tile.
 - Wall-to-floor transition: Clean straight horizontal line at exactly 65% from top. No baseboards, no moldings.
-- PRODUCT PLACEMENT: Place the UNMODIFIED, UNSIZED, UNALTERED product dead center horizontally, sitting naturally on floor. The product must be a DIRECT CUTOUT from the original — identical pixels, identical size, identical colors, identical lighting. In landscape mode, do NOT re-render or re-imagine the product; just place the same exact product with more background space around it.
+- PRODUCT PLACEMENT: This is a COMPOSITING task. Cut the product out of the input photo and paste it dead center horizontally on the floor. Do NOT redraw it. Do NOT change its angle or orientation. Do NOT add lighting effects to it. The product in the output must be a PIXEL-PERFECT copy of the product in the input — same angle, same pose, same colors, same shadows that were already on it. Only the BACKGROUND changes (wall + floor). The product itself is UNTOUCHED.
 
 ${placardSection}
 
