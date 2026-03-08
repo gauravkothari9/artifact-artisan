@@ -117,6 +117,7 @@ FINAL CHECKLIST (ALL MUST BE TRUE OR IMAGE IS REJECTED):
           },
         ],
         modalities: ["image", "text"],
+        ...(aspectRatio === '1:1' ? { image_size: "1024x1024" } : { image_size: "1536x1024" }),
       }),
     });
 
