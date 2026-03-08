@@ -7,21 +7,22 @@ export interface ArtifactDetails {
 }
 
 const SIZE = 2000;
-const FLOOR_Y = 1450;
+const FLOOR_Y = 1340;
 
 function drawBackground(ctx: CanvasRenderingContext2D) {
-  // Dark museum gradient wall
+  // Dark museum gradient wall — charcoal to slightly lighter gray
   const wallGrad = ctx.createLinearGradient(0, 0, 0, FLOOR_Y);
-  wallGrad.addColorStop(0, '#1a1d23');
-  wallGrad.addColorStop(0.3, '#22262e');
-  wallGrad.addColorStop(0.7, '#2a2e36');
-  wallGrad.addColorStop(1, '#33373f');
+  wallGrad.addColorStop(0, '#3a3a3e');
+  wallGrad.addColorStop(0.2, '#404045');
+  wallGrad.addColorStop(0.5, '#48484d');
+  wallGrad.addColorStop(0.8, '#4a4a4f');
+  wallGrad.addColorStop(1, '#505055');
   ctx.fillStyle = wallGrad;
   ctx.fillRect(0, 0, SIZE, FLOOR_Y);
 
-  // Subtle texture noise on wall
-  ctx.globalAlpha = 0.03;
-  for (let i = 0; i < 8000; i++) {
+  // Very subtle noise texture on wall
+  ctx.globalAlpha = 0.02;
+  for (let i = 0; i < 12000; i++) {
     const x = Math.random() * SIZE;
     const y = Math.random() * FLOOR_Y;
     ctx.fillStyle = Math.random() > 0.5 ? '#ffffff' : '#000000';
@@ -29,82 +30,117 @@ function drawBackground(ctx: CanvasRenderingContext2D) {
   }
   ctx.globalAlpha = 1;
 
-  // Floor
+  // Floor — neutral stone/concrete
   const floorGrad = ctx.createLinearGradient(0, FLOOR_Y, 0, SIZE);
-  floorGrad.addColorStop(0, '#9e958b');
-  floorGrad.addColorStop(0.1, '#b7ada2');
+  floorGrad.addColorStop(0, '#a09588');
+  floorGrad.addColorStop(0.05, '#b0a698');
+  floorGrad.addColorStop(0.3, '#b7ada2');
   floorGrad.addColorStop(1, '#a89e94');
   ctx.fillStyle = floorGrad;
   ctx.fillRect(0, FLOOR_Y, SIZE, SIZE - FLOOR_Y);
 
-  // Floor edge line
-  ctx.strokeStyle = '#8a8078';
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.moveTo(0, FLOOR_Y);
-  ctx.lineTo(SIZE, FLOOR_Y);
-  ctx.stroke();
+  // Subtle floor texture
+  ctx.globalAlpha = 0.015;
+  for (let i = 0; i < 6000; i++) {
+    const x = Math.random() * SIZE;
+    const y = FLOOR_Y + Math.random() * (SIZE - FLOOR_Y);
+    ctx.fillStyle = Math.random() > 0.5 ? '#ffffff' : '#888888';
+    ctx.fillRect(x, y, 1, 1);
+  }
+  ctx.globalAlpha = 1;
+
+  // Soft shadow at wall-floor junction
+  const junctionGrad = ctx.createLinearGradient(0, FLOOR_Y - 5, 0, FLOOR_Y + 40);
+  junctionGrad.addColorStop(0, 'rgba(0,0,0,0)');
+  junctionGrad.addColorStop(0.3, 'rgba(0,0,0,0.15)');
+  junctionGrad.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = junctionGrad;
+  ctx.fillRect(0, FLOOR_Y - 5, SIZE, 45);
 }
 
 function drawSpotlight(ctx: CanvasRenderingContext2D) {
-  const grad = ctx.createRadialGradient(SIZE / 2, 0, 100, SIZE / 2, 600, 900);
-  grad.addColorStop(0, 'rgba(255, 248, 230, 0.18)');
-  grad.addColorStop(0.5, 'rgba(255, 248, 230, 0.06)');
-  grad.addColorStop(1, 'rgba(255, 248, 230, 0)');
+  // Soft overhead spotlight — centered, warm
+  const grad = ctx.createRadialGradient(SIZE / 2, -200, 50, SIZE / 2, 500, 1100);
+  grad.addColorStop(0, 'rgba(255, 250, 240, 0.12)');
+  grad.addColorStop(0.4, 'rgba(255, 250, 240, 0.05)');
+  grad.addColorStop(1, 'rgba(255, 250, 240, 0)');
   ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, SIZE, FLOOR_Y);
+  ctx.fillRect(0, 0, SIZE, FLOOR_Y + 200);
+
+  // Slight vignette
+  const vignetteGrad = ctx.createRadialGradient(SIZE / 2, SIZE / 2, 400, SIZE / 2, SIZE / 2, SIZE * 0.75);
+  vignetteGrad.addColorStop(0, 'rgba(0,0,0,0)');
+  vignetteGrad.addColorStop(1, 'rgba(0,0,0,0.25)');
+  ctx.fillStyle = vignetteGrad;
+  ctx.fillRect(0, 0, SIZE, SIZE);
 }
 
 function drawProductShadow(ctx: CanvasRenderingContext2D, cx: number, bottomY: number, width: number) {
-  const shadowGrad = ctx.createRadialGradient(cx, bottomY, 10, cx, bottomY, width * 0.6);
-  shadowGrad.addColorStop(0, 'rgba(0, 0, 0, 0.35)');
-  shadowGrad.addColorStop(0.5, 'rgba(0, 0, 0, 0.12)');
+  // Ground contact shadow
+  const shadowGrad = ctx.createRadialGradient(cx, bottomY + 5, 5, cx, bottomY + 5, width * 0.5);
+  shadowGrad.addColorStop(0, 'rgba(0, 0, 0, 0.30)');
+  shadowGrad.addColorStop(0.4, 'rgba(0, 0, 0, 0.12)');
   shadowGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
   ctx.fillStyle = shadowGrad;
   ctx.beginPath();
-  ctx.ellipse(cx, bottomY + 10, width * 0.55, 30, 0, 0, Math.PI * 2);
+  ctx.ellipse(cx, bottomY + 8, width * 0.5, 25, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Softer ambient shadow
+  const ambientGrad = ctx.createRadialGradient(cx, bottomY, 10, cx, bottomY + 15, width * 0.7);
+  ambientGrad.addColorStop(0, 'rgba(0, 0, 0, 0.08)');
+  ambientGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  ctx.fillStyle = ambientGrad;
+  ctx.beginPath();
+  ctx.ellipse(cx, bottomY + 15, width * 0.65, 40, 0, 0, Math.PI * 2);
   ctx.fill();
 }
 
 function drawLabel(ctx: CanvasRenderingContext2D, details: ArtifactDetails) {
-  const labelW = 520;
-  const labelH = 220;
-  const labelX = SIZE - labelW - 100;
-  const labelY = SIZE - labelH - 80;
-  const padding = 30;
+  // Label positioned bottom-left, sitting on the floor like the reference
+  const labelW = 480;
+  const labelH = 190;
+  const labelX = 80;
+  const labelY = SIZE - labelH - 60;
+  const padding = 24;
 
-  // Label background
-  ctx.fillStyle = '#d4cfc6';
+  // White/light placard background
+  ctx.fillStyle = '#e8e4de';
   ctx.beginPath();
-  ctx.roundRect(labelX, labelY, labelW, labelH, 4);
+  ctx.roundRect(labelX, labelY, labelW, labelH, 3);
   ctx.fill();
 
-  // Subtle border
-  ctx.strokeStyle = '#b8b0a4';
-  ctx.lineWidth = 1.5;
-  ctx.stroke();
-
-  // Inner subtle line
-  ctx.strokeStyle = '#c5bfb5';
-  ctx.lineWidth = 0.5;
+  // Subtle shadow under the placard
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,0,0,0.2)';
+  ctx.shadowBlur = 12;
+  ctx.shadowOffsetY = 4;
+  ctx.fillStyle = '#e8e4de';
   ctx.beginPath();
-  ctx.roundRect(labelX + 6, labelY + 6, labelW - 12, labelH - 12, 2);
-  ctx.stroke();
+  ctx.roundRect(labelX, labelY, labelW, labelH, 3);
+  ctx.fill();
+  ctx.restore();
 
-  const textX = labelX + padding;
-  let textY = labelY + padding + 18;
+  // Redraw clean on top
+  ctx.fillStyle = '#e8e4de';
+  ctx.beginPath();
+  ctx.roundRect(labelX, labelY, labelW, labelH, 3);
+  ctx.fill();
 
-  // Artifact number - centered
-  ctx.fillStyle = '#5a534a';
-  ctx.font = '500 20px "Playfair Display", serif';
+  const centerX = labelX + labelW / 2;
+  let textY = labelY + padding + 20;
+
+  // Artifact number — centered, bold
+  ctx.fillStyle = '#1a1a1a';
+  ctx.font = 'bold 22px "Playfair Display", "Georgia", serif';
   ctx.textAlign = 'center';
-  ctx.fillText(`Artifact #${details.artifactNumber}`, labelX + labelW / 2, textY);
-  textY += 32;
+  ctx.fillText(`Artifact #${details.artifactNumber}`, centerX, textY);
+  textY += 30;
 
-  // Title - centered
-  ctx.fillStyle = '#2c2722';
-  ctx.font = '600 22px "Playfair Display", serif';
-  
+  // Title — centered, regular
+  ctx.fillStyle = '#2a2a2a';
+  ctx.font = '400 18px "Playfair Display", "Georgia", serif';
+
   // Word wrap title
   const maxWidth = labelW - padding * 2;
   const words = details.title.split(' ');
@@ -120,17 +156,16 @@ function drawLabel(ctx: CanvasRenderingContext2D, details: ArtifactDetails) {
     }
   }
   lines.push(line);
-  
-  for (const l of lines) {
-    ctx.fillText(l, labelX + labelW / 2, textY);
-    textY += 28;
-  }
-  textY += 10;
 
-  // Details - left aligned
-  ctx.textAlign = 'left';
-  ctx.font = '400 17px "Inter", "Playfair Display", serif';
-  ctx.fillStyle = '#4a443c';
+  for (const l of lines) {
+    ctx.fillText(l, centerX, textY);
+    textY += 24;
+  }
+  textY += 8;
+
+  // Detail lines — centered
+  ctx.font = '400 15px "Inter", "Helvetica Neue", sans-serif';
+  ctx.fillStyle = '#3a3a3a';
 
   const detailLines = [
     `Origin: ${details.origin}`,
@@ -139,9 +174,32 @@ function drawLabel(ctx: CanvasRenderingContext2D, details: ArtifactDetails) {
   ];
 
   for (const dl of detailLines) {
-    ctx.fillText(dl, textX, textY);
-    textY += 24;
+    ctx.fillText(dl, centerX, textY);
+    textY += 22;
   }
+}
+
+function drawWatermark(ctx: CanvasRenderingContext2D) {
+  // Small star/diamond watermark bottom-right like the reference
+  const cx = SIZE - 80;
+  const cy = SIZE - 80;
+  const r = 14;
+
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
+  ctx.beginPath();
+  for (let i = 0; i < 4; i++) {
+    const angle = (i * Math.PI) / 2 - Math.PI / 2;
+    const outerX = cx + Math.cos(angle) * r;
+    const outerY = cy + Math.sin(angle) * r;
+    if (i === 0) ctx.moveTo(outerX, outerY);
+    else ctx.lineTo(outerX, outerY);
+    const midAngle = angle + Math.PI / 4;
+    const innerX = cx + Math.cos(midAngle) * (r * 0.4);
+    const innerY = cy + Math.sin(midAngle) * (r * 0.4);
+    ctx.lineTo(innerX, innerY);
+  }
+  ctx.closePath();
+  ctx.fill();
 }
 
 export async function generateMuseumImage(
@@ -156,28 +214,31 @@ export async function generateMuseumImage(
   // 1. Background
   drawBackground(ctx);
 
-  // 2. Spotlight
-  drawSpotlight(ctx);
-
-  // 3. Product image - center and scale
-  const maxProductH = 900;
-  const maxProductW = 1200;
+  // 2. Product image — center on floor, scale to fit
+  const maxProductH = 1050;
+  const maxProductW = 1500;
   let pw = productImage.naturalWidth;
   let ph = productImage.naturalHeight;
   const scale = Math.min(maxProductW / pw, maxProductH / ph);
   pw *= scale;
   ph *= scale;
   const px = (SIZE - pw) / 2;
-  const py = FLOOR_Y - ph - 20;
+  const py = FLOOR_Y - ph + 60; // product sits slightly onto the floor
 
-  // Shadow
-  drawProductShadow(ctx, SIZE / 2, FLOOR_Y, pw);
+  // 3. Shadow beneath the product
+  drawProductShadow(ctx, SIZE / 2, FLOOR_Y + 10, pw);
 
-  // Draw product
+  // 4. Draw product
   ctx.drawImage(productImage, px, py, pw, ph);
 
-  // 4. Label
+  // 5. Spotlight overlay (after product for subtle glow)
+  drawSpotlight(ctx);
+
+  // 6. Label — bottom left
   drawLabel(ctx, details);
+
+  // 7. Watermark
+  drawWatermark(ctx);
 
   return canvas;
 }
