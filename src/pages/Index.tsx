@@ -48,7 +48,7 @@ const Index: React.FC = () => {
     if (!productFile) return;
     setIsGenerating(true);
     try {
-      const imageUrl = await generateMuseumImage(productFile, details, showPlacard);
+      const imageUrl = await generateMuseumImage(productFile, details, showPlacard, aspectRatio);
       setPreviewUrl(imageUrl);
       toast.success('Museum image generated successfully!');
     } catch (err: any) {
