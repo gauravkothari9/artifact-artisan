@@ -35,7 +35,7 @@ serve(async (req) => {
     - All text: Pure black #000000, classic serif font (like Times New Roman)
     - Text is left-aligned with small internal padding
   * TEXT CONTENT (6 lines, top to bottom):
-    - Line 1 (bold, title size): "Artifact #${artifactNumber}"
+    - Line 1 (bold, title size): "Artifact No. ${artifactNumber}" — Use the text "No." (capital N, lowercase o, period) followed by a space and then the number. Make sure this text is CRISP, SHARP, and fully LEGIBLE. Every character must be clearly readable.
     - Line 2 (regular): "${title}"
     - Line 3 (smaller): "Origin: ${origin}"
     - Line 4 (smaller): "Material: ${material}"
