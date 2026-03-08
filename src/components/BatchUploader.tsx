@@ -114,7 +114,7 @@ const BatchUploader: React.FC = () => {
         </label>
 
         <div className="rounded-md bg-secondary/30 p-3 text-xs text-muted-foreground font-mono">
-          image_filename, artifact_number, title, origin, material, age
+          image_filename, artifact_number, title, origin, material, age, size
         </div>
       </div>
 
