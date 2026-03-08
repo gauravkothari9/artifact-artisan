@@ -1,4 +1,5 @@
 import { supabase } from '@/integrations/supabase/client';
+import { overlayPlacard } from './placardOverlay';
 
 export interface ArtifactDetails {
   artifactNumber: string;
@@ -26,11 +27,12 @@ export async function generateMuseumImage(
 ): Promise<string> {
   const imageBase64 = await fileToBase64(file);
 
+  // Always generate WITHOUT placard from AI — we overlay it ourselves
   const { data, error } = await supabase.functions.invoke('generate-museum-image', {
     body: {
       imageBase64,
       ...details,
-      showPlacard,
+      showPlacard: false,
       aspectRatio,
     },
   });
@@ -47,7 +49,14 @@ export async function generateMuseumImage(
     throw new Error('No image was generated');
   }
 
-  return data.imageUrl;
+  let resultUrl = data.imageUrl;
+
+  // Overlay placard programmatically if enabled
+  if (showPlacard) {
+    resultUrl = await overlayPlacard(resultUrl, details);
+  }
+
+  return resultUrl;
 }
 
 export function downloadImage(dataUrl: string, filename: string) {
