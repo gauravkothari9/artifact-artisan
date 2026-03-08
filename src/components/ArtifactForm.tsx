@@ -12,9 +12,9 @@ const fields: { key: keyof ArtifactDetails; label: string; placeholder: string }
   { key: 'artifactNumber', label: 'Artifact Number', placeholder: '009' },
   { key: 'title', label: 'Artifact Title', placeholder: 'Traditional Wooden Storage Trunk' },
   { key: 'origin', label: 'Origin', placeholder: 'India' },
+  { key: 'size', label: 'Size', placeholder: '24" x 12" x 14"' },
   { key: 'material', label: 'Material', placeholder: 'Solid Wood with Metal Hardware' },
   { key: 'estimatedAge', label: 'Estimated Age', placeholder: 'Vintage (Mid–Late 20th Century)' },
-  { key: 'size', label: 'Size', placeholder: '24" x 12" x 14"' },
 ];
 
 const ArtifactForm: React.FC<ArtifactFormProps> = ({ details, onChange }) => {
