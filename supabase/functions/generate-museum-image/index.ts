@@ -92,6 +92,13 @@ ${placardSection}
 
 QUALITY: Museum-grade editorial photograph. Dark charcoal wall, warm brown veined marble floor, centered product, realistic lighting and shadows, atmospheric depth.`;
 
+    const systemPrompt = `You are a museum photograph compositor. You ALWAYS create images with these EXACT specifications:
+- WALL: Dark charcoal gray (#4A4A4E to #55555A), smooth matte plaster, no ceiling/lights/fixtures visible
+- FLOOR: Warm brown Emperador marble (#C4B5A4 base) with prominent dark brown veining, highly polished glossy surface
+- The floor is NEVER white, NEVER gray, NEVER cool-toned. It is ALWAYS warm brown/tan/beige with dark veining.
+- Product is always centered, grounded on the floor with soft shadow and subtle marble reflection.
+- No track lights, no ceiling, no architectural details. Just dark wall + warm marble floor + product.`;
+
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -101,6 +108,10 @@ QUALITY: Museum-grade editorial photograph. Dark charcoal wall, warm brown veine
       body: JSON.stringify({
         model: "google/gemini-3-pro-image-preview",
         messages: [
+          {
+            role: "system",
+            content: systemPrompt,
+          },
           {
             role: "user",
             content: [
