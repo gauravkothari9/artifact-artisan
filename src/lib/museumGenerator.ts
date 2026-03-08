@@ -20,7 +20,8 @@ function fileToBase64(file: File): Promise<string> {
 
 export async function generateMuseumImage(
   file: File,
-  details: ArtifactDetails
+  details: ArtifactDetails,
+  showPlacard: boolean = true
 ): Promise<string> {
   const imageBase64 = await fileToBase64(file);
 
@@ -28,6 +29,7 @@ export async function generateMuseumImage(
     body: {
       imageBase64,
       ...details,
+      showPlacard,
     },
   });
 

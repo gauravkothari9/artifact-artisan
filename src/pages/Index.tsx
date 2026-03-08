@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Image as ImageIcon, Layers } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 import ImageUploader from '@/components/ImageUploader';
 import ArtifactForm from '@/components/ArtifactForm';
 import MuseumPreview from '@/components/MuseumPreview';
@@ -24,6 +26,7 @@ const Index: React.FC = () => {
   const [details, setDetails] = useState<ArtifactDetails>(defaultDetails);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [showPlacard, setShowPlacard] = useState(true);
 
   const handleImageLoad = useCallback((_img: HTMLImageElement, file: File) => {
     setProductFile(file);
@@ -43,7 +46,7 @@ const Index: React.FC = () => {
     if (!productFile) return;
     setIsGenerating(true);
     try {
-      const imageUrl = await generateMuseumImage(productFile, details);
+      const imageUrl = await generateMuseumImage(productFile, details, showPlacard);
       setPreviewUrl(imageUrl);
       toast.success('Museum image generated successfully!');
     } catch (err: any) {
@@ -110,6 +113,16 @@ const Index: React.FC = () => {
                     Artifact Details
                   </h2>
                   <ArtifactForm details={details} onChange={setDetails} />
+                  <div className="flex items-center gap-3 pt-2">
+                    <Switch
+                      id="show-placard"
+                      checked={showPlacard}
+                      onCheckedChange={setShowPlacard}
+                    />
+                    <Label htmlFor="show-placard" className="text-sm font-medium text-foreground/80 cursor-pointer">
+                      Include museum placard
+                    </Label>
+                  </div>
                 </section>
 
                 <Button
