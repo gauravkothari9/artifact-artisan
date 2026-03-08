@@ -34,24 +34,25 @@ PLACARD TEXT (must be perfectly legible, use bold black serif font on white/crea
   Line 5: "Size: ${size}"
   Line 6: "Estimated Age: ${estimatedAge}"
 ` : `
-- NO PLACARD: Do NOT include any text card, label, or placard in the image.
+- ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else.
 `;
 
-    const prompt = `You are a professional product photographer. Generate EXACTLY this composition every time with NO variation in layout:
+    const prompt = `You are a professional product photographer creating a museum exhibit photo. Your #1 priority is to PRESERVE THE PRODUCT EXACTLY AS IT APPEARS in the provided photo. Do NOT alter, modify, reshape, recolor, or artistically reinterpret the product in any way. The product must look IDENTICAL to the input photo — same shape, same colors, same textures, same details, same proportions.
 
 EXACT LAYOUT SPECIFICATION (follow precisely):
-- IMAGE FORMAT: Perfect 1:1 square, landscape orientation
+- IMAGE FORMAT: Perfect 1:1 square
 - BACKGROUND: Dark charcoal gray gradient wall filling the top 65% of the image. Subtle concrete texture. No patterns, no decorations.
 - FLOOR: Warm gray-beige stone floor (#B7ADA2) filling the bottom 35% of the image. Clean, flat, no visible seams.
-- PRODUCT PLACEMENT: The product from the provided photo must be placed dead center horizontally, sitting naturally on the floor surface. The product should occupy roughly 40-50% of the image width and be vertically centered between floor and top of image.
+- PRODUCT PLACEMENT: Place the UNMODIFIED product from the provided photo dead center horizontally, sitting naturally on the floor surface. The product should occupy roughly 40-50% of the image width and be vertically centered between floor and top of image.
 - LIGHTING: Single soft spotlight from directly above the product. Gentle vignette darkening at all four edges. Subtle soft shadow directly beneath the product on the floor.
 ${placardSection}
-CRITICAL RULES:
-- Do NOT modify the product itself. Keep it exactly as provided.
-- The layout must be IDENTICAL every time: wall on top, floor on bottom, product centered.
-- ${showPlacard ? 'Text on placard must be HIGH CONTRAST black on white, sharp and crisp, never blurry.' : 'No text, labels, or placards anywhere in the image.'}
-- No additional objects, decorations, or elements.
-- Photorealistic museum exhibit photograph style.`;
+CRITICAL RULES (MUST FOLLOW ALL):
+1. NEVER modify, alter, or reinterpret the product. It must be a pixel-accurate representation of the input photo, just placed in the museum scene.
+2. The layout must be IDENTICAL every time: wall on top, floor on bottom, product centered.
+3. ${showPlacard ? 'Include a small placard in the bottom-left. Text must be HIGH CONTRAST black on white, sharp and crisp, never blurry.' : 'ABSOLUTELY NO text, labels, placards, or any writing anywhere in the image. Zero text elements.'}
+4. No additional objects, decorations, or elements beyond the product, wall, floor${showPlacard ? ', and placard' : ''}.
+5. Photorealistic museum exhibit photograph style.
+6. The product's appearance is SACRED — do not change it.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
