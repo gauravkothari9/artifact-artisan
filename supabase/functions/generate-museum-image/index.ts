@@ -24,22 +24,22 @@ serve(async (req) => {
     }
 
     const placardSection = showPlacard ? `
-- MUSEUM PLACARD (EXACT SPECIFICATION — follow identically every single time):
-  * Shape: A flat, perfectly rectangular card with SHARP 90-degree corners. NO rounded corners. NO folding. NO 3D effects.
-  * Size: Exactly 8% of image width, 12% of image height.
-  * Position: Bottom-left corner of the image, resting flat upright on the floor, flush against the wall. Slight 2-degree tilt to the right.
-  * Card color: Solid pure white (#FFFFFF) with a 1px solid dark gray (#333333) border on all four sides.
-  * Typography: ALL text is BLACK (#000000) on the white card. Use a classic bold serif font (like Playfair Display or Times New Roman). Left-aligned with consistent padding.
-  * Text layout (top to bottom, evenly spaced):
-    - Line 1 (title, largest ~14pt bold): "Artifact #${artifactNumber}"
-    - Line 2 (~10pt regular): "${title}"
-    - Line 3 (~9pt regular): "Origin: ${origin}"
-    - Line 4 (~9pt regular): "Material: ${material}"
-    - Line 5 (~9pt regular): "Size: ${size}"
-    - Line 6 (~9pt regular): "Est. Age: ${estimatedAge}"
-  * The placard must look EXACTLY the same in every generated image — same proportions, same font style, same border, same position. NEVER vary the placard design.
+- MUSEUM PLACARD — MANDATORY FIXED POSITION AND SIZE (NEVER DEVIATE):
+  * POSITION: The placard is located in the BOTTOM-LEFT corner of the image. Its left edge is at exactly 3% from the left edge of the image. Its bottom edge is at exactly 2% from the bottom edge of the image. It sits upright on the floor, flush against the wall. NEVER place the placard anywhere else — not center, not right, not floating, not on the wall. ALWAYS bottom-left.
+  * SIZE: The placard width is EXACTLY 10% of the total image width. The placard height is EXACTLY 14% of the total image height. NEVER make it bigger or smaller.
+  * SHAPE: A perfectly flat, rectangular card with SHARP 90-degree corners. NO rounded corners. NO folding. NO 3D perspective. NO shadow on the card itself. Slight 2-degree clockwise tilt.
+  * CARD COLOR: Solid pure white (#FFFFFF) background with a 1px solid dark gray (#333333) border on all four sides.
+  * TYPOGRAPHY: ALL text is BLACK (#000000). Use a classic serif font (Times New Roman style). Left-aligned with 8% internal padding on all sides.
+  * TEXT LAYOUT (top to bottom, evenly spaced within the card):
+    - Line 1 (bold, largest): "Artifact #${artifactNumber}"
+    - Line 2 (regular): "${title}"
+    - Line 3 (regular, smaller): "Origin: ${origin}"
+    - Line 4 (regular, smaller): "Material: ${material}"
+    - Line 5 (regular, smaller): "Size: ${size}"
+    - Line 6 (regular, smaller): "Est. Age: ${estimatedAge}"
+  * ABSOLUTE RULE: The placard MUST be in the bottom-left at 3% from left and 2% from bottom, 10% width, 14% height, white with black border and black text. This is NON-NEGOTIABLE and must be IDENTICAL in every single generated image. If you place it anywhere else or change its size, the image is WRONG.
 ` : `
-- ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else.
+- ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
 `;
 
     const prompt = `You are a professional product photographer creating a museum exhibit photo. Your #1 priority is to PRESERVE THE PRODUCT EXACTLY AS IT APPEARS in the provided photo. Do NOT alter, modify, reshape, recolor, or artistically reinterpret the product in any way. The product must look IDENTICAL to the input photo — same shape, same colors, same textures, same details, same proportions.
