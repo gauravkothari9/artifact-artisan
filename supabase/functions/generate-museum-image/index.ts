@@ -24,34 +24,43 @@ serve(async (req) => {
     }
 
     const placardSection = showPlacard ? `
-- MUSEUM PLACARD — MANDATORY FIXED TEMPLATE. ZERO VARIATION ALLOWED. MUST BE IDENTICAL IN EVERY IMAGE REGARDLESS OF ASPECT RATIO (1:1 OR 3:2):
-  * THIS IS THE SINGLE MOST IMPORTANT ELEMENT TO GET RIGHT. The placard must look EXACTLY THE SAME in both 1:1 and 3:2 images — same physical size on screen, same style, same colors, same font, same position relative to bottom-left corner.
-  * POSITION — FIXED, NEVER CHANGES BETWEEN 1:1 AND 3:2:
-    - The placard is ALWAYS in the BOTTOM-LEFT corner.
-    - Left edge of placard = exactly 3% from the LEFT edge of the image (in both square and landscape).
-    - Bottom edge of placard = exactly 2% from the BOTTOM edge of the image (in both square and landscape).
-    - In landscape (3:2), the left edge is still 3% from the left — do NOT move it to the center or further right.
-    - The placard sits on the floor, leaning against the wall. NEVER floating, NEVER centered, NEVER on the right side.
-    - Z-ORDER / LAYERING: The placard is ALWAYS rendered IN FRONT of the product and all other elements. It must NEVER be occluded, hidden, or partially covered by the product. The placard is the TOP-MOST layer in the scene.
-  * SIZE & SHAPE RATIO: The placard card itself MUST have a 3:2 aspect ratio (wider than tall). Width = exactly 10% of image WIDTH. Height = width × (2/3). The placard is ALWAYS landscape-oriented (wider than tall). In landscape images, keep the SAME pixel size as in square — do NOT shrink it.
-  * SHAPE & REALISM: The placard must look like a REAL PHYSICAL museum placard photographed in the scene. It should have realistic 3D perspective — slightly angled as if it's a small card sitting on the floor and leaning against the wall at a slight angle. It should look like a real object in the space, NOT a flat 2D overlay pasted on top. Add a subtle natural shadow beneath/behind the placard. The card should have slight depth and realistic lighting matching the scene. Sharp 90-degree corners, NO rounded corners, NO curling.
-  * TEXT STYLING (CRITICAL — MUST BE EXACTLY THE SAME EVERY TIME, ZERO VARIATION):
-    - Font: Classic serif font (Times New Roman style)
-    - ONLY Line 1 is BOLD. Lines 2 through 6 are REGULAR/NORMAL weight — they must NOT be bold.
-    - Color: Pure black #000000 text on solid pure white #FFFFFF background
-    - ALL text is SHARP, CRISP, and FULLY READABLE. NO blurring, NO fuzzy text.
-    - Text alignment: LEFT-aligned with generous internal padding
-    - Border: Thin 1px solid #333333 on all 4 sides
-    - This exact styling must be IDENTICAL in every generated image. NEVER make lines 2-6 bold.
-  * TEXT CONTENT (exactly 6 lines, top to bottom):
-    - Line 1 (BOLD, largest font size): Artifact No. ${artifactNumber}
-    - Line 2 (NORMAL weight, smaller font): ${title}
-    - Line 3 (NORMAL weight, smaller font): Origin: ${origin}
-    - Line 4 (NORMAL weight, smaller font): Material: ${material}
-    - Line 5 (NORMAL weight, smaller font): Size: ${size}
-    - Line 6 (NORMAL weight, smaller font): Est. Age: ${estimatedAge}
-    RULE: ONLY Line 1 is bold. Lines 2-6 must be regular/normal weight. Do NOT include any formatting instructions or style descriptors as visible text.
-  * ABSOLUTE CONSISTENCY: The placard in a 3:2 landscape image must be VISUALLY IDENTICAL to the placard in a 1:1 square image — same card size on screen, same font size, same style, same colors. The ONLY difference is that in landscape there is more background space to the right. The placard itself NEVER changes.
+MUSEUM PLACARD — CRITICAL ELEMENT, MUST BE PERFECT:
+
+VISIBILITY & Z-ORDER (HIGHEST PRIORITY):
+- The placard MUST be clearly visible, fully readable, and NEVER obscured by the product or any other element.
+- The placard is the TOP-MOST LAYER — it renders IN FRONT of everything else. If the product and placard overlap, the placard is ALWAYS on top.
+- The placard must be LARGE ENOUGH to read all text clearly. Width = 15% of image width (larger than before for readability).
+
+POSITION:
+- Bottom-left corner of the image.
+- Left edge = 3% from left edge of image. Bottom edge = 3% from bottom edge of image.
+- The placard sits on the floor, leaning slightly against an invisible support. It faces the camera directly.
+- NEVER floating, NEVER centered, NEVER on the right side.
+
+SIZE & SHAPE:
+- 3:2 aspect ratio (wider than tall). Width = 15% of image width. Height = width × (2/3).
+- Landscape-oriented. Same physical size in both 1:1 and 3:2 images.
+
+APPEARANCE:
+- A FLAT, CLEAN white card (#FFFFFF background) with a thin dark border (#333333, 1px).
+- Sharp 90-degree corners. NO rounded corners.
+- The card should look like a real physical museum label card — clean, crisp, professional.
+- Subtle small shadow beneath the card to ground it on the floor.
+
+TEXT (MUST BE SHARP, CRISP, AND FULLY READABLE — this is critical):
+- Font: Classic serif (Times New Roman style). Pure black (#000000) text.
+- ALL text must be SHARP and CRISP — no blurring, no fuzziness, no artifacts. Every letter must be clearly legible.
+- Text is LEFT-aligned with generous padding inside the card.
+- Line 1 (BOLD, largest size): Artifact No. ${artifactNumber}
+- Line 2 (normal weight, smaller): ${title}
+- Line 3 (normal weight, smaller): Origin: ${origin}
+- Line 4 (normal weight, smaller): Material: ${material}
+- Line 5 (normal weight, smaller): Size: ${size}
+- Line 6 (normal weight, smaller): Est. Age: ${estimatedAge}
+- ONLY Line 1 is bold. Lines 2-6 are regular weight.
+- Do NOT include formatting instructions as visible text.
+
+CONSISTENCY: The placard must look identical in every generated image — same size, style, font, colors, position.
 ` : `
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
 `;
