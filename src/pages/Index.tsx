@@ -116,15 +116,31 @@ const Index: React.FC = () => {
                   </h2>
                   <ArtifactForm details={details} onChange={setDetails} />
                   <div className="flex items-center gap-3 pt-2">
-                    <Switch
-                      id="show-placard"
-                      checked={showPlacard}
-                      onCheckedChange={setShowPlacard}
-                    />
-                    <Label htmlFor="show-placard" className="text-sm font-medium text-foreground/80 cursor-pointer">
-                      Include museum placard
-                    </Label>
-                  </div>
+                     <Switch
+                       id="show-placard"
+                       checked={showPlacard}
+                       onCheckedChange={setShowPlacard}
+                     />
+                     <Label htmlFor="show-placard" className="text-sm font-medium text-foreground/80 cursor-pointer">
+                       Include museum placard
+                     </Label>
+                   </div>
+                   <div className="space-y-2 pt-2">
+                     <Label className="text-sm font-medium text-foreground/80">Aspect Ratio</Label>
+                     <ToggleGroup
+                       type="single"
+                       value={aspectRatio}
+                       onValueChange={(v) => v && setAspectRatio(v as '1:1' | '3:2')}
+                       className="justify-start"
+                     >
+                       <ToggleGroupItem value="1:1" variant="outline" className="px-4 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground">
+                         1:1 Square
+                       </ToggleGroupItem>
+                       <ToggleGroupItem value="3:2" variant="outline" className="px-4 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground">
+                         3:2 Landscape
+                       </ToggleGroupItem>
+                     </ToggleGroup>
+                   </div>
                 </section>
 
                 <Button
