@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { FileSpreadsheet, Loader2, Download, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ArtifactDetails, generateMuseumImage, downloadCanvas } from '@/lib/museumCanvas';
+import { ArtifactDetails, generateMuseumImage, downloadImage } from '@/lib/museumGenerator';
 
 interface BatchRow extends ArtifactDetails {
   imageFilename: string;
@@ -9,7 +9,7 @@ interface BatchRow extends ArtifactDetails {
 
 interface BatchResult {
   filename: string;
-  canvas: HTMLCanvasElement | null;
+  imageUrl: string | null;
   error?: string;
 }
 
@@ -67,24 +67,19 @@ const BatchUploader: React.FC = () => {
       const row = rows[i];
       const file = imageFiles.get(row.imageFilename);
       if (!file) {
-        batchResults.push({ filename: row.imageFilename, canvas: null, error: 'Image not found' });
+        batchResults.push({ filename: row.imageFilename, imageUrl: null, error: 'Image not found' });
         setProgress(i + 1);
         continue;
       }
 
       try {
-        const img = await new Promise<HTMLImageElement>((resolve, reject) => {
-          const el = new Image();
-          el.onload = () => resolve(el);
-          el.onerror = reject;
-          el.src = URL.createObjectURL(file);
-        });
-        const canvas = await generateMuseumImage(img, row);
-        batchResults.push({ filename: row.imageFilename, canvas });
-      } catch {
-        batchResults.push({ filename: row.imageFilename, canvas: null, error: 'Generation failed' });
+        const imageUrl = await generateMuseumImage(file, row);
+        batchResults.push({ filename: row.imageFilename, imageUrl });
+      } catch (err: any) {
+        batchResults.push({ filename: row.imageFilename, imageUrl: null, error: err.message || 'Generation failed' });
       }
       setProgress(i + 1);
+      setResults([...batchResults]);
     }
 
     setResults(batchResults);
@@ -93,9 +88,9 @@ const BatchUploader: React.FC = () => {
 
   const downloadAll = useCallback(() => {
     results.forEach((r) => {
-      if (r.canvas) {
+      if (r.imageUrl) {
         const name = r.filename.replace(/\.[^.]+$/, '') + '_museum.png';
-        downloadCanvas(r.canvas, name);
+        downloadImage(r.imageUrl, name);
       }
     });
   }, [results]);
@@ -145,7 +140,7 @@ const BatchUploader: React.FC = () => {
             Processing {progress}/{rows.length}…
           </>
         ) : (
-          `Generate ${rows.length} Images`
+          `Generate ${rows.length} Images with AI`
         )}
       </Button>
 
@@ -168,9 +163,9 @@ const BatchUploader: React.FC = () => {
                 )}
                 <span className="truncate">{r.filename}</span>
                 {r.error && <span className="text-destructive text-xs ml-auto">{r.error}</span>}
-                {r.canvas && (
+                {r.imageUrl && (
                   <button
-                    onClick={() => downloadCanvas(r.canvas!, r.filename.replace(/\.[^.]+$/, '') + '_museum.png')}
+                    onClick={() => downloadImage(r.imageUrl!, r.filename.replace(/\.[^.]+$/, '') + '_museum.png')}
                     className="ml-auto text-primary hover:underline text-xs"
                   >
                     Download

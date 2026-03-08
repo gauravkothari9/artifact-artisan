@@ -1,0 +1,4 @@
+project_id = "ttzkuftntpeqxqekvdoh"
+
+[functions.generate-museum-image]
+verify_jwt = false
