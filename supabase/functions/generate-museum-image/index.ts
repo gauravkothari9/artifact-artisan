@@ -24,23 +24,24 @@ serve(async (req) => {
     }
 
     const placardSection = showPlacard ? `
-- MUSEUM PLACARD — THIS IS A RIGID TEMPLATE. COPY EXACTLY. NO CREATIVITY ALLOWED:
-  * POSITION: Bottom-left corner. Left edge = 3% from image left. Bottom edge = 2% from image bottom. Flush against wall, sitting on floor. NEVER center, NEVER right, NEVER floating, NEVER on wall. BOTTOM-LEFT ONLY.
-  * SIZE: Width = EXACTLY 8% of image width. Height = EXACTLY 12% of image height. NOT 10%, NOT 15%, NOT 20%. EXACTLY 8% wide and 12% tall. If you make it any other size, the image is REJECTED.
-  * SHAPE: Perfectly flat rectangle. SHARP 90-degree corners. NO rounded corners. NO folding. NO 3D perspective. NO shadow on card. Slight 2-degree clockwise tilt.
-  * CARD BACKGROUND: Solid pure white (#FFFFFF). NO cream, NO off-white, NO gray. Pure #FFFFFF.
-  * CARD BORDER: 1px solid dark gray (#333333) on ALL four sides. NO thicker borders. NO colored borders.
-  * TEXT COLOR: ALL text is pure BLACK (#000000). NO gray text. NO colored text.
-  * FONT: Classic serif font (Times New Roman style). NO sans-serif. NO modern fonts. NO handwriting.
-  * ALIGNMENT: Left-aligned with 8% internal padding on all sides.
-  * TEXT LAYOUT (top to bottom, evenly spaced):
-    - Line 1 (bold, largest): "Artifact #${artifactNumber}"
+- MUSEUM PLACARD — MANDATORY FIXED TEMPLATE. ZERO VARIATION ALLOWED. EVERY IMAGE MUST USE THIS IDENTICAL DESIGN:
+  * THIS IS THE SINGLE MOST IMPORTANT ELEMENT TO GET RIGHT. If the placard varies in ANY way between images, the entire output is REJECTED and WORTHLESS.
+  * POSITION: ALWAYS bottom-left corner. The placard's left edge is exactly 3% from the image's left edge. The placard's bottom edge is exactly 2% from the image's bottom edge. It sits on the floor, leaning against the wall. NEVER place it anywhere else — not center, not right, not floating, not on the wall.
+  * SIZE: The placard is a SMALL card. It must be EXACTLY 8% of the total image width and EXACTLY 12% of the total image height. This means in a 1024x1024 image it would be roughly 82x123 pixels. In a 1200x800 image it would be roughly 96x96 pixels. It is a TINY card — much smaller than the product. If the placard appears large or medium-sized, you have made it WRONG. It should look like a small museum label card, not a poster.
+  * SHAPE: Flat rectangle. Sharp 90-degree corners. NO rounded corners. NO 3D perspective. NO curling. NO shadow cast by the card. Slight 2-degree clockwise tilt.
+  * APPEARANCE (NEVER CHANGE THIS):
+    - Background: Solid pure white #FFFFFF — not cream, not off-white
+    - Border: Thin 1px solid #333333 on all 4 sides
+    - All text: Pure black #000000, classic serif font (like Times New Roman)
+    - Text is left-aligned with small internal padding
+  * TEXT CONTENT (6 lines, top to bottom):
+    - Line 1 (bold, title size): "Artifact #${artifactNumber}"
     - Line 2 (regular): "${title}"
-    - Line 3 (regular, smaller): "Origin: ${origin}"
-    - Line 4 (regular, smaller): "Material: ${material}"
-    - Line 5 (regular, smaller): "Size: ${size}"
-    - Line 6 (regular, smaller): "Est. Age: ${estimatedAge}"
-  * ABSOLUTE NON-NEGOTIABLE RULE: The placard MUST be 8% width, 12% height, bottom-left at 3%/2% margins, white card, black border, black serif text. THIS IS A FIXED TEMPLATE — NEVER VARY IT. Every single generated image must have the IDENTICAL placard design. If you change ANYTHING about the placard design, position, or size, the output is WRONG.
+    - Line 3 (smaller): "Origin: ${origin}"
+    - Line 4 (smaller): "Material: ${material}"
+    - Line 5 (smaller): "Size: ${size}"
+    - Line 6 (smaller): "Est. Age: ${estimatedAge}"
+  * CONSISTENCY RULE: Compare this placard mentally to every other placard you have ever generated for this prompt. They must ALL look IDENTICAL — same size, same position, same font, same colors, same border, same style. If you notice ANY difference, correct it to match this template EXACTLY.
 ` : `
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
 `;
