@@ -32,6 +32,7 @@ const BatchUploader: React.FC = () => {
         origin: cols[3] || '',
         material: cols[4] || '',
         estimatedAge: cols[5] || '',
+        size: cols[6] || '',
       };
     }).filter(r => r.imageFilename);
   }, []);
