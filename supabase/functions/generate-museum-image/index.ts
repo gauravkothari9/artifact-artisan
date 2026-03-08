@@ -26,7 +26,12 @@ serve(async (req) => {
     const placardSection = showPlacard ? `
 - MUSEUM PLACARD — MANDATORY FIXED TEMPLATE. ZERO VARIATION ALLOWED. MUST BE IDENTICAL IN EVERY IMAGE REGARDLESS OF ASPECT RATIO (1:1 OR 3:2):
   * THIS IS THE SINGLE MOST IMPORTANT ELEMENT TO GET RIGHT. The placard must look EXACTLY THE SAME in both 1:1 and 3:2 images — same physical size on screen, same style, same colors, same font, same position relative to bottom-left corner.
-  * POSITION: ALWAYS bottom-left corner. Left edge = 3% from image left. Bottom edge = 2% from image bottom. Sits on floor, leaning against wall.
+  * POSITION — FIXED, NEVER CHANGES BETWEEN 1:1 AND 3:2:
+    - The placard is ALWAYS in the BOTTOM-LEFT corner.
+    - Left edge of placard = exactly 3% from the LEFT edge of the image (in both square and landscape).
+    - Bottom edge of placard = exactly 2% from the BOTTOM edge of the image (in both square and landscape).
+    - In landscape (3:2), the left edge is still 3% from the left — do NOT move it to the center or further right. 3% of a wider image means a slightly larger pixel offset, but it must remain flush to the bottom-left corner.
+    - The placard sits on the floor, leaning against the wall. NEVER floating, NEVER centered, NEVER on the right side.
   * SIZE: The placard is a SMALL card — approximately 80 pixels wide and 120 pixels tall in a 1024-pixel-tall image. When the image is landscape (wider), the placard stays THE SAME SIZE — do NOT scale it to the wider width. The placard size is relative to IMAGE HEIGHT only: width = 8% of image HEIGHT, height = 12% of image HEIGHT. This ensures it looks identical in both square and landscape formats.
   * SHAPE: Flat rectangle. Sharp 90-degree corners. NO rounded corners. NO 3D perspective. NO curling. NO shadow on card. Slight 2-degree clockwise tilt.
   * APPEARANCE (NEVER CHANGE THIS — SAME IN EVERY IMAGE):
