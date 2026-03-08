@@ -56,53 +56,41 @@ serve(async (req) => {
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
 `;
 
-    const prompt = `You are compositing a product into a museum gallery photograph. The museum environment is a FIXED TEMPLATE that NEVER changes between images. Every single image you generate must have the EXACT SAME wall and floor — as if photographed in the same room.
+    const prompt = `You are a world-class photographer capturing a real artifact on display in a prestigious museum gallery. The output must look like a high-resolution photograph taken with a professional DSLR camera inside a real museum — NOT a 3D render, NOT a digital composite, NOT a graphic design.
 
-PRODUCT:
-- Extract the product from the input photo and composite it into the scene. Preserve the product EXACTLY as-is: same angle, colors, proportions, scale, lighting. Do NOT redraw, re-render, or alter the product in any way.
-- Place the product centered horizontally on the floor, grounded naturally.
+RULE #1 — PRODUCT PRESERVATION (HIGHEST PRIORITY):
+The product in the provided photo is SACRED and UNTOUCHABLE.
+- Extract the product from the input image and place it into the museum scene AS-IS. This is a compositing task.
+- Do NOT re-draw, re-render, re-imagine, or regenerate the product. Use the EXACT pixels from the input.
+- Do NOT change the product's ANGLE, ORIENTATION, PERSPECTIVE, SIZE, SCALE, COLORS, BRIGHTNESS, CONTRAST, SATURATION, or LIGHTING.
+- Do NOT add spotlights, glow, rim light, highlights, or new shadows ON the product itself.
+- Do NOT add or remove any details, textures, or features from the product.
+- The product must look like it was carefully cut from the original photo and placed into the museum scene.
 
-MUSEUM ENVIRONMENT (FIXED TEMPLATE — IDENTICAL IN EVERY IMAGE):
+RULE #2 — REALISTIC MUSEUM ENVIRONMENT (CRITICAL):
+Create a PHOTOREALISTIC museum gallery environment that looks like a real physical space photographed with a camera:
+- WALL: Top ~65% of image. Dark charcoal concrete/plaster wall (#3A3A3A to #4A4A4A gradient). Must have REALISTIC subtle texture — fine grain concrete or smooth plaster with natural micro-variations you'd see in a real museum wall. Add very subtle ambient occlusion where the wall meets the floor.
+- FLOOR: Bottom ~35% of image. Warm gray-beige polished stone (#B7ADA2 base). Must look like REAL museum flooring — subtle natural stone grain, very faint surface variation, slight matte sheen. NOT perfectly flat digital color.
+- DEPTH & ATMOSPHERE: Add subtle atmospheric depth — very slight haze or tonal gradation that makes the scene feel like a real 3D space with air between the camera and the wall. The image should have natural photographic depth of field.
+- LIGHTING: Soft, diffused museum gallery lighting — the kind from recessed ceiling panels. Even and ambient, but with natural falloff. A very soft, warm overhead ambient light that creates gentle, natural shadows. The lighting should feel REAL — not perfectly uniform like a digital render. Allow subtle natural light variation on the wall and floor as you'd see in a real museum.
+- SHADOW: The product casts a realistic soft contact shadow on the floor — the shadow should match the product's shape and feel physically grounded.
+- REALISM DETAILS: Add photographic qualities — very subtle lens characteristics, natural color temperature (slightly warm museum lighting), micro-details in surface textures. The final image should be indistinguishable from a real photograph taken inside the Louvre, MoMA, or British Museum.
 
-WALL:
-- Occupies the upper 65% of the image.
-- Color: Solid uniform dark charcoal gray. Hex #3D3D3D. RGB(61,61,61).
-- Surface: Smooth matte plaster finish. Uniform color across the entire wall — no gradients, no lighter patches, no darker corners, no color shifts. The wall is ONE flat color with a barely perceptible fine plaster texture.
-- DO NOT make the wall blue-gray, brown-gray, green-gray, or any tinted gray. It is NEUTRAL charcoal gray #3D3D3D.
-
-FLOOR:
-- Occupies the lower 35% of the image.
-- Material: Classic polished Carrara-style white marble.
-- Color: Creamy white base (#E8E0D8) with thin subtle gray veins (a classic Carrara marble look).
-- The marble must be a SINGLE CONTINUOUS slab — NO tile grid lines, NO grout lines, NO individual tiles visible. It is one seamless polished marble surface.
-- The marble veining pattern should be subtle and elegant — thin gray lines on a warm white base.
-- Finish: Gently polished with a soft natural sheen. Not mirror-reflective, but has the characteristic gentle glow of real polished marble.
-- THIS EXACT SAME MARBLE must appear in every image. Imagine it is one real marble floor — every photo is taken in the same spot.
-
-WALL-FLOOR JUNCTION:
-- A single perfectly straight horizontal line where the wall meets the floor, at exactly 65% from the top of the image.
-- NO baseboard, NO molding, NO shadow line at the junction. Just a clean edge.
-
-LIGHTING:
-- Soft, even, ambient overhead light — like diffused museum ceiling lighting.
-- NO spotlights, NO directional beams, NO dramatic lighting effects on the wall or floor.
-- The wall should be evenly lit with no visible light falloff.
-- The floor should be evenly lit with a gentle natural marble sheen.
-- The product casts a subtle soft contact shadow on the marble floor directly beneath it. This is the ONLY variable shadow.
-
-SCENE COMPOSITION:
-- ${aspectRatio === '3:2' ? 'Landscape 3:2 ratio (1536x1024 pixels). Wider than tall.' : 'Perfect square 1:1 ratio (1024x1024 pixels).'}
-- Camera angle: Straight-on, slightly above eye level, like a museum catalog photograph.
-- NOTHING else in the scene except the wall, marble floor, product${showPlacard ? ', and placard' : ''}. No pedestals, no other objects, no decorations.
+RULE #3 — LAYOUT:
+- IMAGE FORMAT: ${aspectRatio === '3:2' ? 'Landscape 3:2 aspect ratio (e.g. 1536x1024 pixels). Wider than tall.' : 'PERFECT SQUARE — exactly 1:1 aspect ratio, 1024x1024 pixels.'}
+- Wall-to-floor transition: Clean straight horizontal line at approximately 65% from top. No baseboards or moldings.
+- PRODUCT PLACEMENT: Product is centered horizontally on the floor, sitting naturally as if displayed on the museum floor or a low invisible pedestal. The product should look GROUNDED — like it physically exists in this space.
 
 ${placardSection}
 
-ABSOLUTE RULES:
-1. Wall = #3D3D3D uniform charcoal gray. No tint. No variation.
-2. Floor = Carrara white marble, seamless slab, no tile lines.
-3. These two elements are a FIXED BACKDROP. They look IDENTICAL in every image regardless of the product.
-4. Product is preserved exactly from input — not redrawn.
-5. Only the product and its contact shadow change between images. Everything else is the same.`;
+FINAL CHECKLIST:
+1. The image looks like a REAL PHOTOGRAPH taken inside a museum — not a render or digital mockup.
+2. Product is faithful to input — same orientation, colors, and proportions.
+3. Museum environment has realistic textures, depth, atmosphere, and natural lighting.
+4. Product casts a natural, soft shadow and looks physically present in the space.
+5. ${showPlacard ? 'Placard is a realistic 3:2 physical card (width = 10% of image width), bottom-left corner (3% from left, 2% from bottom), white background, thin dark border, serif text with only line 1 bold.' : 'NO text, labels, or placards anywhere.'}
+6. No additional objects beyond product, wall, floor${showPlacard ? ', and placard' : ''}.
+7. Overall quality: museum-grade, editorial, gallery-worthy photograph.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
