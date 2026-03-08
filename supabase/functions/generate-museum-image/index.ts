@@ -75,7 +75,7 @@ FLOOR (lower ~35% of frame):
 - The marble is WARM-TONED: beige, tan, caramel, brown. NEVER white, NEVER gray, NEVER cool-toned, NEVER Carrara.
 - Surface: Highly polished with a mirror-like glossy sheen. The polish creates visible reflections — a soft, slightly blurred mirror image of the product's base on the floor surface.
 - Tile joints: Very faint, subtle tile seam lines in a large-format pattern (each tile ~60-80cm).
-- The marble veining should look natural and organic — thick and thin dark streaks flowing through the warm base.
+- The marble veining should be SUBTLE and LOW-CONTRAST — soft, muted veining in slightly darker warm tones blending gently into the base color. NOT bold or high-contrast veining. Think elegant, understated marble with gentle tonal variation rather than dramatic dark streaks.
 
 WALL-FLOOR JUNCTION:
 - A clean, sharp horizontal line at approximately 65% from the top. No baseboard, no molding, no shadow line — just a crisp material transition.
