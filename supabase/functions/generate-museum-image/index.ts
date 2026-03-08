@@ -44,12 +44,14 @@ serve(async (req) => {
     - Border: Thin 1px solid #333333 on all 4 sides
     - Classic serif font (like Times New Roman), BOLD weight, left-aligned with generous internal padding
   * TEXT CONTENT (6 lines, top to bottom):
-    - Line 1 (EXTRA BOLD, large title size): "Artifact No. ${artifactNumber}" — Use "No." (capital N, lowercase o, period). Must be CRISP, BOLD, and HIGHLY LEGIBLE.
-    - Line 2 (bold): "${title}"
-    - Line 3 (medium, bold): "Origin: ${origin}"
-    - Line 4 (medium, bold): "Material: ${material}"
-    - Line 5 (medium, bold): "Size: ${size}"
-    - Line 6 (medium, bold): "Est. Age: ${estimatedAge}"
+    - Line 1: Artifact No. ${artifactNumber}
+      (This line should be the largest and boldest text on the placard. Use "No." with capital N, lowercase o, period.)
+    - Line 2: ${title}
+    - Line 3: Origin: ${origin}
+    - Line 4: Material: ${material}
+    - Line 5: Size: ${size}
+    - Line 6: Est. Age: ${estimatedAge}
+    ALL lines must be bold and legible. Line 1 is the largest. Lines 2-6 are slightly smaller but still bold. Do NOT include any formatting instructions, parenthetical notes, or style descriptors as visible text — ONLY the content above.
   * ABSOLUTE CONSISTENCY: The placard in a 3:2 landscape image must be VISUALLY IDENTICAL to the placard in a 1:1 square image — same card size on screen, same font size, same style, same colors. The ONLY difference is that in landscape there is more background space to the right. The placard itself NEVER changes.
 ` : `
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
