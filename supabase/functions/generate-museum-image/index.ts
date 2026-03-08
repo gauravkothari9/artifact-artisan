@@ -53,14 +53,17 @@ serve(async (req) => {
 
     const prompt = `You are a professional product photographer creating a museum exhibit photo.
 
-RULE #1 — PRODUCT PRESERVATION (HIGHEST PRIORITY):
-The product in the provided photo is SACRED and UNTOUCHABLE.
-- PRESERVE the product EXACTLY as it appears: same shape, same colors, same textures, same details, same proportions.
-- PRESERVE the product SIZE: The product must occupy the SAME relative area in the output as it does in the input. Do NOT shrink it. Do NOT enlarge it. Do NOT rescale it. Keep the EXACT original dimensions and proportions of the product.
-- Do NOT add ANY spotlight, glow, shine, reflection, highlight, rim light, or ANY additional lighting effect on or around the product.
-- Do NOT darken, brighten, add contrast, color-shift, or alter the product's appearance in ANY way.
-- The product must look like a DIRECT CUTOUT from the original photo placed into the scene — as if you used scissors to cut it out and glued it onto the background. ZERO modifications.
-- If the output product looks different from the input product in ANY way (size, color, lighting, texture), the image is REJECTED.
+RULE #1 — PRODUCT PRESERVATION (HIGHEST PRIORITY — MORE IMPORTANT THAN EVERYTHING ELSE):
+The product in the provided photo is SACRED and UNTOUCHABLE. You are performing a COMPOSITING task, NOT a generation task.
+- Extract the product from the input image and place it into the scene AS-IS. Think of it as a cut-and-paste operation.
+- Do NOT re-draw, re-render, re-imagine, re-interpret, or regenerate the product. Use the EXACT pixels from the input.
+- Do NOT change the product's ANGLE, ORIENTATION, or PERSPECTIVE. If the product faces left in the input, it faces left in the output. If it's tilted, it stays tilted. Do NOT rotate, flip, mirror, or reposition the product's pose.
+- Do NOT change the product's SIZE or SCALE. It must occupy the same relative area as in the input.
+- Do NOT change the product's COLORS, BRIGHTNESS, CONTRAST, SATURATION, or LIGHTING. No spotlights, no glow, no rim light, no highlights, no shadows ON the product.
+- Do NOT add or remove any details, textures, or features from the product.
+- Do NOT "improve" or "enhance" the product in any way. Raw, unmodified pixel transfer only.
+- The product must look like you used scissors to cut it from the original photo and pasted it onto the museum background. ZERO artistic interpretation.
+- If the output product differs from the input product in ANY way — angle, color, size, lighting, texture, orientation — the image is REJECTED.
 
 RULE #2 — LIGHTING (MANDATORY):
 - The ENTIRE scene uses ONLY flat, ambient, even, diffused lighting. ZERO directional light sources.
