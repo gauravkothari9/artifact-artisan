@@ -23,28 +23,29 @@ serve(async (req) => {
       throw new Error("imageBase64 is required");
     }
 
-    const prompt = `You are a professional product photographer for a high-end antique ecommerce store.
+    const prompt = `You are a professional product photographer. Generate EXACTLY this composition every time with NO variation in layout:
 
-Create a museum-style product display image with the following specifications:
+EXACT LAYOUT SPECIFICATION (follow precisely):
+- IMAGE FORMAT: Perfect 1:1 square, landscape orientation
+- BACKGROUND: Dark charcoal gray gradient wall filling the top 65% of the image. Subtle concrete texture. No patterns, no decorations.
+- FLOOR: Warm gray-beige stone floor (#B7ADA2) filling the bottom 35% of the image. Clean, flat, no visible seams.
+- PRODUCT PLACEMENT: The product from the provided photo must be placed dead center horizontally, sitting naturally on the floor surface. The product should occupy roughly 40-50% of the image width and be vertically centered between floor and top of image.
+- LIGHTING: Single soft spotlight from directly above the product. Gentle vignette darkening at all four edges. Subtle soft shadow directly beneath the product on the floor.
+- MUSEUM PLACARD: A rectangular white/ivory card (approximately 20% of image width, 25% of image height) positioned in the BOTTOM-LEFT corner of the image, resting upright on the floor at a very slight angle. The card has a thin dark border.
 
-BACKGROUND: Dark charcoal-to-gray gradient museum wall. The wall should have subtle texture.
-FLOOR: Neutral stone/concrete floor in a warm gray-beige tone (#B7ADA2).
-LIGHTING: Soft spotlight from above, focused on the product. Subtle vignette at edges.
-PRODUCT: Place the product from the provided image centered on the floor, naturally sitting on the surface. Add a realistic soft shadow beneath it.
+PLACARD TEXT (must be perfectly legible, use bold black serif font on white/cream background):
+  Line 1 (largest, bold): "Artifact #${artifactNumber}"
+  Line 2: "${title}"
+  Line 3: "Origin: ${origin}"
+  Line 4: "Material: ${material}"
+  Line 5: "Estimated Age: ${estimatedAge}"
 
-MUSEUM LABEL: This is VERY IMPORTANT. Place a clearly visible, large white/cream museum information placard in the bottom-left corner of the image, sitting upright on the floor. The placard MUST be large enough to read easily. Use HIGH CONTRAST — dark black text on a light cream/ivory background. The text must be BOLD, LARGE, and CRISP. Use elegant serif typography.
-
-The placard text layout (all text must be clearly legible):
-  Line 1 (large, bold, centered): "Artifact #${artifactNumber}"
-  Line 2 (centered): "${title}"
-  Line 3 (centered): "Origin: ${origin}"
-  Line 4 (centered): "Material: ${material}"  
-  Line 5 (centered): "Estimated Age: ${estimatedAge}"
-
-The image must be a 1:1 square format. Make it look like a real museum exhibit photograph - professional, elegant, and consistent.
-
-IMPORTANT: Keep the product exactly as it appears in the provided image. Do not modify the product itself. Only place it in the museum setting.
-IMPORTANT: The museum label text MUST be sharp, high-contrast, and easily readable. Do NOT make the text faint or blurry.`;
+CRITICAL RULES:
+- Do NOT modify the product itself. Keep it exactly as provided.
+- The layout must be IDENTICAL every time: wall on top, floor on bottom, product centered, placard bottom-left.
+- Text on placard must be HIGH CONTRAST black on white, sharp and crisp, never blurry.
+- No additional objects, decorations, or elements. Just wall, floor, product, shadow, spotlight, and placard.
+- Photorealistic museum exhibit photograph style.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
