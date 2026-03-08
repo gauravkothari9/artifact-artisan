@@ -17,7 +17,7 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const { imageBase64, artifactNumber, title, origin, material, estimatedAge, size, showPlacard = true } = await req.json();
+    const { imageBase64, artifactNumber, title, origin, material, estimatedAge, size, showPlacard = true, aspectRatio = '1:1' } = await req.json();
 
     if (!imageBase64) {
       throw new Error("imageBase64 is required");
