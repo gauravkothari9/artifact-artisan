@@ -45,31 +45,40 @@ serve(async (req) => {
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
 `;
 
-    const prompt = `You are a professional product photographer creating a museum exhibit photo. 
+    const prompt = `You are a professional product photographer creating a museum exhibit photo.
 
-CRITICAL PRODUCT RULE — READ THIS FIRST:
-The product in the provided photo is SACRED. You MUST preserve it EXACTLY as it appears — same shape, same colors, same textures, same details, same proportions, same lighting on the product. Do NOT add any spotlight, glow, shine, reflection, or additional lighting effect to the product. Do NOT darken it, brighten it, add contrast, or alter its appearance in ANY way. The product must look like a direct cutout from the original photo placed into the scene. NO artistic reinterpretation. NO enhancement. NO modification. PIXEL-ACCURATE preservation.
+RULE #1 — PRODUCT PRESERVATION (HIGHEST PRIORITY):
+The product in the provided photo is SACRED and UNTOUCHABLE.
+- PRESERVE the product EXACTLY as it appears: same shape, same colors, same textures, same details, same proportions.
+- PRESERVE the product SIZE: The product must occupy the SAME relative area in the output as it does in the input. Do NOT shrink it. Do NOT enlarge it. Do NOT rescale it. Keep the EXACT original dimensions and proportions of the product.
+- Do NOT add ANY spotlight, glow, shine, reflection, highlight, rim light, or ANY additional lighting effect on or around the product.
+- Do NOT darken, brighten, add contrast, color-shift, or alter the product's appearance in ANY way.
+- The product must look like a DIRECT CUTOUT from the original photo placed into the scene — as if you used scissors to cut it out and glued it onto the background. ZERO modifications.
+- If the output product looks different from the input product in ANY way (size, color, lighting, texture), the image is REJECTED.
 
-LIGHTING RULE — CRITICAL:
-The scene uses ONLY ambient, even, diffused lighting. There is NO spotlight. There is NO directional light hitting the product. There is NO dramatic lighting. The lighting is flat, neutral, and even across the entire scene. The ONLY shadow allowed is a very subtle, soft shadow directly beneath the product on the floor. Do NOT add any spotlight cone, light beam, or bright spot on or around the product. The wall and floor maintain their exact specified colors with NO lighting variation.
+RULE #2 — LIGHTING (MANDATORY):
+- The ENTIRE scene uses ONLY flat, ambient, even, diffused lighting. ZERO directional light sources.
+- There is NO spotlight. NO light beam. NO light cone. NO bright spot. NO dramatic lighting. NO rim lighting.
+- The wall color stays uniform #3A3A3A-#4A4A4A. The floor color stays uniform #B7ADA2. NO lighting variation on surfaces.
+- The ONLY shadow allowed: a very subtle, soft shadow directly beneath the product on the floor.
 
-EXACT LAYOUT SPECIFICATION:
+RULE #3 — LAYOUT:
 - IMAGE FORMAT: ${aspectRatio === '3:2' ? 'Landscape 3:2 aspect ratio (e.g. 1200x800 pixels). Wider than tall.' : 'Perfect 1:1 square (e.g. 1024x1024 pixels).'}
-
-MANDATORY BACKGROUND (IDENTICAL EVERY TIME — NEVER CHANGE):
-- WALL: Top 65% of image. FLAT, SOLID dark charcoal. Vertical gradient from #3A3A3A (top) to #4A4A4A (bottom). Very subtle fine concrete/plaster texture. NOT brick, NOT wood, NOT stucco, NOT smooth paint. NO patterns, NO decorations.
-- FLOOR: Bottom 35% of image. FLAT, SOLID warm gray-beige stone. Hex color #B7ADA2. Perfectly clean, smooth, matte. NOT marble, NOT wood, NOT tile. NO seams, NO joints, NO reflections.
+- WALL: Top 65% of image. FLAT dark charcoal gradient #3A3A3A (top) to #4A4A4A (bottom). Very subtle fine concrete/plaster texture. NOT brick, NOT wood, NOT stucco.
+- FLOOR: Bottom 35% of image. FLAT warm gray-beige stone #B7ADA2. Smooth, matte. NOT marble, NOT wood, NOT tile.
 - Wall-to-floor transition: Clean straight horizontal line at exactly 65% from top. No baseboards, no moldings.
+- PRODUCT PLACEMENT: Place the UNMODIFIED, UNSIZED product dead center horizontally, sitting naturally on floor.
 
-- PRODUCT PLACEMENT: Place the UNMODIFIED product dead center horizontally, sitting naturally on floor. Product occupies roughly 40-50% of image width.
 ${placardSection}
-FINAL CHECKLIST (ALL MUST BE TRUE):
-1. Product is IDENTICAL to input — no modifications, no spotlights, no added lighting, no color changes.
-2. Lighting is flat and even — NO spotlight, NO directional light, NO light cone.
-3. Wall is #3A3A3A-#4A4A4A gradient, floor is #B7ADA2 — NEVER different colors.
-4. ${showPlacard ? 'Placard is EXACTLY 8% width, 12% height, bottom-left at 3%/2%, white with black border and black serif text. IDENTICAL every time.' : 'NO text, labels, or placards anywhere.'}
-5. No additional objects, decorations, or elements beyond product, wall, floor${showPlacard ? ', and placard' : ''}.
-6. Photorealistic museum exhibit photograph style.`;
+
+FINAL CHECKLIST (ALL MUST BE TRUE OR IMAGE IS REJECTED):
+1. Product is PIXEL-IDENTICAL to input — same size, same colors, same lighting, NO modifications whatsoever.
+2. Product size is UNCHANGED — not shrunk, not enlarged, not rescaled.
+3. Lighting is FLAT and EVEN everywhere — ZERO spotlights, ZERO directional lights, ZERO light cones or beams.
+4. Wall is #3A3A3A-#4A4A4A, floor is #B7ADA2 — uniform colors, NO lighting variation.
+5. ${showPlacard ? 'Placard is EXACTLY 8% width, 12% height, bottom-left at 3%/2% margins, white (#FFFFFF) card, 1px #333333 border, black serif text. IDENTICAL template every single time — NEVER vary design, size, position, or style.' : 'NO text, labels, or placards anywhere.'}
+6. No additional objects, decorations, or elements beyond product, wall, floor${showPlacard ? ', and placard' : ''}.
+7. Photorealistic museum exhibit photograph style.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
