@@ -17,20 +17,13 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const { imageBase64, artifactNumber, title, origin, material, estimatedAge, size } = await req.json();
+    const { imageBase64, artifactNumber, title, origin, material, estimatedAge, size, showPlacard = true } = await req.json();
 
     if (!imageBase64) {
       throw new Error("imageBase64 is required");
     }
 
-    const prompt = `You are a professional product photographer. Generate EXACTLY this composition every time with NO variation in layout:
-
-EXACT LAYOUT SPECIFICATION (follow precisely):
-- IMAGE FORMAT: Perfect 1:1 square, landscape orientation
-- BACKGROUND: Dark charcoal gray gradient wall filling the top 65% of the image. Subtle concrete texture. No patterns, no decorations.
-- FLOOR: Warm gray-beige stone floor (#B7ADA2) filling the bottom 35% of the image. Clean, flat, no visible seams.
-- PRODUCT PLACEMENT: The product from the provided photo must be placed dead center horizontally, sitting naturally on the floor surface. The product should occupy roughly 40-50% of the image width and be vertically centered between floor and top of image.
-- LIGHTING: Single soft spotlight from directly above the product. Gentle vignette darkening at all four edges. Subtle soft shadow directly beneath the product on the floor.
+    const placardSection = showPlacard ? `
 - MUSEUM PLACARD: A very small rectangular white/ivory card (approximately 8% of image width, 12% of image height) positioned in the BOTTOM-LEFT corner of the image, resting upright on the floor at a very slight angle. The card has a thin dark border.
 
 PLACARD TEXT (must be perfectly legible, use bold black serif font on white/cream background):
@@ -40,12 +33,24 @@ PLACARD TEXT (must be perfectly legible, use bold black serif font on white/crea
   Line 4: "Material: ${material}"
   Line 5: "Size: ${size}"
   Line 6: "Estimated Age: ${estimatedAge}"
+` : `
+- NO PLACARD: Do NOT include any text card, label, or placard in the image.
+`;
 
+    const prompt = `You are a professional product photographer. Generate EXACTLY this composition every time with NO variation in layout:
+
+EXACT LAYOUT SPECIFICATION (follow precisely):
+- IMAGE FORMAT: Perfect 1:1 square, landscape orientation
+- BACKGROUND: Dark charcoal gray gradient wall filling the top 65% of the image. Subtle concrete texture. No patterns, no decorations.
+- FLOOR: Warm gray-beige stone floor (#B7ADA2) filling the bottom 35% of the image. Clean, flat, no visible seams.
+- PRODUCT PLACEMENT: The product from the provided photo must be placed dead center horizontally, sitting naturally on the floor surface. The product should occupy roughly 40-50% of the image width and be vertically centered between floor and top of image.
+- LIGHTING: Single soft spotlight from directly above the product. Gentle vignette darkening at all four edges. Subtle soft shadow directly beneath the product on the floor.
+${placardSection}
 CRITICAL RULES:
 - Do NOT modify the product itself. Keep it exactly as provided.
-- The layout must be IDENTICAL every time: wall on top, floor on bottom, product centered, placard bottom-left.
-- Text on placard must be HIGH CONTRAST black on white, sharp and crisp, never blurry.
-- No additional objects, decorations, or elements. Just wall, floor, product, shadow, spotlight, and placard.
+- The layout must be IDENTICAL every time: wall on top, floor on bottom, product centered.
+- ${showPlacard ? 'Text on placard must be HIGH CONTRAST black on white, sharp and crisp, never blurry.' : 'No text, labels, or placards anywhere in the image.'}
+- No additional objects, decorations, or elements.
 - Photorealistic museum exhibit photograph style.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
