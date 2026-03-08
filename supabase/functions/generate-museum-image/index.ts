@@ -35,23 +35,22 @@ serve(async (req) => {
     - Z-ORDER / LAYERING: The placard is ALWAYS rendered IN FRONT of the product and all other elements. It must NEVER be occluded, hidden, or partially covered by the product. The placard is the TOP-MOST layer in the scene.
   * SIZE: The placard width = exactly 10% of image WIDTH. Height proportional to fit all text comfortably. In landscape, keep the SAME pixel size as in square — do NOT shrink it.
   * SHAPE & REALISM: The placard must look like a REAL PHYSICAL museum placard photographed in the scene. It should have realistic 3D perspective — slightly angled as if it's a small card sitting on the floor and leaning against the wall at a slight angle. It should look like a real object in the space, NOT a flat 2D overlay pasted on top. Add a subtle natural shadow beneath/behind the placard. The card should have slight depth and realistic lighting matching the scene. Sharp 90-degree corners, NO rounded corners, NO curling.
-  * TEXT LEGIBILITY (CRITICAL — MOST IMPORTANT PLACARD RULE):
-    - ALL text on the placard MUST be EXTREMELY SHARP, CRISP, BOLD, and FULLY READABLE at normal viewing size.
-    - Use EXTRA LARGE, BOLD font sizes. Every word must be crystal clear and easy to read without zooming.
-    - Use MAXIMUM contrast: Pure black #000000 text on solid pure white #FFFFFF background.
-    - NO blurring, NO anti-aliasing artifacts, NO fuzzy text, NO thin or light font weights. Every letter must be pixel-sharp and BOLD.
-    - The text must be equally legible in BOTH 1:1 square AND 3:2 landscape formats — same font size, same sharpness.
+  * TEXT STYLING (CRITICAL — MUST BE EXACTLY THE SAME EVERY TIME, ZERO VARIATION):
+    - Font: Classic serif font (Times New Roman style)
+    - ALL 6 lines use BOLD weight — every single line is BOLD. There are NO normal/regular weight lines. NEVER mix bold and non-bold. Every character on the placard is BOLD.
+    - Color: Pure black #000000 text on solid pure white #FFFFFF background
+    - ALL text is SHARP, CRISP, and FULLY READABLE. NO blurring, NO fuzzy text.
+    - Text alignment: LEFT-aligned with generous internal padding
     - Border: Thin 1px solid #333333 on all 4 sides
-    - Classic serif font (like Times New Roman), BOLD weight, left-aligned with generous internal padding
-  * TEXT CONTENT (6 lines, top to bottom):
-    - Line 1: Artifact No. ${artifactNumber}
-      (This line should be the largest and boldest text on the placard. Use "No." with capital N, lowercase o, period.)
-    - Line 2: ${title}
-    - Line 3: Origin: ${origin}
-    - Line 4: Material: ${material}
-    - Line 5: Size: ${size}
-    - Line 6: Est. Age: ${estimatedAge}
-    ALL lines must be bold and legible. Line 1 is the largest. Lines 2-6 are slightly smaller but still bold. Do NOT include any formatting instructions, parenthetical notes, or style descriptors as visible text — ONLY the content above.
+    - The text styling must be IDENTICAL in every single generated image. Same font, same weight (BOLD for ALL lines), same color, same alignment.
+  * TEXT CONTENT (exactly 6 lines, top to bottom — ALL BOLD):
+    - Line 1 (BOLD, largest font size): Artifact No. ${artifactNumber}
+    - Line 2 (BOLD, medium font size): ${title}
+    - Line 3 (BOLD, medium font size): Origin: ${origin}
+    - Line 4 (BOLD, medium font size): Material: ${material}
+    - Line 5 (BOLD, medium font size): Size: ${size}
+    - Line 6 (BOLD, medium font size): Est. Age: ${estimatedAge}
+    RULE: Line 1 is slightly larger than lines 2-6. But ALL lines are BOLD. Do NOT make any line regular/normal weight. Do NOT include any formatting instructions or style descriptors as visible text.
   * ABSOLUTE CONSISTENCY: The placard in a 3:2 landscape image must be VISUALLY IDENTICAL to the placard in a 1:1 square image — same card size on screen, same font size, same style, same colors. The ONLY difference is that in landscape there is more background space to the right. The placard itself NEVER changes.
 ` : `
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
