@@ -71,11 +71,11 @@ WALL (upper ~65% of frame):
 - The wall extends edge-to-edge and top-to-bottom of the upper 65%. No ceiling line, no fixtures, no track lights, no rails, no moldings. Pure uninterrupted dark wall.
 
 FLOOR (lower ~35% of frame):
-- Material: Polished Emperador Dark marble — warm brown/tan base (#C4B5A4 to #B8A994) with PROMINENT dark brown and taupe veining in natural organic patterns.
-- The marble is WARM-TONED: beige, tan, caramel, brown. NEVER white, NEVER gray, NEVER cool-toned, NEVER Carrara.
-- Surface: Highly polished with a mirror-like glossy sheen. The polish creates visible reflections — a soft, slightly blurred mirror image of the product's base on the floor surface.
-- Tile joints: Very faint, subtle tile seam lines in a large-format pattern (each tile ~60-80cm).
-- The marble veining should be SUBTLE and LOW-CONTRAST — soft, muted veining in slightly darker warm tones blending gently into the base color. NOT bold or high-contrast veining. Think elegant, understated marble with gentle tonal variation rather than dramatic dark streaks.
+- Material: Polished light-toned marble — light warm beige/cream base (#D9CFC2 to #E5DDD2) with subtle soft warm veining.
+- The marble is LIGHT and WARM-TONED: light beige, cream, ivory, light tan. NOT dark brown, NOT dark marble, NOT Emperador Dark. Think light Crema Marfil or Botticino marble.
+- Surface: Highly polished with a glossy sheen. Soft reflections of the product's base visible on the floor.
+- Tile joints: Very faint, subtle tile seam lines in a large-format pattern.
+- Veining: Subtle, low-contrast — soft warm tan/light brown veins blending gently into the light base. Elegant and understated.
 
 WALL-FLOOR JUNCTION:
 - A clean, sharp horizontal line at approximately 65% from the top. No baseboard, no molding, no shadow line — just a crisp material transition.
@@ -110,7 +110,7 @@ The final image must feel like an editorial photograph from a museum catalog —
 
     const systemPrompt = `You are a world-class museum photography compositor specializing in creating photorealistic gallery images. Every image you create follows these IMMUTABLE rules:
 - WALL: Always dark charcoal gray (#4A4A4E–#55555A), smooth matte plaster. No ceiling, no lights, no fixtures ever visible.
-- FLOOR: Always warm brown Emperador marble (#C4B5A4 base) with subtle, low-contrast warm veining. Highly polished glossy surface with visible reflections. The floor is NEVER white, NEVER gray, NEVER Carrara, NEVER cool-toned. Always warm brown/tan/beige. Veining is gentle and muted, not bold or dramatic.
+- FLOOR: Always LIGHT warm-toned marble (#D9CFC2 to #E5DDD2 base) — light beige/cream/ivory with subtle soft warm veining. Highly polished glossy surface. NOT dark brown, NOT Emperador Dark, NOT gray, NOT cool-toned. Think Crema Marfil or Botticino marble.
 - LIGHTING: Warm diffused ambient (~3200K), no visible sources. Soft contact shadows. Subtle film grain.
 - COMPOSITION: Product always dead-center horizontally, grounded on the floor with realistic shadow and marble reflection.
 - ATMOSPHERE: Subtle depth haze, warm color grading, photographic quality indistinguishable from a real DSLR photograph.`;
