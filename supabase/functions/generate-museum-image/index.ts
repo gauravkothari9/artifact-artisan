@@ -56,41 +56,57 @@ serve(async (req) => {
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
 `;
 
-    const prompt = `Place the product from the input photo into a prestigious museum gallery environment. The final image must be indistinguishable from a real high-resolution photograph taken with a professional camera inside a world-class museum like the Louvre or British Museum.
+    const prompt = `You are compositing a product into a museum gallery photograph. The output must be photorealistic — indistinguishable from a real DSLR photo (Canon 5D, 50mm lens, f/4, ISO 400) taken inside a prestigious gallery at the Louvre or MoMA.
 
-PRODUCT RULES:
-- Keep the product EXACTLY as it appears in the input — same angle, colors, size, proportions.
-- Do not redraw, re-render, or modify the product. Composite it faithfully into the scene.
+PRODUCT:
+- Preserve the product EXACTLY from the input: same angle, orientation, colors, textures, proportions, lighting.
+- Do not redraw, re-render, stylize, or alter the product in any way. Treat it as a pixel-accurate cutout composited into the scene.
 
-MUSEUM ENVIRONMENT (CRITICAL — follow precisely):
-- WALL (top ~65%): Dark charcoal matte plaster wall (#4A4A4E to #55555A). Smooth, velvety finish. Subtle tonal gradient — slightly darker at the top, slightly lighter near the floor. No ceiling, no lights, no fixtures, no rails, no moldings visible. The wall fills the entire upper portion edge-to-edge.
-- FLOOR (bottom ~35%): Warm-toned polished Emperador marble. Base color warm beige-brown (#C4B5A4). Must have clearly visible dark brown organic veining patterns throughout. Highly polished with a glossy sheen that subtly reflects the product and ambient light. NOT white, NOT gray, NOT cool-toned. Rich warm Italian marble.
-- WALL-FLOOR TRANSITION: Clean, straight horizontal line at ~65% from top. No baseboards or moldings.
+ENVIRONMENT — DARK GALLERY WITH WARM MARBLE FLOOR:
 
-REALISM & ATMOSPHERE (this makes it feel like a REAL museum):
-- Soft, warm, diffused overhead ambient light — as if from hidden recessed ceiling lights. No visible light sources.
-- Natural photographic depth of field — very subtle atmospheric haze between camera and back wall.
-- The product casts a realistic, soft contact shadow on the marble floor matching its shape.
-- The polished marble floor shows a faint, soft reflection of the product's base — like a real glossy surface.
-- Subtle ambient occlusion where the wall meets the floor and where the product meets the floor.
-- Warm color temperature throughout (slightly golden/amber museum lighting feel).
-- The product must look physically present and grounded in the space — not floating, not pasted on.
+WALL (upper ~65% of frame):
+- Color: Dark charcoal gray (#4A4A4E to #55555A). NOT light, NOT medium gray — truly DARK.
+- Surface: Smooth matte plaster with a velvety, slightly chalky texture visible at close inspection. Think freshly painted museum gallery wall.
+- Gradient: Very subtle — fractionally darker at top, fractionally lighter approaching the floor, as natural ambient light creates.
+- The wall extends edge-to-edge and top-to-bottom of the upper 65%. No ceiling line, no fixtures, no track lights, no rails, no moldings. Pure uninterrupted dark wall.
 
-FORBIDDEN ELEMENTS (never include):
-- Track lights, spotlights, ceiling fixtures, visible ceiling
-- Pedestals, display cases, ropes, stanchions
-- Other objects, people, or text (except placard if enabled)
-- Architectural details like columns, rails, baseboards
+FLOOR (lower ~35% of frame):
+- Material: Polished Emperador Dark marble — warm brown/tan base (#C4B5A4 to #B8A994) with PROMINENT dark brown and taupe veining in natural organic patterns.
+- The marble is WARM-TONED: beige, tan, caramel, brown. NEVER white, NEVER gray, NEVER cool-toned, NEVER Carrara.
+- Surface: Highly polished with a mirror-like glossy sheen. The polish creates visible reflections — a soft, slightly blurred mirror image of the product's base on the floor surface.
+- Tile joints: Very faint, subtle tile seam lines in a large-format pattern (each tile ~60-80cm).
+- The marble veining should look natural and organic — thick and thin dark streaks flowing through the warm base.
+
+WALL-FLOOR JUNCTION:
+- A clean, sharp horizontal line at approximately 65% from the top. No baseboard, no molding, no shadow line — just a crisp material transition.
+- Very subtle ambient occlusion darkening right at the junction where wall meets floor.
+
+PHOTOGRAPHIC REALISM (crucial for believability):
+- LIGHTING: Soft, warm, diffused ambient light from hidden overhead sources (no visible fixtures). Color temperature ~3200K (warm tungsten/gallery lighting). Creates gentle, even illumination across the wall and floor. Soft light falloff from center toward edges — subtle natural vignette.
+- SHADOWS: The product casts a realistic soft contact shadow on the marble directly beneath and slightly behind it. Shadow opacity ~30-40%, soft-edged, matching the product's silhouette. The shadow grounds the product in the space.
+- REFLECTIONS: The polished marble shows a soft, slightly blurred reflection of the product's base — visible but not mirror-sharp. The reflection fades naturally with distance from the product.
+- DEPTH: Subtle atmospheric perspective — very slight warm haze/tonal softening between the camera and the back wall, giving a sense of real 3D space with air in it.
+- GRAIN: Very subtle photographic film grain consistent with ISO 400 — gives the image a real-camera feel rather than a CGI-clean look.
+- COLOR GRADING: Slightly warm overall tone. Rich, deep shadows. Smooth highlight rolloff on the marble surface.
+
+FORBIDDEN (never include any of these):
+- Track lights, spotlights, ceiling lights, any visible light fixtures
+- Visible ceiling or ceiling line
+- Pedestals, display cases, ropes, stanchions, museum furniture
+- Other objects, people, signage, or text (except placard if enabled)
+- Architectural details: columns, rails, baseboards, doorways
+- Any element not explicitly described above
 
 COMPOSITION:
-- ${aspectRatio === '3:2' ? 'Landscape 3:2 ratio (1536x1024)' : 'Square 1:1 ratio (1024x1024)'}
-- Product CENTERED horizontally — exactly in the middle of the frame
-- Product placed naturally on the floor in the lower-center area of the image
-- Camera angle: straight-on, slightly elevated — a natural museum photography angle
+- Format: ${aspectRatio === '3:2' ? 'Landscape 3:2 (1536×1024 pixels)' : 'Square 1:1 (1024×1024 pixels)'}
+- Product CENTERED horizontally in the frame — dead center, not shifted left or right
+- Product sits on the floor in the lower-center area, naturally grounded
+- Camera: Straight-on view, slightly elevated (~15° above floor level), typical museum/gallery product photography angle
+- Framing: Product occupies roughly 40-50% of the image height, with breathing room above and to the sides
 
 ${placardSection}
 
-QUALITY: Museum-grade editorial photograph. Dark charcoal wall, warm brown veined marble floor, centered product, realistic lighting and shadows, atmospheric depth.`;
+The final image must feel like an editorial photograph from a museum catalog — warm, atmospheric, grounded, and unmistakably real.`;
 
     const systemPrompt = `You are a museum photograph compositor. You ALWAYS create images with these EXACT specifications:
 - WALL: Dark charcoal gray (#4A4A4E to #55555A), smooth matte plaster, no ceiling/lights/fixtures visible
