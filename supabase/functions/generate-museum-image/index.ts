@@ -46,18 +46,26 @@ serve(async (req) => {
 
 EXACT LAYOUT SPECIFICATION (follow precisely every time — NO variation between images):
 - IMAGE FORMAT: ${aspectRatio === '3:2' ? 'Landscape 3:2 aspect ratio (e.g. 1200x800 pixels). Wider than tall.' : 'Perfect 1:1 square (e.g. 1024x1024 pixels).'}
-- BACKGROUND: Dark charcoal gray gradient wall filling the top 65% of the image. Subtle concrete texture. No patterns, no decorations.
-- FLOOR: Warm gray-beige stone floor (#B7ADA2) filling the bottom 35% of the image. Clean, flat, no visible seams.
+
+MANDATORY BACKGROUND (USE EXACTLY THIS EVERY TIME — NEVER CHANGE):
+- WALL: The top 65% of the image is a FLAT, SOLID dark charcoal wall. Use EXACTLY these hex colors: a subtle vertical gradient from #3A3A3A at the top to #4A4A4A at the bottom. The wall must have a very subtle, fine concrete/plaster texture — NOT brick, NOT wood, NOT stucco, NOT smooth paint. The same identical wall appearance in every single image. NO patterns, NO decorations, NO color variation beyond the specified gradient.
+
+MANDATORY FLOOR (USE EXACTLY THIS EVERY TIME — NEVER CHANGE):
+- FLOOR: The bottom 35% of the image is a FLAT, SOLID warm gray-beige stone surface. Use EXACTLY hex color #B7ADA2. The floor must be perfectly clean, smooth, matte stone — NOT marble, NOT wood, NOT tile, NOT polished. NO visible seams, NO joints, NO reflections, NO texture variations. The exact same flat #B7ADA2 stone floor in every single image.
+
+- The wall-to-floor transition must be a clean, straight horizontal line at exactly 65% from the top. No curved transitions, no baseboards, no moldings.
+
 - PRODUCT PLACEMENT: Place the UNMODIFIED product from the provided photo dead center horizontally, sitting naturally on the floor surface. The product should occupy roughly 40-50% of the image width and be vertically centered between floor and top of image.
-- LIGHTING: Single soft spotlight from directly above the product. Gentle vignette darkening at all four edges. Subtle soft shadow directly beneath the product on the floor.
+- LIGHTING: Single soft spotlight from directly above the product. Gentle vignette darkening at all four edges. Subtle soft shadow directly beneath the product on the floor. Do NOT change the wall or floor colors with lighting — the wall stays #3A3A3A-#4A4A4A and floor stays #B7ADA2 regardless of lighting.
 ${placardSection}
 CRITICAL RULES (MUST FOLLOW ALL):
 1. NEVER modify, alter, or reinterpret the product. It must be a pixel-accurate representation of the input photo, just placed in the museum scene.
-2. The layout must be IDENTICAL every time: wall on top, floor on bottom, product centered.
+2. The layout must be IDENTICAL every time: wall on top (#3A3A3A-#4A4A4A), floor on bottom (#B7ADA2), product centered. NEVER use different colors.
 3. ${showPlacard ? 'The placard MUST use the EXACT same design every time: white rectangle, black border, black serif text, bottom-left position. Never vary fonts, colors, shape, or position of the placard.' : 'ABSOLUTELY NO text, labels, placards, or any writing anywhere in the image. Zero text elements.'}
 4. No additional objects, decorations, or elements beyond the product, wall, floor${showPlacard ? ', and placard' : ''}.
 5. Photorealistic museum exhibit photograph style.
-6. The product's appearance is SACRED — do not change it.`;
+6. The product's appearance is SACRED — do not change it.
+7. The background wall and floor must look IDENTICAL in every generated image. Same colors, same textures, same proportions. NEVER vary them.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
