@@ -71,9 +71,11 @@ WALL (upper 65% of image):
 - Lighting on wall: PERFECTLY EVEN. No bright spots, no dark corners, no gradients, no color tint. Just flat #3D3D3D everywhere.
 
 FLOOR (lower 35% of image):
-- Color: FLAT warm gray-beige, exactly RGB(183, 173, 162) / hex #B7ADA2  
-- Texture: Smooth matte stone. Very subtle grain only. NOT marble, NOT tiles, NOT glossy, NOT reflective. No visible tile lines or joints.
-- Lighting on floor: PERFECTLY EVEN. Same color everywhere. No bright spots, no reflections.
+- Material: Polished white/cream marble with subtle natural gray veining. Classic museum-grade marble flooring.
+- Base color: Light cream-white marble, approximately #E8E0D8 with subtle warm gray veins running through it.
+- Finish: Polished and slightly reflective — like real marble floors in prestigious museums (Louvre, British Museum).
+- The marble pattern and veining must look IDENTICAL in every image — use the SAME consistent marble pattern every time. Think of it as one fixed marble floor photographed from the same angle.
+- Lighting on floor: Even ambient light with a subtle natural sheen from the polished marble surface.
 
 WALL-FLOOR BOUNDARY:
 - A single clean straight horizontal line at exactly 65% from top.
