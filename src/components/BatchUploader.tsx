@@ -32,6 +32,7 @@ const BatchUploader: React.FC = () => {
         origin: cols[3] || '',
         material: cols[4] || '',
         estimatedAge: cols[5] || '',
+        size: cols[6] || '',
       };
     }).filter(r => r.imageFilename);
   }, []);
@@ -113,7 +114,7 @@ const BatchUploader: React.FC = () => {
         </label>
 
         <div className="rounded-md bg-secondary/30 p-3 text-xs text-muted-foreground font-mono">
-          image_filename, artifact_number, title, origin, material, age
+          image_filename, artifact_number, title, origin, material, age, size
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArtifactDetails } from '@/lib/museumCanvas';
+import { ArtifactDetails } from '@/lib/museumGenerator';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
@@ -14,6 +14,7 @@ const fields: { key: keyof ArtifactDetails; label: string; placeholder: string }
   { key: 'origin', label: 'Origin', placeholder: 'India' },
   { key: 'material', label: 'Material', placeholder: 'Solid Wood with Metal Hardware' },
   { key: 'estimatedAge', label: 'Estimated Age', placeholder: 'Vintage (Mid–Late 20th Century)' },
+  { key: 'size', label: 'Size', placeholder: '24" x 12" x 14"' },
 ];
 
 const ArtifactForm: React.FC<ArtifactFormProps> = ({ details, onChange }) => {
