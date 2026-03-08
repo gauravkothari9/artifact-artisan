@@ -61,23 +61,25 @@ serve(async (req) => {
 PRODUCT: Keep the product EXACTLY as it appears in the input — same angle, colors, size, lighting. Do not redraw or modify the product in any way. Composite it into the scene.
 
 BACKGROUND — THIS IS CRITICAL, READ CAREFULLY:
-- WALL (top 65% of image): DARK CHARCOAL GRAY wall. The wall must be DARK — color hex #4A4A4E to #55555A. Think very dark gray, almost approaching black but not quite. It is NOT light gray, NOT white, NOT medium gray. It must be DARK. Smooth matte plaster finish with subtle gradient (darker at top, very slightly lighter near floor).
-- FLOOR (bottom 35% of image): WARM BROWN EMPERADOR MARBLE. The floor must be WARM-TONED — base color hex #C4B5A4 (warm beige-tan-brown). It must have PROMINENT dark brown veining streaks throughout in organic patterns. The marble must be HIGHLY POLISHED with a glossy reflective sheen. It must NOT be white marble, NOT gray marble, NOT Carrara marble. Think rich warm brown Italian Emperador marble with visible dark veining.
+- WALL (top 65% of image): DARK CHARCOAL GRAY wall. The wall must be DARK — color hex #4A4A4E to #55555A. Smooth matte plaster finish with subtle gradient (darker at top, very slightly lighter near floor). The wall must be COMPLETELY PLAIN — no visible ceiling, no track lights, no spotlights, no light fixtures, no rails, no moldings, no architectural details whatsoever. Just a smooth dark wall that fills the entire upper portion of the image.
+- FLOOR (bottom 35% of image): WARM BROWN EMPERADOR MARBLE. Base color hex #C4B5A4 (warm beige-tan-brown). PROMINENT dark brown veining streaks in organic patterns. HIGHLY POLISHED with glossy reflective sheen. NOT white marble, NOT gray marble, NOT Carrara marble.
 - The wall-to-floor transition is a clean horizontal line at ~65% from top. No baseboards.
 
-ABSOLUTE COLOR REQUIREMENTS (DO NOT DEVIATE):
-- Wall = DARK (like charcoal/dark slate) — if the wall looks light or white, you have FAILED
-- Floor = WARM BROWN with dark veining — if the floor looks white or cool gray, you have FAILED
-
-LIGHTING: Soft warm overhead museum lighting. Product casts a natural soft shadow on the floor. The polished marble shows subtle reflection of the product base.
+THINGS THAT MUST NEVER APPEAR IN THE IMAGE:
+- NO track lights, spotlights, light fixtures, or ceiling elements
+- NO ceiling visible at all — the wall extends to the very top edge of the image
+- NO architectural details like rails, moldings, columns, or baseboards
+- NO additional objects beyond the product${showPlacard ? ', and placard' : ''}
 
 LAYOUT:
 - ${aspectRatio === '3:2' ? 'Landscape 3:2 ratio (1536x1024)' : 'Square 1:1 ratio (1024x1024)'}
-- Product centered on the floor, grounded naturally
+- Product CENTERED HORIZONTALLY in the image — exactly in the middle, not shifted left or right
+- Product sitting naturally on the floor, grounded with a soft contact shadow
+- The polished marble shows a subtle reflection of the product base
 
 ${placardSection}
 
-CHECKLIST: Dark charcoal wall ✓ Warm brown marble floor with veining ✓ Product unchanged ✓ Realistic photograph ✓`;
+CHECKLIST: Dark charcoal wall (no lights/ceiling visible) ✓ Warm brown marble floor with veining ✓ Product centered ✓ Product unchanged ✓ Realistic photograph ✓`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
