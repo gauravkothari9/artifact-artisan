@@ -17,7 +17,7 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const { imageBase64, artifactNumber, title, origin, material, estimatedAge, size, showPlacard = true } = await req.json();
+    const { imageBase64, artifactNumber, title, origin, material, estimatedAge, size, showPlacard = true, aspectRatio = '1:1' } = await req.json();
 
     if (!imageBase64) {
       throw new Error("imageBase64 is required");
@@ -45,7 +45,7 @@ serve(async (req) => {
     const prompt = `You are a professional product photographer creating a museum exhibit photo. Your #1 priority is to PRESERVE THE PRODUCT EXACTLY AS IT APPEARS in the provided photo. Do NOT alter, modify, reshape, recolor, or artistically reinterpret the product in any way. The product must look IDENTICAL to the input photo — same shape, same colors, same textures, same details, same proportions.
 
 EXACT LAYOUT SPECIFICATION (follow precisely every time — NO variation between images):
-- IMAGE FORMAT: Perfect 1:1 square
+- IMAGE FORMAT: ${aspectRatio === '3:2' ? 'Landscape 3:2 aspect ratio (e.g. 1200x800 pixels). Wider than tall.' : 'Perfect 1:1 square (e.g. 1024x1024 pixels).'}
 - BACKGROUND: Dark charcoal gray gradient wall filling the top 65% of the image. Subtle concrete texture. No patterns, no decorations.
 - FLOOR: Warm gray-beige stone floor (#B7ADA2) filling the bottom 35% of the image. Clean, flat, no visible seams.
 - PRODUCT PLACEMENT: Place the UNMODIFIED product from the provided photo dead center horizontally, sitting naturally on the floor surface. The product should occupy roughly 40-50% of the image width and be vertically centered between floor and top of image.
