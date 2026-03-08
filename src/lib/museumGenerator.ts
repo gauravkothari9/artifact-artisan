@@ -26,12 +26,11 @@ export async function generateMuseumImage(
 ): Promise<string> {
   const imageBase64 = await fileToBase64(file);
 
-  // Always generate WITHOUT placard from AI — we overlay it programmatically
   const { data, error } = await supabase.functions.invoke('generate-museum-image', {
     body: {
       imageBase64,
       ...details,
-      showPlacard: false,
+      showPlacard,
       aspectRatio,
     },
   });
@@ -48,10 +47,7 @@ export async function generateMuseumImage(
     throw new Error('No image was generated');
   }
 
-  // Composite placard on top programmatically for perfect consistency
-  const { compositeWithPlacard } = await import('@/lib/placardOverlay');
-  const finalImage = await compositeWithPlacard(data.imageUrl, details, showPlacard);
-  return finalImage;
+  return data.imageUrl;
 }
 
 export function downloadImage(dataUrl: string, filename: string) {
