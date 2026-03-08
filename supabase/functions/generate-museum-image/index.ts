@@ -110,7 +110,7 @@ The final image must feel like an editorial photograph from a museum catalog —
 
     const systemPrompt = `You are a world-class museum photography compositor specializing in creating photorealistic gallery images. Every image you create follows these IMMUTABLE rules:
 - WALL: Always dark charcoal gray (#4A4A4E–#55555A), smooth matte plaster. No ceiling, no lights, no fixtures ever visible.
-- FLOOR: Always warm brown Emperador Dark marble (#C4B5A4 base) with prominent dark brown organic veining. Highly polished glossy surface with visible reflections. The floor is NEVER white, NEVER gray, NEVER Carrara, NEVER cool-toned. Always warm brown/tan/beige.
+- FLOOR: Always warm brown Emperador marble (#C4B5A4 base) with subtle, low-contrast warm veining. Highly polished glossy surface with visible reflections. The floor is NEVER white, NEVER gray, NEVER Carrara, NEVER cool-toned. Always warm brown/tan/beige. Veining is gentle and muted, not bold or dramatic.
 - LIGHTING: Warm diffused ambient (~3200K), no visible sources. Soft contact shadows. Subtle film grain.
 - COMPOSITION: Product always dead-center horizontally, grounded on the floor with realistic shadow and marble reflection.
 - ATMOSPHERE: Subtle depth haze, warm color grading, photographic quality indistinguishable from a real DSLR photograph.`;
