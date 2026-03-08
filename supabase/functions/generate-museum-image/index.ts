@@ -32,11 +32,10 @@ FLOOR: Neutral stone/concrete floor in a warm gray-beige tone (#B7ADA2).
 LIGHTING: Soft spotlight from above, focused on the product. Subtle vignette at edges.
 PRODUCT: Place the product from the provided image centered on the floor, naturally sitting on the surface. Add a realistic soft shadow beneath it.
 
-MUSEUM LABEL: Place a small white/cream museum information placard in the bottom-left corner of the image, sitting on the floor. The placard should have:
-- Light cream/stone colored background
-- Elegant serif typography
-- The following text layout:
-  Line 1 (bold, centered): "Artifact #${artifactNumber}"
+MUSEUM LABEL: This is VERY IMPORTANT. Place a clearly visible, large white/cream museum information placard in the bottom-left corner of the image, sitting upright on the floor. The placard MUST be large enough to read easily. Use HIGH CONTRAST — dark black text on a light cream/ivory background. The text must be BOLD, LARGE, and CRISP. Use elegant serif typography.
+
+The placard text layout (all text must be clearly legible):
+  Line 1 (large, bold, centered): "Artifact #${artifactNumber}"
   Line 2 (centered): "${title}"
   Line 3 (centered): "Origin: ${origin}"
   Line 4 (centered): "Material: ${material}"  
@@ -44,7 +43,8 @@ MUSEUM LABEL: Place a small white/cream museum information placard in the bottom
 
 The image must be a 1:1 square format. Make it look like a real museum exhibit photograph - professional, elegant, and consistent.
 
-IMPORTANT: Keep the product exactly as it appears in the provided image. Do not modify the product itself. Only place it in the museum setting.`;
+IMPORTANT: Keep the product exactly as it appears in the provided image. Do not modify the product itself. Only place it in the museum setting.
+IMPORTANT: The museum label text MUST be sharp, high-contrast, and easily readable. Do NOT make the text faint or blurry.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
