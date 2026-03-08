@@ -65,62 +65,74 @@ CONSISTENCY: The placard must look identical in every generated image — same s
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
 `;
 
-    const prompt = `You are compositing a product into a museum gallery photograph. The output must be photorealistic — indistinguishable from a real DSLR photo (Canon 5D, 50mm lens, f/4, ISO 400) taken inside a prestigious gallery at the Louvre or MoMA.
+    const prompt = `You are compositing a product photograph into a museum gallery scene. This is a PHOTO COMPOSITING task, NOT an image generation task.
 
-PRODUCT — ABSOLUTE HIGHEST PRIORITY RULE:
-- The product in the input image is SACRED. You MUST NOT change it in ANY way.
-- Do NOT redraw, re-render, re-imagine, regenerate, stylize, or artistically interpret the product.
-- Do NOT change the product's shape, proportions, colors, textures, details, angle, orientation, or perspective.
-- Do NOT add new lighting, shadows, highlights, reflections, or color shifts to the product itself.
-- Do NOT simplify, smooth, sharpen, blur, or modify any surface detail of the product.
-- The product must appear as an EXACT pixel-perfect copy from the input photo, simply placed into the museum scene.
-- Think of this as a photo editing task: cut out the product from the original photo and paste it onto the museum background. The product pixels must be IDENTICAL to the input.
+######## CRITICAL — PRODUCT PRESERVATION (READ THIS FIRST) ########
+
+THE PRODUCT MUST REMAIN 100% UNCHANGED. THIS IS NON-NEGOTIABLE.
+
+You are NOT generating a new image of the product. You are EXTRACTING the product from the input photograph and PLACING it onto a museum background. The product pixels must be IDENTICAL to the input.
+
+FORBIDDEN — DO NOT DO ANY OF THESE TO THE PRODUCT:
+- DO NOT redraw, regenerate, re-render, or re-imagine the product
+- DO NOT change the product's shape, silhouette, proportions, or form
+- DO NOT modify colors, hues, saturation, brightness, or contrast
+- DO NOT alter textures, patterns, surface details, or materials
+- DO NOT add or remove any lighting, shadows, highlights, or reflections ON the product
+- DO NOT change the product's angle, orientation, pose, or perspective
+- DO NOT simplify, stylize, smooth, sharpen, blur, or "improve" the product
+- DO NOT interpret what the product "should" look like — use EXACTLY what is shown
+- DO NOT fill in, complete, or modify any part of the product
+
+REQUIRED — WHAT YOU MUST DO:
+- Extract/cut out the product EXACTLY as it appears in the input image
+- Paste the product onto the museum background with ZERO modifications
+- The product should look like it was photographed in the museum, not generated
+
+Think of this as Photoshop compositing: Select → Cut → Paste. The product pixels are sacred and untouchable.
+
+######## END PRODUCT PRESERVATION RULES ########
 
 ENVIRONMENT — DARK GALLERY WITH WARM MARBLE FLOOR:
 
 WALL (upper ~65% of frame):
 - Color: Dark charcoal gray (#4A4A4E to #55555A). NOT light, NOT medium gray — truly DARK.
-- Surface: Smooth matte plaster with a velvety, slightly chalky texture visible at close inspection. Think freshly painted museum gallery wall.
-- Gradient: Very subtle — fractionally darker at top, fractionally lighter approaching the floor, as natural ambient light creates.
-- The wall extends edge-to-edge and top-to-bottom of the upper 65%. No ceiling line, no fixtures, no track lights, no rails, no moldings. Pure uninterrupted dark wall.
+- Surface: Smooth matte plaster with a velvety, slightly chalky texture visible at close inspection.
+- Gradient: Very subtle — fractionally darker at top, fractionally lighter approaching the floor.
+- The wall extends edge-to-edge. No ceiling line, no fixtures, no track lights, no rails, no moldings.
 
 FLOOR (lower ~35% of frame):
 - Material: Polished light-toned marble — light warm beige/cream base (#D9CFC2 to #E5DDD2) with subtle soft warm veining.
-- The marble is LIGHT and WARM-TONED: light beige, cream, ivory, light tan. NOT dark brown, NOT dark marble, NOT Emperador Dark. Think light Crema Marfil or Botticino marble.
+- The marble is LIGHT and WARM-TONED: light beige, cream, ivory, light tan. NOT dark brown, NOT dark marble.
 - Surface: Highly polished with a glossy sheen. Soft reflections of the product's base visible on the floor.
-- Tile joints: Very faint, subtle tile seam lines in a large-format pattern.
-- Veining: Subtle, low-contrast — soft warm tan/light brown veins blending gently into the light base. Elegant and understated.
+- Veining: Subtle, low-contrast — soft warm tan/light brown veins blending gently into the light base.
 
 WALL-FLOOR JUNCTION:
-- A clean, sharp horizontal line at approximately 65% from the top. No baseboard, no molding, no shadow line — just a crisp material transition.
-- Very subtle ambient occlusion darkening right at the junction where wall meets floor.
+- A clean, sharp horizontal line at approximately 65% from the top. No baseboard, no molding.
+- Very subtle ambient occlusion darkening right at the junction.
 
-PHOTOGRAPHIC REALISM (crucial for believability):
-- LIGHTING: Soft, warm, diffused ambient light from hidden overhead sources (no visible fixtures). Color temperature ~3200K (warm tungsten/gallery lighting). Creates gentle, even illumination across the wall and floor. Soft light falloff from center toward edges — subtle natural vignette.
-- SHADOWS: The product casts a realistic soft contact shadow on the marble directly beneath and slightly behind it. Shadow opacity ~30-40%, soft-edged, matching the product's silhouette. The shadow grounds the product in the space.
-- REFLECTIONS: The polished marble shows a soft, slightly blurred reflection of the product's base — visible but not mirror-sharp. The reflection fades naturally with distance from the product.
-- DEPTH: Subtle atmospheric perspective — very slight warm haze/tonal softening between the camera and the back wall, giving a sense of real 3D space with air in it.
-- GRAIN: Very subtle photographic film grain consistent with ISO 400 — gives the image a real-camera feel rather than a CGI-clean look.
-- COLOR GRADING: Slightly warm overall tone. Rich, deep shadows. Smooth highlight rolloff on the marble surface.
+LIGHTING & ATMOSPHERE:
+- Soft, warm, diffused ambient light from hidden overhead sources (~3200K).
+- The product casts a realistic soft contact shadow on the marble beneath it (shadow opacity ~30-40%).
+- The polished marble shows a soft, slightly blurred reflection of the product's base.
+- Very subtle photographic film grain consistent with ISO 400.
 
-FORBIDDEN (never include any of these):
-- Track lights, spotlights, ceiling lights, any visible light fixtures
+FORBIDDEN ELEMENTS (never include):
+- Track lights, spotlights, any visible light fixtures
 - Visible ceiling or ceiling line
-- Pedestals, display cases, ropes, stanchions, museum furniture
-- Other objects, people, signage, or text (except placard if enabled)
-- Architectural details: columns, rails, baseboards, doorways
-- Any element not explicitly described above
+- Pedestals, display cases, ropes, stanchions
+- Other objects, people, signage
+- Columns, rails, baseboards, doorways
 
 COMPOSITION:
 - Format: ${aspectRatio === '3:2' ? 'Landscape 3:2 (1536×1024 pixels)' : 'Square 1:1 (1024×1024 pixels)'}
-- Product CENTERED horizontally in the frame — dead center, not shifted left or right
+- Product CENTERED horizontally in the frame
 - Product sits on the floor in the lower-center area, naturally grounded
-- Camera: Straight-on view, slightly elevated (~15° above floor level), typical museum/gallery product photography angle
-- Framing: Product occupies roughly 40-50% of the image height, with breathing room above and to the sides
+- Camera: Straight-on view, slightly elevated (~15° above floor level)
 
 ${placardSection}
 
-The final image must feel like an editorial photograph from a museum catalog — warm, atmospheric, grounded, and unmistakably real.`;
+FINAL REMINDER: The product in your output must be pixel-for-pixel identical to the input. Do not redraw it.`;
 
     const systemPrompt = `You are a world-class museum photography compositor specializing in creating photorealistic gallery images. Every image you create follows these IMMUTABLE rules:
 - WALL: Always dark charcoal gray (#4A4A4E–#55555A), smooth matte plaster. No ceiling, no lights, no fixtures ever visible.
