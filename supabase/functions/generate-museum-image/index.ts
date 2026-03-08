@@ -75,7 +75,7 @@ FLOOR (lower ~35% of frame):
 - The marble is WARM-TONED: beige, tan, caramel, brown. NEVER white, NEVER gray, NEVER cool-toned, NEVER Carrara.
 - Surface: Highly polished with a mirror-like glossy sheen. The polish creates visible reflections — a soft, slightly blurred mirror image of the product's base on the floor surface.
 - Tile joints: Very faint, subtle tile seam lines in a large-format pattern (each tile ~60-80cm).
-- The marble veining should look natural and organic — thick and thin dark streaks flowing through the warm base.
+- The marble veining should be SUBTLE and LOW-CONTRAST — soft, muted veining in slightly darker warm tones blending gently into the base color. NOT bold or high-contrast veining. Think elegant, understated marble with gentle tonal variation rather than dramatic dark streaks.
 
 WALL-FLOOR JUNCTION:
 - A clean, sharp horizontal line at approximately 65% from the top. No baseboard, no molding, no shadow line — just a crisp material transition.
@@ -110,7 +110,7 @@ The final image must feel like an editorial photograph from a museum catalog —
 
     const systemPrompt = `You are a world-class museum photography compositor specializing in creating photorealistic gallery images. Every image you create follows these IMMUTABLE rules:
 - WALL: Always dark charcoal gray (#4A4A4E–#55555A), smooth matte plaster. No ceiling, no lights, no fixtures ever visible.
-- FLOOR: Always warm brown Emperador Dark marble (#C4B5A4 base) with prominent dark brown organic veining. Highly polished glossy surface with visible reflections. The floor is NEVER white, NEVER gray, NEVER Carrara, NEVER cool-toned. Always warm brown/tan/beige.
+- FLOOR: Always warm brown Emperador marble (#C4B5A4 base) with subtle, low-contrast warm veining. Highly polished glossy surface with visible reflections. The floor is NEVER white, NEVER gray, NEVER Carrara, NEVER cool-toned. Always warm brown/tan/beige. Veining is gentle and muted, not bold or dramatic.
 - LIGHTING: Warm diffused ambient (~3200K), no visible sources. Soft contact shadows. Subtle film grain.
 - COMPOSITION: Product always dead-center horizontally, grounded on the floor with realistic shadow and marble reflection.
 - ATMOSPHERE: Subtle depth haze, warm color grading, photographic quality indistinguishable from a real DSLR photograph.`;
