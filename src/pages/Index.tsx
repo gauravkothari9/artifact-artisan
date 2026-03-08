@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Image as ImageIcon, Layers } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 import ImageUploader from '@/components/ImageUploader';
 import ArtifactForm from '@/components/ArtifactForm';
 import MuseumPreview from '@/components/MuseumPreview';
