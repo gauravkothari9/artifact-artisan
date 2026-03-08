@@ -78,7 +78,7 @@ RULE #2 — LIGHTING (MANDATORY):
 - The ONLY shadow allowed: a very subtle, soft shadow directly beneath the product on the floor.
 
 RULE #3 — LAYOUT:
-- IMAGE FORMAT: ${aspectRatio === '3:2' ? 'Landscape 3:2 aspect ratio (e.g. 1200x800 pixels). Wider than tall. VERY IMPORTANT FOR LANDSCAPE: Imagine you have ALREADY created the perfect 1:1 square museum image with the product. Now you are simply EXTENDING THE CANVAS to the left and right by adding more wall and floor. The product in the center is COMPLETELY UNCHANGED — same pixels, same angle, same size, same lighting, same everything. You are NOT creating a new image. You are widening an existing one. The product must be IDENTICAL to what it would look like in a 1:1 version.' : 'Perfect 1:1 square (e.g. 1024x1024 pixels).'}
+- IMAGE FORMAT: ${aspectRatio === '3:2' ? 'Landscape 3:2 aspect ratio (e.g. 1536x1024 pixels). Wider than tall. VERY IMPORTANT FOR LANDSCAPE: Imagine you have ALREADY created the perfect 1:1 square museum image with the product. Now you are simply EXTENDING THE CANVAS to the left and right by adding more wall and floor. The product in the center is COMPLETELY UNCHANGED — same pixels, same angle, same size, same lighting, same everything. You are NOT creating a new image. You are widening an existing one. The product must be IDENTICAL to what it would look like in a 1:1 version.' : 'CRITICAL: The output image MUST be a PERFECT SQUARE — exactly 1:1 aspect ratio, 1024x1024 pixels. The width and height MUST be IDENTICAL. Do NOT output a landscape or rectangular image. SQUARE ONLY.'}
 - WALL (MUST BE IDENTICAL IN EVERY IMAGE — ZERO VARIATION): Top 65% of image. FLAT solid dark charcoal color. Use EXACTLY this gradient: #3A3A3A at the very top fading to #4A4A4A at the wall-floor boundary. The wall must have a very subtle fine concrete/plaster texture — the SAME texture every time. NOT brick, NOT wood, NOT stucco, NOT painted drywall. NO artistic variation between images. The wall must look IDENTICAL whether generating 1 image or 100 images.
 - FLOOR (MUST BE IDENTICAL IN EVERY IMAGE — ZERO VARIATION): Bottom 35% of image. FLAT solid warm gray-beige stone color EXACTLY #B7ADA2. Smooth, matte, uniform. The SAME flat stone appearance every time. NOT marble, NOT wood, NOT tile, NOT concrete, NOT polished. NO reflections, NO patterns, NO texture variation between images. The floor must look IDENTICAL whether generating 1 image or 100 images.
 - Wall-to-floor transition: Clean straight horizontal line at exactly 65% from top. No baseboards, no moldings. SAME in every image.
@@ -117,6 +117,7 @@ FINAL CHECKLIST (ALL MUST BE TRUE OR IMAGE IS REJECTED):
           },
         ],
         modalities: ["image", "text"],
+        ...(aspectRatio === '1:1' ? { image_size: "1024x1024" } : { image_size: "1536x1024" }),
       }),
     });
 
