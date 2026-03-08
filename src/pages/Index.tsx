@@ -24,6 +24,7 @@ const Index: React.FC = () => {
   const [details, setDetails] = useState<ArtifactDetails>(defaultDetails);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [showPlacard, setShowPlacard] = useState(true);
 
   const handleImageLoad = useCallback((_img: HTMLImageElement, file: File) => {
     setProductFile(file);
