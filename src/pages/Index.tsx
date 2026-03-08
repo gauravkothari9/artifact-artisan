@@ -113,6 +113,16 @@ const Index: React.FC = () => {
                     Artifact Details
                   </h2>
                   <ArtifactForm details={details} onChange={setDetails} />
+                  <div className="flex items-center gap-3 pt-2">
+                    <Switch
+                      id="show-placard"
+                      checked={showPlacard}
+                      onCheckedChange={setShowPlacard}
+                    />
+                    <Label htmlFor="show-placard" className="text-sm font-medium text-foreground/80 cursor-pointer">
+                      Include museum placard
+                    </Label>
+                  </div>
                 </section>
 
                 <Button
