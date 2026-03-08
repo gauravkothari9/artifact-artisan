@@ -67,14 +67,17 @@ The product in the provided photo is SACRED and UNTOUCHABLE.
 - Do NOT add or remove any details, textures, or features from the product.
 - The product must look like it was carefully cut from the original photo and placed into the museum scene.
 
-RULE #2 — REALISTIC MUSEUM ENVIRONMENT (CRITICAL):
-Create a PHOTOREALISTIC museum gallery environment that looks like a real physical space photographed with a camera:
-- WALL: Top ~65% of image. Dark charcoal concrete/plaster wall (#3A3A3A to #4A4A4A gradient). Must have REALISTIC subtle texture — fine grain concrete or smooth plaster with natural micro-variations you'd see in a real museum wall. Add very subtle ambient occlusion where the wall meets the floor.
-- FLOOR: Bottom ~35% of image. Warm gray-beige polished stone (#B7ADA2 base). Must look like REAL museum flooring — subtle natural stone grain, very faint surface variation, slight matte sheen. NOT perfectly flat digital color.
-- DEPTH & ATMOSPHERE: Add subtle atmospheric depth — very slight haze or tonal gradation that makes the scene feel like a real 3D space with air between the camera and the wall. The image should have natural photographic depth of field.
-- LIGHTING: Soft, diffused museum gallery lighting — the kind from recessed ceiling panels. Even and ambient, but with natural falloff. A very soft, warm overhead ambient light that creates gentle, natural shadows. The lighting should feel REAL — not perfectly uniform like a digital render. Allow subtle natural light variation on the wall and floor as you'd see in a real museum.
-- SHADOW: The product casts a realistic soft contact shadow on the floor — the shadow should match the product's shape and feel physically grounded.
-- REALISM DETAILS: Add photographic qualities — very subtle lens characteristics, natural color temperature (slightly warm museum lighting), micro-details in surface textures. The final image should be indistinguishable from a real photograph taken inside the Louvre, MoMA, or British Museum.
+RULE #2 — IDENTICAL MUSEUM ENVIRONMENT (CRITICAL — MUST BE THE SAME IN EVERY IMAGE):
+The museum background and floor must be EXACTLY THE SAME in every single generated image, regardless of the product. This is a FIXED, STANDARDIZED environment — like a real museum gallery that never changes. The ONLY thing that changes between images is the product itself.
+
+ENVIRONMENT SPECIFICATION (FIXED — NEVER VARIES):
+- WALL: Top exactly 65% of image. UNIFORM dark charcoal smooth plaster wall, flat color #3D3D3D. Smooth matte finish with very subtle fine plaster grain texture. NO dramatic lighting variations, NO color shifts, NO visible gradients across the wall. The wall must look IDENTICAL in every image — same color, same texture, same tone.
+- FLOOR: Bottom exactly 35% of image. UNIFORM warm gray-beige polished stone, flat color #B7ADA2. Smooth polished surface with very subtle stone grain. NO dramatic reflections, NO color variations across the floor. The floor must look IDENTICAL in every image — same color, same texture, same tone.
+- WALL-FLOOR JUNCTION: Clean, sharp, perfectly straight horizontal line at exactly 65% from top. NO baseboards, NO moldings, NO rounded transitions. Just a clean edge where wall meets floor.
+- LIGHTING: Soft, even, diffused ambient museum lighting from above. NO spotlights, NO directional beams, NO dramatic shadows on the wall or floor. The lighting on the environment itself must be PERFECTLY UNIFORM and IDENTICAL in every image. Only the product's contact shadow changes.
+- SHADOW: The product casts a soft, subtle contact shadow on the floor directly beneath it. This is the ONLY shadow variation between images.
+- ATMOSPHERE: Very subtle atmospheric depth. Minimal — do NOT add heavy haze or fog. Keep it clean and consistent.
+- CONSISTENCY RULE: If you generated 100 images with different products, the wall and floor should be PIXEL-PERFECT IDENTICAL in all 100. The background is a TEMPLATE — it never changes. Think of it as a fixed studio backdrop.
 
 RULE #3 — LAYOUT:
 - IMAGE FORMAT: ${aspectRatio === '3:2' ? 'Landscape 3:2 aspect ratio (e.g. 1536x1024 pixels). Wider than tall.' : 'PERFECT SQUARE — exactly 1:1 aspect ratio, 1024x1024 pixels.'}
