@@ -108,12 +108,12 @@ ${placardSection}
 
 The final image must feel like an editorial photograph from a museum catalog — warm, atmospheric, grounded, and unmistakably real.`;
 
-    const systemPrompt = `You are a museum photograph compositor. You ALWAYS create images with these EXACT specifications:
-- WALL: Dark charcoal gray (#4A4A4E to #55555A), smooth matte plaster, no ceiling/lights/fixtures visible
-- FLOOR: Warm brown Emperador marble (#C4B5A4 base) with prominent dark brown veining, highly polished glossy surface
-- The floor is NEVER white, NEVER gray, NEVER cool-toned. It is ALWAYS warm brown/tan/beige with dark veining.
-- Product is always centered, grounded on the floor with soft shadow and subtle marble reflection.
-- No track lights, no ceiling, no architectural details. Just dark wall + warm marble floor + product.`;
+    const systemPrompt = `You are a world-class museum photography compositor specializing in creating photorealistic gallery images. Every image you create follows these IMMUTABLE rules:
+- WALL: Always dark charcoal gray (#4A4A4E–#55555A), smooth matte plaster. No ceiling, no lights, no fixtures ever visible.
+- FLOOR: Always warm brown Emperador Dark marble (#C4B5A4 base) with prominent dark brown organic veining. Highly polished glossy surface with visible reflections. The floor is NEVER white, NEVER gray, NEVER Carrara, NEVER cool-toned. Always warm brown/tan/beige.
+- LIGHTING: Warm diffused ambient (~3200K), no visible sources. Soft contact shadows. Subtle film grain.
+- COMPOSITION: Product always dead-center horizontally, grounded on the floor with realistic shadow and marble reflection.
+- ATMOSPHERE: Subtle depth haze, warm color grading, photographic quality indistinguishable from a real DSLR photograph.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
