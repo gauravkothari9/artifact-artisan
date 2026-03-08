@@ -6,7 +6,8 @@ import ArtifactForm from '@/components/ArtifactForm';
 import MuseumPreview from '@/components/MuseumPreview';
 import BatchUploader from '@/components/BatchUploader';
 import { Button } from '@/components/ui/button';
-import { ArtifactDetails, generateMuseumImage, downloadCanvas } from '@/lib/museumCanvas';
+import { ArtifactDetails, generateMuseumImage, downloadImage } from '@/lib/museumGenerator';
+import { toast } from 'sonner';
 
 const defaultDetails: ArtifactDetails = {
   artifactNumber: '',
@@ -17,51 +18,49 @@ const defaultDetails: ArtifactDetails = {
 };
 
 const Index: React.FC = () => {
-  const [productImage, setProductImage] = useState<HTMLImageElement | null>(null);
+  const [productFile, setProductFile] = useState<File | null>(null);
   const [productPreview, setProductPreview] = useState<string | null>(null);
   const [details, setDetails] = useState<ArtifactDetails>(defaultDetails);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  const handleImageLoad = useCallback((img: HTMLImageElement, file: File) => {
-    setProductImage(img);
+  const handleImageLoad = useCallback((_img: HTMLImageElement, file: File) => {
+    setProductFile(file);
     setProductPreview(URL.createObjectURL(file));
     setPreviewUrl(null);
   }, []);
 
   const handleClear = useCallback(() => {
-    setProductImage(null);
+    setProductFile(null);
     setProductPreview(null);
     setPreviewUrl(null);
   }, []);
 
-  const canGenerate = productImage && details.artifactNumber && details.title;
+  const canGenerate = productFile && details.artifactNumber && details.title;
 
   const generate = useCallback(async () => {
-    if (!productImage) return;
+    if (!productFile) return;
     setIsGenerating(true);
-    // Small delay to let UI update
-    await new Promise((r) => setTimeout(r, 50));
     try {
-      const canvas = await generateMuseumImage(productImage, details);
-      canvasRef.current = canvas;
-      setPreviewUrl(canvas.toDataURL('image/png'));
+      const imageUrl = await generateMuseumImage(productFile, details);
+      setPreviewUrl(imageUrl);
+      toast.success('Museum image generated successfully!');
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to generate image');
     } finally {
       setIsGenerating(false);
     }
-  }, [productImage, details]);
+  }, [productFile, details]);
 
   const handleDownload = useCallback(() => {
-    if (canvasRef.current) {
+    if (previewUrl) {
       const filename = `incraftify_${details.artifactNumber || 'artifact'}.png`;
-      downloadCanvas(canvasRef.current, filename);
+      downloadImage(previewUrl, filename);
     }
-  }, [details.artifactNumber]);
+  }, [previewUrl, details.artifactNumber]);
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="container max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -78,7 +77,6 @@ const Index: React.FC = () => {
         </div>
       </header>
 
-      {/* Main */}
       <main className="container max-w-6xl mx-auto px-4 py-8">
         <Tabs defaultValue="single" className="space-y-6">
           <TabsList className="bg-secondary/50">
@@ -94,7 +92,6 @@ const Index: React.FC = () => {
 
           <TabsContent value="single" className="animate-fade-in">
             <div className="grid lg:grid-cols-2 gap-8">
-              {/* Left: Controls */}
               <div className="space-y-6">
                 <section className="space-y-3">
                   <h2 className="text-base font-display font-semibold text-foreground">
@@ -120,11 +117,10 @@ const Index: React.FC = () => {
                   className="w-full"
                   size="lg"
                 >
-                  Generate Museum Image
+                  {isGenerating ? 'Generating with AI…' : 'Generate Museum Image'}
                 </Button>
               </div>
 
-              {/* Right: Preview */}
               <div className="lg:sticky lg:top-24 lg:self-start">
                 <h2 className="text-base font-display font-semibold text-foreground mb-3">
                   Preview
