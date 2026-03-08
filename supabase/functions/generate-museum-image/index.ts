@@ -33,13 +33,16 @@ serve(async (req) => {
     - In landscape (3:2), the left edge is still 3% from the left — do NOT move it to the center or further right. 3% of a wider image means a slightly larger pixel offset, but it must remain flush to the bottom-left corner.
     - The placard sits on the floor, leaning against the wall. NEVER floating, NEVER centered, NEVER on the right side.
     - Z-ORDER / LAYERING: The placard is ALWAYS rendered IN FRONT of the product and all other elements. It must NEVER be occluded, hidden, or partially covered by the product. The placard is the TOP-MOST layer in the scene. If the product and placard overlap, the placard is ALWAYS on top, fully visible.
-  * SIZE: The placard is a SMALL card — approximately 80 pixels wide and 120 pixels tall in a 1024-pixel-tall image. When the image is landscape (wider), the placard stays THE SAME SIZE — do NOT scale it to the wider width. The placard size is relative to IMAGE HEIGHT only: width = 8% of image HEIGHT, height = 12% of image HEIGHT. This ensures it looks identical in both square and landscape formats.
+  * SIZE: Make the placard LARGE ENOUGH for text to be clearly readable. Minimum width = 12% of image HEIGHT, minimum height = 18% of image HEIGHT. In landscape, keep the SAME pixel size as in square — do NOT shrink it.
   * SHAPE: Flat rectangle. Sharp 90-degree corners. NO rounded corners. NO 3D perspective. NO curling. NO shadow on card. Slight 2-degree clockwise tilt.
-  * APPEARANCE (NEVER CHANGE THIS — SAME IN EVERY IMAGE):
-    - Background: Solid pure white #FFFFFF — not cream, not off-white
+  * TEXT LEGIBILITY (CRITICAL — MOST IMPORTANT PLACARD RULE):
+    - ALL text on the placard MUST be SHARP, CRISP, and FULLY READABLE at normal viewing size.
+    - Font size must be LARGE ENOUGH to read every single word clearly — if in doubt, make it BIGGER.
+    - Use high contrast: Pure black #000000 text on solid pure white #FFFFFF background.
+    - NO blurring, NO anti-aliasing artifacts, NO fuzzy text. Every letter must be pixel-sharp.
+    - The text must be equally legible in BOTH 1:1 square AND 3:2 landscape formats — same font size, same sharpness.
     - Border: Thin 1px solid #333333 on all 4 sides
-    - All text: Pure black #000000, classic serif font (like Times New Roman)
-    - Text is left-aligned with small internal padding
+    - Classic serif font (like Times New Roman), left-aligned with generous internal padding
   * TEXT CONTENT (6 lines, top to bottom):
     - Line 1 (bold, title size): "Artifact No. ${artifactNumber}" — Use "No." (capital N, lowercase o, period). Must be CRISP and LEGIBLE.
     - Line 2 (regular): "${title}"
