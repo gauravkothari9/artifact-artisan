@@ -24,22 +24,27 @@ serve(async (req) => {
     }
 
     const placardSection = showPlacard ? `
-- MUSEUM PLACARD: A very small rectangular white/ivory card (approximately 8% of image width, 12% of image height) positioned in the BOTTOM-LEFT corner of the image, resting upright on the floor at a very slight angle. The card has a thin dark border.
-
-PLACARD TEXT (must be perfectly legible, use bold black serif font on white/cream background):
-  Line 1 (largest, bold): "Artifact #${artifactNumber}"
-  Line 2: "${title}"
-  Line 3: "Origin: ${origin}"
-  Line 4: "Material: ${material}"
-  Line 5: "Size: ${size}"
-  Line 6: "Estimated Age: ${estimatedAge}"
+- MUSEUM PLACARD (EXACT SPECIFICATION — follow identically every single time):
+  * Shape: A flat, perfectly rectangular card with SHARP 90-degree corners. NO rounded corners. NO folding. NO 3D effects.
+  * Size: Exactly 8% of image width, 12% of image height.
+  * Position: Bottom-left corner of the image, resting flat upright on the floor, flush against the wall. Slight 2-degree tilt to the right.
+  * Card color: Solid pure white (#FFFFFF) with a 1px solid dark gray (#333333) border on all four sides.
+  * Typography: ALL text is BLACK (#000000) on the white card. Use a classic bold serif font (like Playfair Display or Times New Roman). Left-aligned with consistent padding.
+  * Text layout (top to bottom, evenly spaced):
+    - Line 1 (title, largest ~14pt bold): "Artifact #${artifactNumber}"
+    - Line 2 (~10pt regular): "${title}"
+    - Line 3 (~9pt regular): "Origin: ${origin}"
+    - Line 4 (~9pt regular): "Material: ${material}"
+    - Line 5 (~9pt regular): "Size: ${size}"
+    - Line 6 (~9pt regular): "Est. Age: ${estimatedAge}"
+  * The placard must look EXACTLY the same in every generated image — same proportions, same font style, same border, same position. NEVER vary the placard design.
 ` : `
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else.
 `;
 
     const prompt = `You are a professional product photographer creating a museum exhibit photo. Your #1 priority is to PRESERVE THE PRODUCT EXACTLY AS IT APPEARS in the provided photo. Do NOT alter, modify, reshape, recolor, or artistically reinterpret the product in any way. The product must look IDENTICAL to the input photo — same shape, same colors, same textures, same details, same proportions.
 
-EXACT LAYOUT SPECIFICATION (follow precisely):
+EXACT LAYOUT SPECIFICATION (follow precisely every time — NO variation between images):
 - IMAGE FORMAT: Perfect 1:1 square
 - BACKGROUND: Dark charcoal gray gradient wall filling the top 65% of the image. Subtle concrete texture. No patterns, no decorations.
 - FLOOR: Warm gray-beige stone floor (#B7ADA2) filling the bottom 35% of the image. Clean, flat, no visible seams.
@@ -49,7 +54,7 @@ ${placardSection}
 CRITICAL RULES (MUST FOLLOW ALL):
 1. NEVER modify, alter, or reinterpret the product. It must be a pixel-accurate representation of the input photo, just placed in the museum scene.
 2. The layout must be IDENTICAL every time: wall on top, floor on bottom, product centered.
-3. ${showPlacard ? 'Include a small placard in the bottom-left. Text must be HIGH CONTRAST black on white, sharp and crisp, never blurry.' : 'ABSOLUTELY NO text, labels, placards, or any writing anywhere in the image. Zero text elements.'}
+3. ${showPlacard ? 'The placard MUST use the EXACT same design every time: white rectangle, black border, black serif text, bottom-left position. Never vary fonts, colors, shape, or position of the placard.' : 'ABSOLUTELY NO text, labels, placards, or any writing anywhere in the image. Zero text elements.'}
 4. No additional objects, decorations, or elements beyond the product, wall, floor${showPlacard ? ', and placard' : ''}.
 5. Photorealistic museum exhibit photograph style.
 6. The product's appearance is SACRED — do not change it.`;
