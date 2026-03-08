@@ -53,7 +53,7 @@ IMPORTANT: The museum label text MUST be sharp, high-contrast, and easily readab
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash-image",
+        model: "google/gemini-3-pro-image-preview",
         messages: [
           {
             role: "user",
