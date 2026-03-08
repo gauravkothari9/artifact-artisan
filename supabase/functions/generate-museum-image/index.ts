@@ -37,20 +37,20 @@ serve(async (req) => {
   * SHAPE & REALISM: The placard must look like a REAL PHYSICAL museum placard photographed in the scene. It should have realistic 3D perspective — slightly angled as if it's a small card sitting on the floor and leaning against the wall at a slight angle. It should look like a real object in the space, NOT a flat 2D overlay pasted on top. Add a subtle natural shadow beneath/behind the placard. The card should have slight depth and realistic lighting matching the scene. Sharp 90-degree corners, NO rounded corners, NO curling.
   * TEXT STYLING (CRITICAL — MUST BE EXACTLY THE SAME EVERY TIME, ZERO VARIATION):
     - Font: Classic serif font (Times New Roman style)
-    - ALL 6 lines use BOLD weight — every single line is BOLD. There are NO normal/regular weight lines. NEVER mix bold and non-bold. Every character on the placard is BOLD.
+    - ONLY Line 1 is BOLD. Lines 2 through 6 are REGULAR/NORMAL weight — they must NOT be bold.
     - Color: Pure black #000000 text on solid pure white #FFFFFF background
     - ALL text is SHARP, CRISP, and FULLY READABLE. NO blurring, NO fuzzy text.
     - Text alignment: LEFT-aligned with generous internal padding
     - Border: Thin 1px solid #333333 on all 4 sides
-    - The text styling must be IDENTICAL in every single generated image. Same font, same weight (BOLD for ALL lines), same color, same alignment.
-  * TEXT CONTENT (exactly 6 lines, top to bottom — ALL BOLD):
+    - This exact styling must be IDENTICAL in every generated image. NEVER make lines 2-6 bold.
+  * TEXT CONTENT (exactly 6 lines, top to bottom):
     - Line 1 (BOLD, largest font size): Artifact No. ${artifactNumber}
-    - Line 2 (BOLD, medium font size): ${title}
-    - Line 3 (BOLD, medium font size): Origin: ${origin}
-    - Line 4 (BOLD, medium font size): Material: ${material}
-    - Line 5 (BOLD, medium font size): Size: ${size}
-    - Line 6 (BOLD, medium font size): Est. Age: ${estimatedAge}
-    RULE: Line 1 is slightly larger than lines 2-6. But ALL lines are BOLD. Do NOT make any line regular/normal weight. Do NOT include any formatting instructions or style descriptors as visible text.
+    - Line 2 (NORMAL weight, smaller font): ${title}
+    - Line 3 (NORMAL weight, smaller font): Origin: ${origin}
+    - Line 4 (NORMAL weight, smaller font): Material: ${material}
+    - Line 5 (NORMAL weight, smaller font): Size: ${size}
+    - Line 6 (NORMAL weight, smaller font): Est. Age: ${estimatedAge}
+    RULE: ONLY Line 1 is bold. Lines 2-6 must be regular/normal weight. Do NOT include any formatting instructions or style descriptors as visible text.
   * ABSOLUTE CONSISTENCY: The placard in a 3:2 landscape image must be VISUALLY IDENTICAL to the placard in a 1:1 square image — same card size on screen, same font size, same style, same colors. The ONLY difference is that in landscape there is more background space to the right. The placard itself NEVER changes.
 ` : `
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
