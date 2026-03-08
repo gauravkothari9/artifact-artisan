@@ -32,6 +32,7 @@ serve(async (req) => {
     - Bottom edge of placard = exactly 2% from the BOTTOM edge of the image (in both square and landscape).
     - In landscape (3:2), the left edge is still 3% from the left — do NOT move it to the center or further right. 3% of a wider image means a slightly larger pixel offset, but it must remain flush to the bottom-left corner.
     - The placard sits on the floor, leaning against the wall. NEVER floating, NEVER centered, NEVER on the right side.
+    - Z-ORDER / LAYERING: The placard is ALWAYS rendered IN FRONT of the product and all other elements. It must NEVER be occluded, hidden, or partially covered by the product. The placard is the TOP-MOST layer in the scene. If the product and placard overlap, the placard is ALWAYS on top, fully visible.
   * SIZE: The placard is a SMALL card — approximately 80 pixels wide and 120 pixels tall in a 1024-pixel-tall image. When the image is landscape (wider), the placard stays THE SAME SIZE — do NOT scale it to the wider width. The placard size is relative to IMAGE HEIGHT only: width = 8% of image HEIGHT, height = 12% of image HEIGHT. This ensures it looks identical in both square and landscape formats.
   * SHAPE: Flat rectangle. Sharp 90-degree corners. NO rounded corners. NO 3D perspective. NO curling. NO shadow on card. Slight 2-degree clockwise tilt.
   * APPEARANCE (NEVER CHANGE THIS — SAME IN EVERY IMAGE):
