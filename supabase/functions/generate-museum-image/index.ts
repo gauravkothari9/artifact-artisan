@@ -87,7 +87,7 @@ The only thing that changes between images is the product placed on this backgro
 ENVIRONMENT — USE THE STANDARD DARK GALLERY:
 - Dark smoky/cloudy wall atmosphere in the upper portion
 - Dark marble/stone floor with visible crack patterns and veining
-- Moody, dramatic lighting with warm undertones
+- Soft, natural ambient lighting — NO spotlights, NO directional lights, NO artificial light sources
 - The background must be consistent across all generated images
 `;
 
