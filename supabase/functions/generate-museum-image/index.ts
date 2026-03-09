@@ -128,17 +128,6 @@ COMPOSITION:
 - The product casts a realistic soft contact shadow on the floor beneath it
 - Camera angle should match the background reference image perspective
 
-MUSEUM LIGHTING (CRITICAL — makes the product feel like a real gallery exhibit):
-- A single warm spotlight (3200K tungsten) from above-front illuminates the product like a real museum track light
-- The spotlight creates a soft, focused pool of light on and around the product
-- Gentle rim lighting on the product edges to separate it from the dark background
-- Subtle warm highlights on the top surfaces of the product, as if lit from a ceiling spot
-- The surrounding environment stays darker, drawing the eye to the product (vignette effect)
-- Soft diffused ambient fill light so shadows are not pitch black — like a real gallery
-- A faint reflection/glow of the product on the polished floor beneath it
-- The lighting should feel like ISO 400, f/4, professional DSLR museum photography
-- DO NOT change the product's actual colors or textures — only add realistic ENVIRONMENTAL lighting interaction (highlights, rim light, shadows)
-
 ${placardSection}
 
 FINAL REMINDER: The product in your output must be pixel-for-pixel identical to the FIRST input image. The background must be identical to the SECOND input image. Do not redraw either.`;
@@ -148,8 +137,7 @@ FINAL REMINDER: The product in your output must be pixel-for-pixel identical to 
 - The background from the SECOND image must be reproduced EXACTLY — same textures, colors, lighting, atmosphere
 - Every output must have the IDENTICAL background — consistency is paramount
 - Add only a natural contact shadow beneath the product to ground it realistically
-- The result must look like a real DSLR photograph, indistinguishable from reality
-- Apply museum-quality LIGHTING that makes the product feel like a prestigious gallery exhibit`;
+- The result must look like a real DSLR photograph, indistinguishable from reality`;
 
     // Build message content with product image and optionally background reference
     const messageContent: any[] = [
