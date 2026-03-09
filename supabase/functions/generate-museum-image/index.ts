@@ -87,7 +87,7 @@ The only thing that changes between images is the product placed on this backgro
 ENVIRONMENT — USE THE STANDARD DARK GALLERY:
 - Dark smoky/cloudy wall atmosphere in the upper portion
 - Dark marble/stone floor with visible crack patterns and veining
-- Moody, dramatic lighting with warm undertones
+- Soft, natural ambient lighting — NO spotlights, NO directional lights, NO artificial light sources
 - The background must be consistent across all generated images
 `;
 
@@ -137,7 +137,8 @@ FINAL REMINDER: The product in your output must be pixel-for-pixel identical to 
 - The background from the SECOND image must be reproduced EXACTLY — same textures, colors, lighting, atmosphere
 - Every output must have the IDENTICAL background — consistency is paramount
 - Add only a natural contact shadow beneath the product to ground it realistically
-- The result must look like a real DSLR photograph, indistinguishable from reality`;
+- LIGHTING: Use ONLY natural, soft, ambient lighting. NO spotlights, NO directional lights, NO track lights, NO artificial light sources visible or implied. The scene should look naturally lit with even, diffused illumination — no dramatic highlights or harsh shadows
+- The result must look like a real photograph, indistinguishable from reality`;
 
     // Build message content with product image and optionally background reference
     const messageContent: any[] = [
