@@ -17,7 +17,7 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const { imageBase64, artifactNumber, title, origin, material, estimatedAge, size, showPlacard = true, aspectRatio = '1:1' } = await req.json();
+    const { imageBase64, backgroundBase64, artifactNumber, title, origin, material, estimatedAge, size, showPlacard = true, aspectRatio = '1:1' } = await req.json();
 
     if (!imageBase64) {
       throw new Error("imageBase64 is required");
@@ -29,7 +29,7 @@ MUSEUM PLACARD — CRITICAL ELEMENT, MUST BE PERFECT:
 VISIBILITY & Z-ORDER (HIGHEST PRIORITY):
 - The placard MUST be clearly visible, fully readable, and NEVER obscured by the product or any other element.
 - The placard is the TOP-MOST LAYER — it renders IN FRONT of everything else. If the product and placard overlap, the placard is ALWAYS on top.
-- The placard must be LARGE ENOUGH to read all text clearly. Width = 15% of image width (larger than before for readability).
+- The placard must be LARGE ENOUGH to read all text clearly. Width = 15% of image width.
 
 POSITION:
 - Bottom-left corner of the image.
@@ -62,16 +62,42 @@ TEXT (MUST BE SHARP, CRISP, AND FULLY READABLE — this is critical):
 
 CONSISTENCY: The placard must look identical in every generated image — same size, style, font, colors, position.
 ` : `
-- ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product, the wall, and the floor. Nothing else. ZERO text elements anywhere.
+- ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product and the background. Nothing else. ZERO text elements anywhere.
 `;
 
-    const prompt = `You are compositing a product photograph into a museum gallery scene. This is a PHOTO COMPOSITING task, NOT an image generation task.
+    const backgroundInstruction = backgroundBase64
+      ? `
+######## CRITICAL — BACKGROUND REFERENCE IMAGE ########
+
+The SECOND image provided is the EXACT background you MUST use. This is NON-NEGOTIABLE.
+
+You MUST reproduce this EXACT background environment:
+- The EXACT same dark marble/stone floor with the same crack patterns, veining, and texture
+- The EXACT same dark smoky/cloudy wall atmosphere above the floor
+- The EXACT same lighting, color tones, and mood
+- The EXACT same camera angle and perspective of the floor/wall
+- The background must be IDENTICAL in every generated image — same floor, same wall, same atmosphere
+
+DO NOT create a different background. DO NOT interpret or reimagine the background. Copy it EXACTLY as shown in the reference image.
+
+The only thing that changes between images is the product placed on this background.
+########################################################
+`
+      : `
+ENVIRONMENT — USE THE STANDARD DARK GALLERY:
+- Dark smoky/cloudy wall atmosphere in the upper portion
+- Dark marble/stone floor with visible crack patterns and veining
+- Moody, dramatic lighting with warm undertones
+- The background must be consistent across all generated images
+`;
+
+    const prompt = `You are compositing a product photograph onto a specific museum background. This is a PHOTO COMPOSITING task, NOT an image generation task.
 
 ######## CRITICAL — PRODUCT PRESERVATION (READ THIS FIRST) ########
 
 THE PRODUCT MUST REMAIN 100% UNCHANGED. THIS IS NON-NEGOTIABLE.
 
-You are NOT generating a new image of the product. You are EXTRACTING the product from the input photograph and PLACING it onto a museum background. The product pixels must be IDENTICAL to the input.
+You are NOT generating a new image of the product. You are EXTRACTING the product from the FIRST input photograph and PLACING it onto the background shown in the SECOND image. The product pixels must be IDENTICAL to the input.
 
 FORBIDDEN — DO NOT DO ANY OF THESE TO THE PRODUCT:
 - DO NOT redraw, regenerate, re-render, or re-imagine the product
@@ -85,61 +111,49 @@ FORBIDDEN — DO NOT DO ANY OF THESE TO THE PRODUCT:
 - DO NOT fill in, complete, or modify any part of the product
 
 REQUIRED — WHAT YOU MUST DO:
-- Extract/cut out the product EXACTLY as it appears in the input image
-- Paste the product onto the museum background with ZERO modifications
-- The product should look like it was photographed in the museum, not generated
+- Extract/cut out the product EXACTLY as it appears in the FIRST image
+- Place the product onto the background from the SECOND image with ZERO modifications to the product
+- The product should look like it was photographed in this environment, not generated
 
 Think of this as Photoshop compositing: Select → Cut → Paste. The product pixels are sacred and untouchable.
 
 ######## END PRODUCT PRESERVATION RULES ########
 
-ENVIRONMENT — DARK GALLERY WITH WARM MARBLE FLOOR:
-
-WALL (upper ~65% of frame):
-- Color: Dark charcoal gray (#4A4A4E to #55555A). NOT light, NOT medium gray — truly DARK.
-- Surface: Smooth matte plaster with a velvety, slightly chalky texture visible at close inspection.
-- Gradient: Very subtle — fractionally darker at top, fractionally lighter approaching the floor.
-- The wall extends edge-to-edge. No ceiling line, no fixtures, no track lights, no rails, no moldings.
-
-FLOOR (lower ~35% of frame):
-- Material: Polished light-toned marble — light warm beige/cream base (#D9CFC2 to #E5DDD2) with subtle soft warm veining.
-- The marble is LIGHT and WARM-TONED: light beige, cream, ivory, light tan. NOT dark brown, NOT dark marble.
-- Surface: Highly polished with a glossy sheen. Soft reflections of the product's base visible on the floor.
-- Veining: Subtle, low-contrast — soft warm tan/light brown veins blending gently into the light base.
-
-WALL-FLOOR JUNCTION:
-- A clean, sharp horizontal line at approximately 65% from the top. No baseboard, no molding.
-- Very subtle ambient occlusion darkening right at the junction.
-
-LIGHTING & ATMOSPHERE:
-- Soft, warm, diffused ambient light from hidden overhead sources (~3200K).
-- The product casts a realistic soft contact shadow on the marble beneath it (shadow opacity ~30-40%).
-- The polished marble shows a soft, slightly blurred reflection of the product's base.
-- Very subtle photographic film grain consistent with ISO 400.
-
-FORBIDDEN ELEMENTS (never include):
-- Track lights, spotlights, any visible light fixtures
-- Visible ceiling or ceiling line
-- Pedestals, display cases, ropes, stanchions
-- Other objects, people, signage
-- Columns, rails, baseboards, doorways
+${backgroundInstruction}
 
 COMPOSITION:
 - Format: ${aspectRatio === '3:2' ? 'Landscape 3:2 (1536×1024 pixels)' : 'Square 1:1 (1024×1024 pixels)'}
 - Product CENTERED horizontally in the frame
 - Product sits on the floor in the lower-center area, naturally grounded
-- Camera: Straight-on view, slightly elevated (~15° above floor level)
+- The product casts a realistic soft contact shadow on the floor beneath it
+- Camera angle should match the background reference image perspective
 
 ${placardSection}
 
-FINAL REMINDER: The product in your output must be pixel-for-pixel identical to the input. Do not redraw it.`;
+FINAL REMINDER: The product in your output must be pixel-for-pixel identical to the FIRST input image. The background must be identical to the SECOND input image. Do not redraw either.`;
 
-    const systemPrompt = `You are a world-class museum photography compositor specializing in creating photorealistic gallery images. Every image you create follows these IMMUTABLE rules:
-- WALL: Always dark charcoal gray (#4A4A4E–#55555A), smooth matte plaster. No ceiling, no lights, no fixtures ever visible.
-- FLOOR: Always LIGHT warm-toned marble (#D9CFC2 to #E5DDD2 base) — light beige/cream/ivory with subtle soft warm veining. Highly polished glossy surface. NOT dark brown, NOT Emperador Dark, NOT gray, NOT cool-toned. Think Crema Marfil or Botticino marble.
-- LIGHTING: Warm diffused ambient (~3200K), no visible sources. Soft contact shadows. Subtle film grain.
-- COMPOSITION: Product always dead-center horizontally, grounded on the floor with realistic shadow and marble reflection.
-- ATMOSPHERE: Subtle depth haze, warm color grading, photographic quality indistinguishable from a real DSLR photograph.`;
+    const systemPrompt = `You are a world-class museum photography compositor. Your job is to composite products onto a provided background image with perfect photorealism. IMMUTABLE rules:
+- The product from the FIRST image must NEVER be modified in any way — preserve it pixel-for-pixel
+- The background from the SECOND image must be reproduced EXACTLY — same textures, colors, lighting, atmosphere
+- Every output must have the IDENTICAL background — consistency is paramount
+- Add only a natural contact shadow beneath the product to ground it realistically
+- The result must look like a real DSLR photograph, indistinguishable from reality`;
+
+    // Build message content with product image and optionally background reference
+    const messageContent: any[] = [
+      { type: "text", text: prompt },
+      {
+        type: "image_url",
+        image_url: { url: imageBase64 },
+      },
+    ];
+
+    if (backgroundBase64) {
+      messageContent.push({
+        type: "image_url",
+        image_url: { url: backgroundBase64 },
+      });
+    }
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -156,13 +170,7 @@ FINAL REMINDER: The product in your output must be pixel-for-pixel identical to 
           },
           {
             role: "user",
-            content: [
-              { type: "text", text: prompt },
-              {
-                type: "image_url",
-                image_url: { url: imageBase64 },
-              },
-            ],
+            content: messageContent,
           },
         ],
         modalities: ["image", "text"],

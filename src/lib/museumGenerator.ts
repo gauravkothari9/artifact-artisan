@@ -18,17 +18,32 @@ function fileToBase64(file: File): Promise<string> {
   });
 }
 
+async function fetchBackgroundAsBase64(): Promise<string> {
+  const response = await fetch('/museum-background.png');
+  const blob = await response.blob();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
 export async function generateMuseumImage(
   file: File,
   details: ArtifactDetails,
   showPlacard: boolean = true,
   aspectRatio: '1:1' | '3:2' = '1:1'
 ): Promise<string> {
-  const imageBase64 = await fileToBase64(file);
+  const [imageBase64, backgroundBase64] = await Promise.all([
+    fileToBase64(file),
+    fetchBackgroundAsBase64(),
+  ]);
 
   const { data, error } = await supabase.functions.invoke('generate-museum-image', {
     body: {
       imageBase64,
+      backgroundBase64,
       ...details,
       showPlacard,
       aspectRatio,
