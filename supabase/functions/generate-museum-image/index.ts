@@ -169,10 +169,10 @@ FINAL REMINDER: The product in your output must be pixel-for-pixel identical to 
       },
     ];
 
-    if (backgroundBase64) {
+    if (bgBase64) {
       messageContent.push({
         type: "image_url",
-        image_url: { url: backgroundBase64 },
+        image_url: { url: bgBase64 },
       });
     }
 
