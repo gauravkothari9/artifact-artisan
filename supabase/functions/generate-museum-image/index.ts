@@ -17,10 +17,30 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const { imageBase64, backgroundBase64, artifactNumber, title, origin, material, estimatedAge, size, showPlacard = true, aspectRatio = '1:1' } = await req.json();
+    const { imageBase64, backgroundUrl, backgroundBase64, artifactNumber, title, origin, material, estimatedAge, size, showPlacard = true, aspectRatio = '1:1' } = await req.json();
 
     if (!imageBase64) {
       throw new Error("imageBase64 is required");
+    }
+
+    // Fetch background as base64 from URL if provided, otherwise use inline base64
+    let bgBase64 = backgroundBase64;
+    if (!bgBase64 && backgroundUrl) {
+      try {
+        const bgResponse = await fetch(backgroundUrl);
+        const bgBlob = await bgResponse.blob();
+        const bgArrayBuffer = await bgBlob.arrayBuffer();
+        const bgUint8Array = new Uint8Array(bgArrayBuffer);
+        let binary = '';
+        for (let i = 0; i < bgUint8Array.length; i++) {
+          binary += String.fromCharCode(bgUint8Array[i]);
+        }
+        const bgB64 = btoa(binary);
+        const contentType = bgResponse.headers.get('content-type') || 'image/png';
+        bgBase64 = `data:${contentType};base64,${bgB64}`;
+      } catch (e) {
+        console.error("Failed to fetch background image:", e);
+      }
     }
 
     const placardSection = showPlacard ? `
