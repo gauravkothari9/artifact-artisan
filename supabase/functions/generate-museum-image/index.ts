@@ -87,20 +87,28 @@ CONSISTENCY: The placard must look identical in every generated image — same s
 
     const backgroundInstruction = bgBase64
       ? `
-######## CRITICAL — BACKGROUND REFERENCE IMAGE ########
+######## ABSOLUTE REQUIREMENT — BACKGROUND IMAGE (READ CAREFULLY) ########
 
-The SECOND image provided is the EXACT background you MUST use. This is NON-NEGOTIABLE.
+The SECOND image is the EXACT background you MUST use. DO NOT CHANGE IT AT ALL.
 
-You MUST reproduce this EXACT background environment:
-- The EXACT same dark marble/stone floor with the same crack patterns, veining, and texture
-- The EXACT same dark smoky/cloudy wall atmosphere above the floor
-- The EXACT same lighting, color tones, and mood
-- The EXACT same camera angle and perspective of the floor/wall
-- The background must be IDENTICAL in every generated image — same floor, same wall, same atmosphere
+This is a COMPOSITING task. You are pasting the product onto the provided background.
+The background in your output MUST be the SECOND image UNCHANGED — pixel-for-pixel identical.
 
-DO NOT create a different background. DO NOT interpret or reimagine the background. Copy it EXACTLY as shown in the reference image.
+FORBIDDEN — DO NOT DO ANY OF THESE TO THE BACKGROUND:
+- DO NOT reinterpret, reimagine, regenerate, or redraw ANY part of the background
+- DO NOT change the floor texture, color, crack patterns, or veining in any way
+- DO NOT change the wall atmosphere, smoke patterns, colors, or gradients
+- DO NOT add ANY lighting effects — NO spotlights, NO directional light, NO rim light, NO glow
+- DO NOT brighten, darken, warm, cool, recolor, or tone-shift the background
+- DO NOT create a "similar looking" or "inspired by" background — use the EXACT pixels provided
+- DO NOT add reflections, puddles, or any elements not in the reference
 
-The only thing that changes between images is the product placed on this background.
+REQUIRED:
+- Use the SECOND image as the background layer EXACTLY as provided
+- The ONLY change to the scene is: product from FIRST image placed on top + a subtle contact shadow beneath it
+- Nothing else in the background changes. Zero modifications.
+
+This is like Photoshop: Background layer = SECOND image (locked, untouched). Product layer = FIRST image (cut out and placed on top).
 ########################################################
 `
       : `
@@ -111,31 +119,24 @@ ENVIRONMENT — USE THE STANDARD DARK GALLERY:
 - The background must be consistent across all generated images
 `;
 
-    const prompt = `You are compositing a product photograph onto a specific museum background. This is a PHOTO COMPOSITING task, NOT an image generation task.
+    const prompt = `You are compositing a product photograph onto a specific museum background. This is a PHOTO COMPOSITING task — like Photoshop layer compositing. You are NOT generating new imagery.
 
 ######## CRITICAL — PRODUCT PRESERVATION (READ THIS FIRST) ########
 
 THE PRODUCT MUST REMAIN 100% UNCHANGED. THIS IS NON-NEGOTIABLE.
 
-You are NOT generating a new image of the product. You are EXTRACTING the product from the FIRST input photograph and PLACING it onto the background shown in the SECOND image. The product pixels must be IDENTICAL to the input.
+You are EXTRACTING the product from the FIRST image and PLACING it onto the background from the SECOND image. Both must remain pixel-identical to their inputs.
 
 FORBIDDEN — DO NOT DO ANY OF THESE TO THE PRODUCT:
 - DO NOT redraw, regenerate, re-render, or re-imagine the product
-- DO NOT change the product's shape, silhouette, proportions, or form
-- DO NOT modify colors, hues, saturation, brightness, or contrast
-- DO NOT alter textures, patterns, surface details, or materials
-- DO NOT add or remove any lighting, shadows, highlights, or reflections ON the product
-- DO NOT change the product's angle, orientation, pose, or perspective
+- DO NOT change shape, silhouette, proportions, colors, textures, or materials
+- DO NOT add or remove lighting, shadows, highlights, or reflections ON the product
+- DO NOT change angle, orientation, pose, or perspective
 - DO NOT simplify, stylize, smooth, sharpen, blur, or "improve" the product
-- DO NOT interpret what the product "should" look like — use EXACTLY what is shown
-- DO NOT fill in, complete, or modify any part of the product
 
-REQUIRED — WHAT YOU MUST DO:
+REQUIRED:
 - Extract/cut out the product EXACTLY as it appears in the FIRST image
-- Place the product onto the background from the SECOND image with ZERO modifications to the product
-- The product should look like it was photographed in this environment, not generated
-
-Think of this as Photoshop compositing: Select → Cut → Paste. The product pixels are sacred and untouchable.
+- Place it onto the UNCHANGED background from the SECOND image
 
 ######## END PRODUCT PRESERVATION RULES ########
 
@@ -145,20 +146,19 @@ COMPOSITION:
 - Format: ${aspectRatio === '3:2' ? 'Landscape 3:2 (1536×1024 pixels)' : 'Square 1:1 (1024×1024 pixels)'}
 - Product CENTERED horizontally in the frame
 - Product sits on the floor in the lower-center area, naturally grounded
-- The product casts a realistic soft contact shadow on the floor beneath it
+- Add ONLY a subtle contact shadow directly beneath the product on the floor
 - Camera angle should match the background reference image perspective
 
 ${placardSection}
 
-FINAL REMINDER: The product in your output must be pixel-for-pixel identical to the FIRST input image. The background must be identical to the SECOND input image. Do not redraw either.`;
+FINAL REMINDER: Background = SECOND image, unchanged. Product = FIRST image, unchanged. You are only compositing them together.`;
 
-    const systemPrompt = `You are a world-class museum photography compositor. Your job is to composite products onto a provided background image with perfect photorealism. IMMUTABLE rules:
-- The product from the FIRST image must NEVER be modified in any way — preserve it pixel-for-pixel
-- The background from the SECOND image must be reproduced EXACTLY — same textures, colors, lighting, atmosphere
-- Every output must have the IDENTICAL background — consistency is paramount
-- Add only a natural contact shadow beneath the product to ground it realistically
-- LIGHTING: Use ONLY natural, soft, ambient lighting. NO spotlights, NO directional lights, NO track lights, NO artificial light sources visible or implied. The scene should look naturally lit with even, diffused illumination — no dramatic highlights or harsh shadows
-- The result must look like a real photograph, indistinguishable from reality`;
+    const systemPrompt = `You are a photo compositing engine. Your ONLY job is to composite a product (from the FIRST input image) onto a background (from the SECOND input image). STRICT RULES:
+- The background from the SECOND image must appear EXACTLY as provided — do not redraw, reinterpret, or modify it in any way
+- The product from the FIRST image must be preserved pixel-for-pixel — do not redraw or modify it
+- Add ONLY a subtle contact shadow beneath the product
+- NO spotlights, NO directional lights, NO artificial lighting — the scene lighting must match exactly what's in the reference background
+- Output must look like a real photograph — seamless compositing only`;
 
     // Build message content with product image and optionally background reference
     const messageContent: any[] = [
