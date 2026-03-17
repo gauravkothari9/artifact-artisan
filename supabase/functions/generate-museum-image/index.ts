@@ -85,7 +85,7 @@ CONSISTENCY: The placard must look identical in every generated image — same s
 - ABSOLUTELY NO PLACARD: Do NOT include any text card, label, placard, caption, or any form of text overlay anywhere in the image. The scene must contain ONLY the product and the background. Nothing else. ZERO text elements anywhere.
 `;
 
-    const backgroundInstruction = backgroundBase64
+    const backgroundInstruction = bgBase64
       ? `
 ######## CRITICAL — BACKGROUND REFERENCE IMAGE ########
 
