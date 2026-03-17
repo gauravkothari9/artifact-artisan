@@ -89,26 +89,32 @@ CONSISTENCY: The placard must look identical in every generated image — same s
       ? `
 ######## ABSOLUTE REQUIREMENT — BACKGROUND IMAGE (READ CAREFULLY) ########
 
-The SECOND image is the EXACT background you MUST use. DO NOT CHANGE IT AT ALL.
+The SECOND image is the EXACT background you MUST use. This is NOT a reference or inspiration — it IS the background.
 
-This is a COMPOSITING task. You are pasting the product onto the provided background.
-The background in your output MUST be the SECOND image UNCHANGED — pixel-for-pixel identical.
+This is a LAYER COMPOSITING task. Think of it exactly like Photoshop:
+- Layer 0 (LOCKED): The SECOND image = your background. DO NOT TOUCH IT.
+- Layer 1: The product cut out from the FIRST image, placed on top.
+- That's it. Two layers. Nothing else.
 
-FORBIDDEN — DO NOT DO ANY OF THESE TO THE BACKGROUND:
+YOUR OUTPUT MUST CONTAIN THE EXACT SAME BACKGROUND PIXELS AS THE SECOND IMAGE.
+
+ABSOLUTELY FORBIDDEN — violating ANY of these rules means FAILURE:
 - DO NOT reinterpret, reimagine, regenerate, or redraw ANY part of the background
-- DO NOT change the floor texture, color, crack patterns, or veining in any way
-- DO NOT change the wall atmosphere, smoke patterns, colors, or gradients
-- DO NOT add ANY lighting effects — NO spotlights, NO directional light, NO rim light, NO glow
-- DO NOT brighten, darken, warm, cool, recolor, or tone-shift the background
-- DO NOT create a "similar looking" or "inspired by" background — use the EXACT pixels provided
-- DO NOT add reflections, puddles, or any elements not in the reference
+- DO NOT change the floor texture, color, crack patterns, veining, or surface detail in any way
+- DO NOT change the wall atmosphere, smoke patterns, haze, colors, or gradients
+- DO NOT add ANY lighting effects — NO spotlights, NO directional light, NO rim light, NO glow, NO highlights
+- DO NOT brighten, darken, warm, cool, shift, or recolor ANY part of the background
+- DO NOT create a "similar looking" or "inspired by" background — use the EXACT pixels
+- DO NOT add reflections, puddles, fog, or any elements not already in the SECOND image
+- DO NOT smooth, sharpen, blur, or filter the background in any way
+- DO NOT change the perspective, crop, or framing of the background
 
 REQUIRED:
-- Use the SECOND image as the background layer EXACTLY as provided
-- The ONLY change to the scene is: product from FIRST image placed on top + a subtle contact shadow beneath it
-- Nothing else in the background changes. Zero modifications.
+- Copy the SECOND image as-is for the background — every pixel must match
+- The ONLY addition to the scene is: the product placed on top + a subtle contact shadow directly beneath it
+- The background wall, floor, cracks, smoke, lighting — ALL must be IDENTICAL to the SECOND image
 
-This is like Photoshop: Background layer = SECOND image (locked, untouched). Product layer = FIRST image (cut out and placed on top).
+If your output background looks even slightly different from the SECOND image, you have FAILED the task.
 ########################################################
 `
       : `
